@@ -1,0 +1,391 @@
+@import'_setup';
+
+.product__title-main p{
+    position: relative;
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 1;
+
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid $border-color;
+
+    &:after {
+        position: absolute;
+        left: 0;
+        bottom: -1px;
+        content: "";
+
+        width: 9rem;
+        height: 1.5px;
+
+        background-color: $secondary-color;
+    }    
+}
+
+.products__categories-item {
+    margin-bottom: 1rem;
+
+    & a {
+        font-size: 1.4rem;
+        display: inline-block;
+        transition: linear .3s;
+
+        span{
+            padding-left: .5rem;
+        }
+
+        &:hover {
+            transform: translateX(10px);
+            color: $secondary-color;
+        }
+    }
+}
+
+.topview {
+    margin-top: 3rem;
+}
+
+
+.product-list {
+    border: 1px solid #fff;
+    display: flex;
+    padding: 1rem 0;
+    margin-bottom: .5rem;
+
+    &-img {
+        width: 12rem;
+        height: 10rem;
+
+        img {
+            width: 10rem !important;
+        }
+    }
+
+    .product__decs {
+        width: 65%;
+        padding: 0;
+        padding-top: .8rem;
+    }
+
+    &-delete {
+        display: block;
+        margin-right: 1.2rem;
+        margin-top: 1rem;
+
+        text-align: right;
+        z-index: 999;
+        i {
+            font-size: 1.3rem;
+        }
+        
+    }
+}
+ 
+.header__banner {
+    width: 100%;
+    padding: 11rem 0;
+
+    background: url('/images/banner.jpg') no-repeat;
+    background-size: 100% 100%;
+
+    &-content { 
+        h2 {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 600;
+
+            margin-bottom: 1.5rem;
+        }
+    }
+
+    &-sortlink {
+        text-align: center;
+
+        & a {
+            font-size: 1.4rem;
+            transition: linear .3s;
+            &:hover {
+                color: $secondary-color;
+            }
+        }
+
+        & span {
+            font-size: 1.4rem;
+            margin: 0 1rem;
+        }
+    }
+}
+
+
+
+.paginate {
+    margin: 2rem 0;
+}
+
+.pagination {
+    .page-link {
+        font-size: 1.4rem;
+        padding: .9rem 1.5rem;
+        border: 1px solid $border-color;
+        color: $primary-color;
+    }
+
+    .page-link:focus {
+        box-shadow: 0 0 0 0.1rem #4fb68dad;
+    }
+
+    .page-item.active .page-link {
+        background-color: $secondary-color;
+        border-color: $secondary-color;
+    }
+}
+
+
+
+// view product
+.viewProduct {
+    padding: 2rem 2rem 0;
+    img {
+        height: 55rem;
+        width: 100%;
+    }
+
+    &__images {
+        display: flex;
+        justify-content: center;
+
+        margin-top: 1rem;
+        .box_img {
+            width: 10rem;
+            height: 10rem;
+            border: 1px solid $border-color;
+            margin: 0 1rem;
+
+            cursor: pointer;
+        }
+    }
+
+    &__information {
+        h1 {
+            font-weight: 600;
+            font-size: 2.4rem;
+            margin-bottom: 2rem;
+        }
+
+        .product__price {
+            margin-bottom: 3rem;
+            span{
+                font-size: 2.2rem;
+            }
+        }
+
+        form{
+            margin-top: 3rem;
+
+            .btn-addCart {
+                margin-left: 3rem;
+                padding: 1rem 2.5rem;
+
+                border: none;
+                outline: none;
+                border-radius: 3rem;
+
+                background-color: $secondary-color;
+                color: #fff;
+
+
+                font-weight: 600;
+                text-transform: uppercase;
+                font-size: 1.4rem;
+                letter-spacing: 1px;
+            }
+        }
+
+        .quantity__add {
+            display: flex;
+            span {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                width: 4.5rem;
+                height: 4.5rem;
+                border: 1px solid $border-color;
+
+                &:hover {
+                    background-color: $border-color;
+                }
+            }
+
+            input{
+                border: thin solid $border-color;
+                outline: none;
+                width: 10rem;
+                padding: 0 1rem;
+                
+                text-align: center;
+                font-size: 1.5rem;
+            }
+        }
+    }
+
+    &__desc {
+        margin-bottom: 2rem;
+        font-size: 1.45rem;
+        color: #888;
+        line-height: 2;
+        text-align: justify;
+    }
+
+    &__desc-line {
+        line-height: 1.6;
+    }
+}
+
+
+// tab
+.tabViewProduct {
+    margin-top: 5rem;
+    margin-bottom: 2rem;
+}
+
+.ui-tabs .ui-tabs-panel {
+    padding-top: 2rem;
+    max-width: 85rem;
+    margin: 0 auto;
+}
+
+.ui-widget.ui-widget-content {
+    border: none !important;
+}
+
+.ui-widget-header {
+    border: none;
+    background: none;
+}
+
+.ui-widget-header {
+    display: flex;
+    justify-content: center;
+}
+
+.ui-tabs .ui-tabs-nav li {
+    background: none;
+    border: none;
+    
+    &:focus {
+        outline: none !important;
+    }
+
+    a {
+        color: #000;
+        font-size: 1.7rem;
+        padding: .5rem 1.5rem !important;
+    }
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tabs-active {
+    border-bottom: 1.5px solid $border-color;
+}
+
+.ui-widget * { outline: none; }
+
+
+
+// comment
+.box-comment {
+    display: flex;
+
+    textarea {
+        font-size: 1.4rem;
+        padding: 1rem;
+    }
+
+    .button-comment {
+        margin-left: 1rem;
+        font-size: 1.4rem;
+
+        color: #fff;
+        background-color: $primary-color;
+
+        outline: none;
+        border: none;
+        border-radius: 3px;
+
+        transition: linear .3s;
+        
+        &:hover {
+            background-color: $secondary-color;
+        }
+    }
+}
+
+.success_comment {
+    font-size: 1.4rem;
+    color: $secondary-color;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.error_comment {
+    font-size: 1.4rem;
+    color: #f00;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+
+.comment {
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+
+    &__box {
+        position: relative;
+
+        display: flex;
+        margin-bottom: 1rem;
+
+        img {
+            width: 7rem;
+            height: 7rem;
+        }
+
+        .comment__content {
+            margin-left: 1rem;
+
+            .comment__info {
+                font-weight: 600;
+                font-size: 1.5rem;
+
+                span {
+                    color: #8e8d8d;
+                    font-size: 1.3rem;
+                }
+            }
+
+            p {
+                font-size: 1.35rem;
+            }
+        }
+
+        .remove-comment {
+            position: absolute;
+            bottom: 2px;
+            right: 6px;
+            font-size: 1.4rem;
+            color: #f00;
+        }
+    }
+}
+
+
+
+
+
+// sản phẩm cùng loại
+#product-category {
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    grid-gap: 1.2rem;
+}

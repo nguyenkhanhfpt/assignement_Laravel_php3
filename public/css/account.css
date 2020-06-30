@@ -1,0 +1,120 @@
+html {
+  font-size: 62.5%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Open Sans", sans-serif;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.contai {
+  max-width: 144rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 1.5rem;
+}
+
+.wrapper {
+  max-width: 192rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+a {
+  text-decoration: none !important;
+  color: #253237;
+}
+
+.login {
+  min-height: 40rem;
+}
+
+.login__contain {
+  display: grid;
+  grid-template-columns: 4fr 6fr;
+  max-width: 100rem;
+  margin: 0 auto;
+  padding: 4rem 0;
+}
+
+.login__img img {
+  height: auto;
+  border-radius: 5px;
+}
+
+.login hr {
+  margin-bottom: 1.8rem;
+}
+
+.login__form {
+  padding: 0 3rem;
+}
+
+.login__form .form-group-grid {
+  display: grid;
+  grid-template-columns: 12rem auto;
+}
+
+.login__form .col-form-label {
+  font-size: 1.4rem;
+}
+
+.login__form .form-check-label {
+  font-size: 1.25rem;
+}
+
+.login__form .btn__buy-center {
+  border: none;
+  outline: none;
+}
+
+.login__form .login__forget {
+  margin-left: 1rem;
+  font-size: 1.25rem;
+}
+
+.login__form .create-account {
+  margin-top: 1rem;
+  font-size: 1.4rem;
+}
+
+.login__title {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.invalid-feedback strong {
+  padding-top: 1rem;
+  font-size: 1.25rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-control {
+  padding: 1.5rem 1rem;
+  font-size: 1.4rem;
+}
+
+.form-control:focus {
+  box-shadow: 0 0 0 0.05rem rgba(0, 123, 255, 0.25);
+}
+
+.register .form-group-grid {
+  grid-template-columns: 14.5rem auto;
+}
+

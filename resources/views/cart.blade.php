@@ -1,0 +1,122 @@
+@extends('layouts.master')
+
+@section('title', 'Ecolife - Giỏ hàng')
+
+@section('menu')
+    @include('components.menu')
+@endsection
+
+@section('content')
+    <div class="contai">
+        <div class="cart">
+            <div class="cart__box">
+                <div class="cart__item">
+                    <div class="pos_title">
+                        <h2>Giỏ hàng</h2>
+                    </div>
+
+                    @if(session('buySuccess'))
+                        <p class="buySuccess">
+                            {{ session('buySuccess') }}
+                        </p>
+                    @endif
+
+                    @if(session('errQuantity'))
+                        <p class="errCart">
+                            {{ session('errQuantity') }}
+                        </p>
+                    @endif
+
+                    @if(session('errCart'))
+                        <p class="errCart">
+                            {{ session('errCart') }}
+                        </p>
+                    @endif
+
+                    <form action="{{url('/cart/update')}}" id="formCart" method="POST">
+                        @csrf
+                        @foreach($sessionCart as $key => $cart)
+                            <div class="cart__product">
+                                <div class="cart__product-img">
+                                    <img src="{{asset('images')}}/{{$cart['img_product']}}" alt="">
+                                </div>
+                                <div class="cart__product-name">
+                                    <a href="{{route('products')}}/{{$key}}" class="name_product">{{$cart['name_product']}}</a>
+                                    <p class="price-product">{{number_format($cart['price_product'])}} đ</p>
+                                </div>
+                                <div class="cart__product-icon">
+                                    <input type="number" name="quantity[{{$key}}]" value={{$cart['quantity']}}> 
+                                    <p class="total-price">{{number_format($cart['price_product'] * $cart['quantity'])}} đ</p>
+                                    <a href="{{route('cart')}}/delete/{{$key}}">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        @endforeach
+                    </form>
+                    
+
+                    @if(count($sessionCart) == 0)
+                        <p class="alert_nothing">Không có sản phẩm nào trong giỏ hàng</p>
+                    @else
+                        <div>
+                            <a href="" class="update-cart">Cập nhật đơn hàng</a>
+                        </div>
+                    @endif
+                    
+                    <a href="{{route('products')}}" class="btn__buy btn__buy-margin">Tiếp tục mua hàng</a>
+                </div>    
+                <div class="cart__checkout">
+                    <div class="card cart-summary">
+                        <div class="cart-detailed-totals">
+
+                            <div class="card-block">
+                                <div class="cart-summary-line" id="cart-subtotal-products">
+                                    <span class="label js-subtotal">
+                                        {{count($sessionCart)}} sản phẩm
+                                    </span>
+                                    <span class="value">{{number_format($totalCart)}} đ</span>
+                                </div>
+                                <div class="cart-summary-line" id="cart-subtotal-shipping">
+                                    <span class="label">
+                                        Phí vận chuyển
+                                    </span>
+                                    <span class="value">Miễn phí</span>
+                                </div>
+                            </div>
+                            
+                            <hr class="separator">
+
+                            <div class="card-block">
+                                <div class="cart-summary-line cart-total">
+                                    <span class="label">Tổng tiền</span>
+                                    <span class="value" style="font-size: 1.7rem; color: #f00;">{{number_format($totalCart)}} đ</span>
+                                </div>
+                            </div>
+                            <hr class="separator">
+                        </div>
+
+                        <div class="checkout text-sm-center card-block">
+                            <a href="{{route('checkout')}}" class="btn__buy">Tiến hành thanh toán</a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>  
+
+    @include('components.footer')
+
+
+    <script>
+        $('.update-cart').on('click', (event) => {
+            event.preventDefault();
+
+            $('#formCart').submit();   
+        });
+    </script>
+
+@endsection

@@ -1,0 +1,116 @@
+html {
+  font-size: 62.5%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Open Sans", sans-serif;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.contai {
+  max-width: 144rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 1.5rem;
+}
+
+.wrapper {
+  max-width: 192rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+a {
+  text-decoration: none !important;
+  color: #253237;
+}
+
+.owl-nav {
+  position: absolute;
+  top: -60px;
+  right: 0;
+}
+
+.owl-nav .owl-prev,
+.owl-nav .owl-next {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  border: 1px solid #ebebeb !important;
+  outline: none;
+  transition: linear 0.3s;
+}
+
+.owl-nav .owl-prev span,
+.owl-nav .owl-next span {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.owl-nav .owl-prev:hover,
+.owl-nav .owl-next:hover {
+  background-color: #4fb68d !important;
+}
+
+.owl-nav .owl-prev:hover span,
+.owl-nav .owl-next:hover span {
+  color: #fff;
+}
+
+.owl-nav .owl-prev {
+  margin-right: 0.8rem;
+}
+
+.swal2-popup {
+  width: 50rem;
+}
+
+.swal2-styled:focus {
+  outline: 0;
+  box-shadow: none;
+}
+
+.swal2-styled.swal2-confirm {
+  margin-left: auto;
+  font-size: 1.3rem;
+  background-color: #4fb68d;
+}
+
+.swal2-icon.swal2-success {
+  border-color: #4fb68d;
+  color: #4fb68d;
+}
+
+.swal2-icon.swal2-success [class^=swal2-success-line] {
+  background-color: #4fb68d;
+}
+
+.swal2-success-ring {
+  border: 0.5em solid #4fb68d;
+}
+
+.swal2-html-container {
+  font-size: 1.5rem;
+}
+
+.swal-button {
+  background-color: #4fb68d;
+}
+
+.swal-button:hover {
+  background-color: #4fb68d !important;
+}
+

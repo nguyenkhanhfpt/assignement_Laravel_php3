@@ -1,0 +1,95 @@
+@import '_setup';
+
+.login {
+    min-height: 40rem;
+
+    &__contain {
+        display: grid;
+        grid-template-columns: 4fr 6fr;
+
+        max-width: 100rem;
+        margin: 0 auto;
+        padding: 4rem 0;
+    }
+
+    &__img {
+        img {
+            height: auto;
+            border-radius: 5px;
+        }
+    }
+
+    hr {
+        margin-bottom: 1.8rem;
+    }
+
+    &__form {
+        padding: 0 3rem;
+
+        .form-group-grid {
+            display: grid;
+            grid-template-columns: 12rem auto;
+        }
+
+        .col-form-label {
+            font-size: 1.4rem;
+        }
+
+        .form-check-label {
+            font-size: 1.25rem;
+        }
+
+        .btn__buy-center {
+            border: none;
+            outline: none;
+        }
+
+        .login__forget {
+            margin-left: 1rem;
+            font-size: 1.25rem;
+        }
+
+        .create-account {
+            margin-top: 1rem;
+            font-size: 1.4rem;
+        }
+    
+    }
+}
+
+.login__title {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+
+.invalid-feedback {
+    strong {
+        padding-top: 1rem;
+        font-size: 1.25rem;
+    }
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-control {
+    padding: 1.5rem 1rem;
+    font-size: 1.4rem;
+}
+
+.form-control:focus {
+    box-shadow: 0 0 0 0.05rem rgba(0,123,255,.25);
+}
+
+
+
+
+
+
+.register {
+    .form-group-grid {
+        grid-template-columns: 14.5rem auto;
+    }
+}

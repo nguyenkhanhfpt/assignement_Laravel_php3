@@ -1,0 +1,82 @@
+@import '_setup';
+
+.owl-nav {
+    position: absolute;
+    top: -60px;
+    right: 0;
+
+    .owl-prev, .owl-next {
+        width: 3.5rem;
+        height: 3.5rem;
+        border-radius: 50%;
+        border: 1px solid $border-color !important;
+        outline: none;
+
+        transition: linear .3s;
+
+        span {
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+
+        &:hover {
+            background-color: $secondary-color !important;
+
+            span {
+                color: #fff;
+            }
+        }
+
+        
+    }
+
+    .owl-prev {
+        margin-right: .8rem;
+    }
+}
+
+
+
+
+// Custom SweetAlert
+.swal2-popup {
+    width: 50rem;
+}
+
+.swal2-styled:focus {
+    outline: 0;
+    box-shadow: none;
+}
+
+.swal2-styled.swal2-confirm {
+    margin-left: auto;
+    font-size: 1.3rem;
+    background-color: $secondary-color;
+}
+
+.swal2-icon.swal2-success {
+    border-color: $secondary-color;
+    color: $secondary-color;
+}
+
+.swal2-icon.swal2-success [class^=swal2-success-line] {
+    background-color: $secondary-color;
+}
+
+.swal2-success-ring {
+    border: .5em solid $secondary-color;
+}
+
+.swal2-html-container {
+    font-size: 1.5rem;
+}
+
+
+
+.swal-button {
+    background-color: $secondary-color;
+
+    &:hover {
+        background-color: $secondary-color !important;
+    }
+}

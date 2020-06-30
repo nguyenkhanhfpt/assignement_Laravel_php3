@@ -1,0 +1,307 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Open Sans", sans-serif;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.contai {
+  max-width: 144rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 1.5rem;
+}
+
+.wrapper {
+  max-width: 192rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+a {
+  text-decoration: none !important;
+  color: #253237;
+}
+
+.table:not(.table-bordered) > thead > tr > th {
+  border-top: 0px;
+  border-bottom: 1px solid #ededed;
+}
+
+.table > tbody > tr > td,
+.table > tbody > tr > th,
+.table > tfoot > tr > td,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > thead > tr > th {
+  border-color: #f8f0f0;
+}
+
+th {
+  font-weight: 600;
+}
+
+td {
+  font-size: 14.5px;
+}
+
+.navAdmin .navbar-brand {
+  font-size: 1.6rem;
+}
+
+.navAdmin .nav-link {
+  font-size: 1rem;
+  color: #253237 !important;
+  margin: 0 0.5rem;
+}
+
+.admin__title {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.boxAdmin {
+  padding: 1.5rem 1rem;
+}
+
+.box {
+  max-width: 100%;
+  margin: 2rem auto;
+}
+
+.box__bill {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 20px;
+}
+
+.bill {
+  padding: 1rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+.bill__id {
+  color: #989898;
+  margin-left: 5px;
+  font-weight: 600;
+}
+
+.bill img {
+  width: 45px;
+  height: 45px;
+  display: inline-block;
+  border-radius: 50%;
+}
+
+.bill .small-14 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #989fa7;
+}
+
+.bill .status {
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 8px;
+  color: #fff;
+}
+
+.bill .pedding {
+  background-color: #989fa7;
+}
+
+.bill .finish {
+  background-color: #00e75d;
+}
+
+.bill .cancel {
+  background-color: #f00;
+}
+
+.bill .view__bill {
+  font-size: 13px;
+  color: #253237;
+}
+
+.viewBill__info {
+  display: flex;
+}
+
+.viewBill__info img {
+  width: 160px;
+  height: 190px;
+}
+
+.viewBill__info-right {
+  margin-left: 15px;
+}
+
+.viewBill__info-right p {
+  margin-bottom: 10px;
+}
+
+.viewBill__info-right p span {
+  font-weight: 700;
+}
+
+.viewBill .total-amount {
+  font-size: 17px;
+  color: #f00;
+  font-weight: 700;
+}
+
+.box--maxWidth {
+  max-width: 900px;
+  margin: 2rem auto;
+}
+
+.table_category {
+  text-align: center;
+}
+
+.table_category img {
+  width: 25rem;
+  height: auto;
+  margin: 0 auto;
+}
+
+.fa-trash-alt {
+  color: #f00;
+}
+
+.fa-edit {
+  color: #165deb;
+  margin-right: 5px;
+}
+
+.table__product img {
+  width: 3rem;
+  height: 3.7rem;
+  display: inline-block;
+  margin: 0 3px;
+}
+
+.badges {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #f00;
+  margin: 10px auto;
+}
+
+.success {
+  background-color: #4fb68d !important;
+}
+
+.table_member img {
+  display: inline-block;
+  margin-right: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.table_member .status {
+  display: inline-block;
+  padding: 2px 5px;
+  font-size: 12px;
+  background-color: #4fb68d;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.table_member .disable {
+  background-color: #f00;
+}
+
+.table_member .img_product {
+  border-radius: none;
+}
+
+.table_bill {
+  margin-top: 1rem;
+}
+
+.table_bill img {
+  border-radius: 0 !important;
+  width: 45px;
+  height: 50px;
+}
+
+.table__detail-member img {
+  width: 50px;
+  height: 50px;
+  margin-right: 0.5rem;
+  display: inline-block;
+}
+
+.detail-member {
+  padding-top: 30px;
+}
+
+.detail-member img {
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+
+.detail-member-name {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 10px 0 15px;
+  text-align: center;
+}
+
+.detail-member p {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.switch {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+       appearance: none;
+  width: 40px;
+  height: 21px;
+  background-color: #c2c2c2;
+  border-radius: 30px;
+  border: 1px solid #a4a3a3;
+  outline: none;
+  position: relative;
+  transition: 200ms;
+}
+
+.switch:checked {
+  background-color: mediumseagreen;
+  border: 1px solid mediumseagreen;
+}
+
+.switch:before {
+  position: absolute;
+  content: "";
+  width: 19px;
+  height: 19px;
+  background-color: #fff;
+  border-radius: 50%;
+  top: 0;
+  left: 0;
+  transition: 200ms;
+}
+
+.switch:checked:before {
+  left: 19px;
+}
+
