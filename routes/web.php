@@ -20,6 +20,8 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/products', 'ProductController@index')->name('products');
 
+Route::get('/products/find', 'ProductController@find')->name('findProducts');
+
 Route::get('/products/{id}', 'ProductController@viewProduct');
 
 // giỏ hàng

@@ -135,7 +135,7 @@
                 </div>
 
                 <div class="d-flex justify-content-center paginate">
-                    {{ $products->links() }}
+                    {{ $products->withQueryString()->links() }}
                 </div>
                 
 

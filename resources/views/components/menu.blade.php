@@ -29,7 +29,7 @@
                         @endif
                         <a class="dropdown-item dropdown-item-danger" href="{{ route('logout') }}"
                             onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">
+                            document.getElementById('logout-form').submit();">
                             Đăng xuất
                         </a>
 
@@ -68,8 +68,8 @@
         <div class="nav__bottom-item">
             <div class="nav__search">
                 <div class="nav__box-search">
-                    <form action="">
-                        <input type="text">
+                    <form action="{{route('findProducts')}}" method="GET">
+                        <input type="text" name="q">
                     </form>
                 </div>
                 <a href="javascript:void(0)">

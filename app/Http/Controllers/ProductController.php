@@ -14,7 +14,36 @@ class ProductController extends Controller
         if($request->has('category')) {
             $products = DB::table('products')
             ->join('categories', 'categories.id_category', '=', 'products.id_category')
-            ->where('products.id_category', '=', $request->category)->get();
+            ->where('products.id_category', '=', $request->category)
+            ->paginate(12);
+        }
+        else {
+            $products = DB::table('products')
+                ->join('categories', 'categories.id_category', '=', 'products.id_category')
+                ->paginate(12);
+        }
+
+        // Sắp xếp theo view
+        $productView = DB::table('products')
+            ->join('categories', 'categories.id_category', '=', 'products.id_category')
+            ->orderByRaw('view DESC')->limit(5)->get();
+
+         // Select danh mục sản phẩm
+         $categories = DB::table('products as pr')
+            ->select('ca.id_category', 'ca.name', DB::raw('COUNT(pr.id_category) as total'))
+            ->rightJoin('categories as ca', 'ca.id_category', '=', 'pr.id_category')
+            ->groupBy('ca.id_category')
+            ->get();
+
+        return view('products.products', compact(['products', 'productView', 'categories']));
+    }
+
+    protected function find(Request $request) {
+        if($request->has('q')) {
+            $products = DB::table('products')
+            ->join('categories', 'categories.id_category', '=', 'products.id_category')
+            ->where('products.name_product', 'LIKE', '%'. $request->q .'%')
+            ->paginate(12);
         }
         else {
             $products = DB::table('products')
