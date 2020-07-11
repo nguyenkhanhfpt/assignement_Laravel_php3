@@ -196,11 +196,11 @@
                         <div class="product__add-cart">
                             <div class="d-flex justify-content-between align-items-center">
                                 <a href="" class="add-cart">ADD TO CART</a>
-                                <a href="">
+                                <a href="" class="add_wishlist" data-name="{{$product->name_product}}" 
+                                data-id="{{$product->id_product}}">
                                     <i class="far fa-heart"></i>
                                 </a>
                             </div>
-                            
                         </div>
 
                     </div>
@@ -231,9 +231,9 @@
         $(function() {
             $( "#tabs" ).tabs();
         });
-
-
     </script>
+
+    <script src="{{asset('js/addWishList.js')}}"></script>
 
 
     <script>
