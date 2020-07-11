@@ -198,8 +198,8 @@
                                 <a href="" class="add-cart">ADD TO CART</a>
                                 <a href="" class="add_wishlist" data-name="{{$product->name_product}}" 
                                 data-id="{{$product->id_product}}">
-                                    <i class="far fa-heart"></i>
-                                </a>
+                                    a<i class="far fa-heart"></i>
+                                </a> a
                             </div>
                         </div>
 
