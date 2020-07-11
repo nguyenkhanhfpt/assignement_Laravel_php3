@@ -135,4 +135,13 @@ Route::middleware(['auth', 'checkRole'])->group(function () {
 
 
 
+// RestAPI
+Route::get('/api/products', 'RestAPIController@selectAllProduct');
+
+Route::post('/api/product', 'RestAPIController@selectOneProduct');
+
+Route::delete('api/product/{id}', 'RestAPIController@deleteProduct');
+
+
+
 
