@@ -16,7 +16,7 @@ class CreateDetailBillsTable extends Migration
         Schema::create('detail_bills', function (Blueprint $table) {
             $table->increments('id_detail_bill');
             $table->integer('id_bill');
-            $table->string('id_product', 150);
+            $table->string('id_product', 225);
             $table->integer('quantity_buy');
             $table->float('amount', 11, 0);
         });

@@ -17,7 +17,7 @@ class CreateCommentsTable extends Migration
             $table->increments('id_comment');
             $table->string('id_member', 50);
             $table->text('content');
-            $table->string('id_product', 150);
+            $table->string('id_product', 225);
             $table->timestamp('date_comment', 0);
         });
     }
