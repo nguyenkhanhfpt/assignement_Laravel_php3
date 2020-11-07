@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use DB;
-use App\Comment;
 
-class adminCommentController extends Controller
+class CommentController extends Controller
 {
     protected function index(){
         $comments = DB::table('comments as C')

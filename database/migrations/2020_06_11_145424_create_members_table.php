@@ -17,13 +17,15 @@ class CreateMembersTable extends Migration
             $table->string('id_member', 50)->primary();
             $table->string('name_member', 50);
             $table->string('email');
-            $table->string('phone_number', 11);
-            $table->string('address');
+            $table->string('phone_number', 11)->nullable();
+            $table->string('address')->nullable();
             $table->text('password');
-            $table->string('gender', 10);
+            $table->string('gender', 10)->nullable();
             $table->string('img_member', 120);
             $table->tinyInteger('role');
             $table->tinyInteger('status_member');
+            $table->string('provider_name', 200)->nullable();
+            $table->string('provider_id', 200)->nullable();
         });
     }
 

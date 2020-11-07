@@ -66,74 +66,74 @@ Route::post('/wishlist/add', 'WishlistController@addWish');
 Route::post('/sendMailContact', 'SendMailContact@sendMail')->name('sendMailContact');
 
 
+// Login with google 
+Route::get('auth/redirect/{provider}', 'Auth\LoginSocialite@redirect')->name('auth_redirect');
+Route::get('auth/callback/{provider}', 'Auth\LoginSocialite@callback');
+
 
 
 Auth::routes();
 
 
-
-Route::middleware(['auth', 'checkRole'])->group(function () {
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['auth', 'checkRole']], function() {
     // Admin
-    Route::get('/admin', 'adminController@index')->name('admin');
-
-    Route::get('/admin/category', 'adminCategoryController@index')->name('adminCategory');
-
+    Route::get('/', 'HomeController@index')->name('admin');
 
     // Admin category 
-    Route::get('/admin/category/add', 'adminCategoryController@viewAdd')->name('adminCategoryAdd');
+    Route::get('/category', 'CategoryController@index')->name('adminCategory');
 
-    Route::get('/admin/category/delete/{id_category}', 'adminCategoryController@deleteCategory');
+    Route::get('/category/add', 'CategoryController@viewAdd')->name('adminCategoryAdd');
 
-    Route::get('/admin/category/update/{id_category}', 'adminCategoryController@viewUpdate');
+    Route::get('/category/delete/{id_category}', 'CategoryController@deleteCategory');
 
-    Route::post('/admin/category/update/{id_category}', 'adminCategoryController@updateCategory');
+    Route::get('/category/update/{id_category}', 'CategoryController@viewUpdate');
 
-    Route::post('/admin/category/add', 'adminCategoryController@addCategory');
+    Route::post('/category/update/{id_category}', 'CategoryController@updateCategory');
+
+    Route::post('/category/add', 'CategoryController@addCategory');
 
 
     // Admin product
-    Route::get('/admin/products', 'adminProductController@index')->name('adminProduct');
+    Route::get('/products', 'ProductController@index')->name('adminProduct');
 
-    Route::get('/admin/products/add', 'adminProductController@viewAdd')->name('adminProductAdd');
+    Route::get('/products/add', 'ProductController@viewAdd')->name('adminProductAdd');
 
-    Route::get('/admin/products/delete/{id}', 'adminProductController@delete');
+    Route::get('/products/delete/{id}', 'ProductController@delete');
 
-    Route::get('/admin/products/update/{id}', 'adminProductController@viewUpdate');
+    Route::get('/products/update/{id}', 'ProductController@viewUpdate');
 
-    Route::post('/admin/products/update/{id}', 'adminProductController@update');
+    Route::post('/products/update/{id}', 'ProductController@update');
 
-    Route::post('admin/products/add', 'adminProductController@insert');
+    Route::post('/products/add', 'ProductController@insert');
 
 
     // Admin Member
-    Route::get('/admin/members', 'adminMemberController@index')->name('adminMember');
+    Route::get('/members', 'MemberController@index')->name('adminMember');
 
-    Route::get('/admin/members/notCheck/{id}', 'adminMemberController@updateStatus0');
+    Route::get('/members/notCheck/{id}', 'MemberController@updateStatus0');
     
-    Route::get('/admin/members/checked/{id}', 'adminMemberController@updateStatus1');
+    Route::get('/members/checked/{id}', 'MemberController@updateStatus1');
 
-    Route::get('/admin/members/delete/{id}', 'adminMemberController@deleteMember');
+    Route::get('/members/delete/{id}', 'MemberController@deleteMember');
 
-    Route::get('/admin/members/{id}', 'adminMemberController@viewMember');
+    Route::get('/members/{id}', 'MemberController@viewMember');
 
 
     // Admin Comment
-    Route::get('/admin/comments', 'adminCommentController@index')->name('adminComment');
+    Route::get('/comments', 'CommentController@index')->name('adminComment');
     
-    Route::get('/admin/comments/delete/{id}', 'adminCommentController@deleteComment');
+    Route::get('/comments/delete/{id}', 'CommentController@deleteComment');
 
 
     // Admin Bills
-    Route::get('/admin/bills', 'adminBillController@index')->name('adminBill');
+    Route::get('/bills', 'BillController@index')->name('adminBill');
 
-    Route::get('/admin/bills/{id}', 'adminBillController@viewBill');
+    Route::get('/bills/{id}', 'BillController@viewBill');
 
-    Route::get('/admin/bills/delete/{id}', 'adminBillController@deleteBill');
+    Route::get('/bills/delete/{id}', 'BillController@deleteBill');
 
-    Route::post('/admin/bills/update', 'adminBillController@updateBill')->name('updateBill');
+    Route::post('/bills/update', 'BillController@updateBill')->name('updateBill');
 });
-
-
 
 // RestAPI
 Route::get('/api/products', 'RestAPIController@selectAllProduct');

@@ -83,6 +83,16 @@
 
                         <div class="form-group form-group-grid">
                             <label class="col-form-label"></label>
+                            <a href="{{ route('auth_redirect', ['provider' => 'google']) }}" class="btn__buy text-center">
+                                <i class="fab fa-google-plus-g"></i>
+                                Đăng nhập bằng Google
+                            </a>
+                        </div>
+
+                        
+
+                        <div class="form-group form-group-grid">
+                            <label class="col-form-label"></label>
 
                             <a href="{{route('register')}}" class="create-account mt-0">Đăng ký tài khoản mới</a>
                         </div>

@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use DB;
 use App\Bill;
 use App\Product;
 
-class adminBillController extends Controller
+class BillController extends Controller
 {
     protected function index(Request $request) {
         if($request->orderBy) {

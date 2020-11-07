@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Category;
 
-class adminCategoryController extends Controller
+class CategoryController extends Controller
 {
     protected function index() {
         $datas = Category::all();
@@ -90,5 +91,4 @@ class adminCategoryController extends Controller
             'success' => 'Cập nhật danh mục thành công!'
         ]);
     }
-    
 }

@@ -1,6 +1,8 @@
-/bootstrap/compiled.php
-/vendor
-/node_modules
+vendor/
+node_modules/
+npm-debug.log
+bootstrap/compiled.php
+app/storage/
 composer.phar
 composer.lock
 .env.*.php
