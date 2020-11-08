@@ -62,17 +62,17 @@
                 @foreach($datas as $product)
                     <div class="product">
                         <div class="product__img">
-                            <a href="{{route('products')}}/{{$product->id_product}}">
-                                <img src="{{asset('images')}}/{{$product->img_product}}" alt="">
+                            <a href="{{route('products')}}/{{$product->slug}}">
+                                <img src="{{ Helper::exec()->getFirstImage($product->images) }}" alt="">
                             </a>
                         </div>
                         <div class="product__decs">
                             <div class="manufacturer">
-                                <a href="{{route('products')}}?category={{$product->id_category}}">{{ $product->name}}</a>
+                                <a href="{{route('products')}}?category={{$product->category->id}}">{{ $product->category->name }}</a>
                             </div>
                             <h2 class="product__name">
-                                <p class="id__product d-none">{{$product->id_product}}</p>
-                                <a href="{{route('products')}}/{{$product->id_product}}" class="one-line" title="{{ $product->name_product }}">
+                                <p class="id__product d-none">{{$product->id}}</p>
+                                <a href="{{route('products')}}/{{$product->slug}}" class="one-line" title="{{ $product->name_product }}">
                                 {{ $product->name_product }}
                                 </a>
                             </h2>
@@ -139,8 +139,8 @@
                         </div>
                         <div class="categories__decs">
                             <h3>{{$category->name}}</h3>
-                            <p>{{ $category->total }} sản phẩm</p>
-                            <a href="{{route('products')}}?category={{$category->id_category}}">Xem sản phẩm
+                            <p>{{ count($category->products) }} sản phẩm</p>
+                            <a href="{{route('products')}}?category={{$category->id}}">Xem sản phẩm
                                 <i class="fal fa-eye"></i>
                             </a>
                         </div>
@@ -162,18 +162,18 @@
                     @foreach($nominationPro as $product)
                         <div class="product">
                             <div class="product__img">
-                                <a href="{{route('products')}}/{{$product->id_product}}">
-                                    <img src="{{asset('images')}}/{{$product->img_product}}" alt="">
+                                <a href="{{route('products')}}/{{$product->slug}}">
+                                    <img src="{{ Helper::exec()->getFirstImage($product->images) }}" alt="">
                                 </a>
 
                             </div>
                             <div class="product__decs">
                                 <div class="manufacturer">
-                                <p class="id__product d-none">{{$product->id_product}}</p>
-                                    <a href="{{route('products')}}?category={{$product->id_category}}">{{ $product->name }}</a>
+                                <p class="id__product d-none">{{$product->id}}</p>
+                                    <a href="{{route('products')}}?category={{$product->category->id}}">{{ $product->category->name }}</a>
                                 </div>
                                 <h2 class="product__name">
-                                    <a href="{{route('products')}}/{{$product->id_product}}" class="one-line" 
+                                    <a href="{{route('products')}}/{{$product->slug}}" class="one-line" 
                                     title="{{ $product->name_product }}" >{{ $product->name_product }}</a>
                                 </h2>
                                 <div class="product__price">
@@ -227,22 +227,24 @@
                 </div>
 
                 <div id="new-product" class="owl-carousel">
-                    @for($num = 0; $num <= $limit_col; $num += 2)
+                    @for($num = 0; $num <= config('settings.limit'); $num += 2)
                         <div class="item">
                             <div class="product">
                                 <div class="product__img">
-                                    <a href="{{route('products')}}/{{$newProducts[$num]->id_product}}">
-                                        <img src="{{asset('images')}}/{{$newProducts[$num]->img_product}}" alt="">
+                                    <a href="{{route('products')}}/{{$newProducts[$num]->slug}}">
+                                        <img src="{{ Helper::exec()->getFirstImage($newProducts[$num]->images) }}" alt="">
                                     </a>
 
                                 </div>
                                 <div class="product__decs">
                                     <div class="manufacturer">
-                                        <a href="{{route('products')}}?category={{$newProducts[$num]->id_category}}">{{ $newProducts[$num]->name }}</a>
+                                        <a href="{{route('products')}}?category={{$newProducts[$num]->category->id}}">
+                                            {{ $newProducts[$num]->category->name }}
+                                        </a>
                                     </div>
                                     <h2 class="product__name">
-                                        <p class="id__product d-none">{{$newProducts[$num]->id_product}}</p>
-                                        <a href="{{route('products')}}/{{$newProducts[$num]->id_product}}" class="one-line" 
+                                        <p class="id__product d-none">{{$newProducts[$num]->id}}</p>
+                                        <a href="{{route('products')}}/{{$newProducts[$num]->slug}}" class="one-line" 
                                         title="{{ $newProducts[$num]->name_product }}" >{{ $newProducts[$num]->name_product }}</a>
                                     </h2>
                                     <div class="product__price">
@@ -287,18 +289,20 @@
                             </div>
                             <div class="product">
                                 <div class="product__img">
-                                    <a href="{{route('products')}}/{{$newProducts[$num + 1]->id_product}}">
-                                        <img src="{{asset('images')}}/{{$newProducts[$num + 1]->img_product}}" alt="">
+                                    <a href="{{route('products')}}/{{$newProducts[$num + 1]->slug}}">
+                                        <img src="{{ Helper::exec()->getFirstImage($newProducts[$num + 1]->images) }}" alt="">
                                     </a>
 
                                 </div>
                                 <div class="product__decs">
                                     <div class="manufacturer">
-                                        <a href="{{route('products')}}?category={{$newProducts[$num + 1]->id_category}}">{{ $newProducts[$num + 1]->name }}</a>
+                                        <a href="{{route('products')}}?category={{$newProducts[$num + 1]->category->id}}">
+                                            {{ $newProducts[$num + 1]->category->name }}
+                                        </a>
                                     </div>
                                     <h2 class="product__name">
-                                        <p class="id__product d-none">{{$newProducts[$num + 1]->id_product}}</p>
-                                        <a href="{{route('products')}}/{{$newProducts[$num + 1]->id_product}}" class="one-line" 
+                                        <p class="id__product d-none">{{$newProducts[$num + 1]->id}}</p>
+                                        <a href="{{route('products')}}/{{$newProducts[$num + 1]->slug}}" class="one-line" 
                                         title="{{ $newProducts[$num + 1]->name_product }}" >{{ $newProducts[$num + 1]->name_product }}</a>
                                     </h2>
                                     <div class="product__price">
@@ -319,7 +323,7 @@
                                         <div class="d-flex justify-content-between align-items-center">
                                             <a href="" class="add-cart">ADD TO CART</a>
                                             <a href="" class="add_wishlist" data-name="{{$newProducts[$num + 1]->name_product}}" 
-                                            data-id="{{$newProducts[$num + 1]->id_product}}">
+                                            data-id="{{$newProducts[$num + 1]->id}}">
                                                 <i class="far fa-heart"></i>
                                             </a>
                                         </div>
@@ -366,17 +370,17 @@
                 @foreach($productView as $product)
                     <div class="product">
                         <div class="product__img">
-                            <a href="{{route('products')}}/{{$product->id_product}}">
-                                <img src="{{asset('images')}}/{{$product->img_product}}" alt="">
+                            <a href="{{route('products')}}/{{$product->slug}}">
+                                <img src="{{ Helper::exec()->getFirstImage($product->images) }}" alt="">
                             </a>
                         </div>
                         <div class="product__decs">
                             <div class="manufacturer">
-                                <a href="{{route('products')}}?category={{$product->id_category}}">{{$product->name}}</a>
+                                <a href="{{route('products')}}?category={{$product->category->id}}">{{$product->category->name}}</a>
                             </div>
                             <h2 class="product__name">
-                                <p class="id__product d-none">{{$product->id_product}}</p>
-                                <a href="{{route('products')}}/{{$product->id_product}}" class="one-line" 
+                                <p class="id__product d-none">{{$product->id}}</p>
+                                <a href="{{route('products')}}/{{$product->slug}}" class="one-line" 
                                 title="{{$product->name_product}}">{{$product->name_product}}</a>
                             </h2>
                             <div class="product__price">
@@ -396,7 +400,7 @@
                             <div class="product__add-cart">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <a href="" class="add-cart">ADD TO CART</a>
-                                    <a href="" class="add_wishlist" data-name="{{$product->name_product}}" data-id="{{$product->id_product}}">
+                                    <a href="" class="add_wishlist" data-name="{{$product->name_product}}" data-id="{{$product->id}}">
                                         <i class="far fa-heart"></i>
                                     </a>
                                 </div>
@@ -422,13 +426,8 @@
             <!-- end owl -->
             </div>
         </div>
-
-        
-
     </div>
     <!-- End contai -->
-
-
     
     @section('footer')
         @include('components.footer')

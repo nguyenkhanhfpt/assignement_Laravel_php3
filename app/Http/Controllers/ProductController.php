@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\Category;
 use App\Comment;
 use DB;
 
@@ -12,28 +13,21 @@ class ProductController extends Controller
 {
     protected function index(Request $request) {
         if($request->has('category')) {
-            $products = DB::table('products')
-            ->join('categories', 'categories.id_category', '=', 'products.id_category')
-            ->where('products.id_category', '=', $request->category)
-            ->paginate(12);
+            $products = Category::find($request->category)->products()
+                ->paginate(config('settings.limit_products'));
         }
         else {
-            $products = DB::table('products')
-                ->join('categories', 'categories.id_category', '=', 'products.id_category')
-                ->paginate(12);
+            $products = Product::allProduct()->paginate(config('settings.limit_products'));
         }
 
         // Sắp xếp theo view
-        $productView = DB::table('products')
-            ->join('categories', 'categories.id_category', '=', 'products.id_category')
-            ->orderByRaw('view DESC')->limit(5)->get();
+        $productView = Product::allProduct()
+            ->orderBy('view', 'desc')
+            ->take(config('settings.limit_view'))
+            ->get();
 
          // Select danh mục sản phẩm
-         $categories = DB::table('products as pr')
-            ->select('ca.id_category', 'ca.name', DB::raw('COUNT(pr.id_category) as total'))
-            ->rightJoin('categories as ca', 'ca.id_category', '=', 'pr.id_category')
-            ->groupBy('ca.id_category')
-            ->get();
+         $categories = Category::with('products')->get();
 
         return view('products.products', compact(['products', 'productView', 'categories']));
     }
@@ -66,18 +60,12 @@ class ProductController extends Controller
         return view('products.products', compact(['products', 'productView', 'categories']));
     }
 
-    protected function viewProduct($id) {
-        $product = Product::find($id);
-        $comments = DB::table('comments as C')
-            ->join('members as M', 'C.id_member', '=', 'M.id_member')
-            ->select('C.id_comment', 'C.content', 'C.id_member', 'C.date_comment', 'M.name_member', 'M.img_member')
-            ->where('C.id_product', '=', $id)
-            ->orderBy('C.date_comment', 'DESC')
-            ->get();
+    protected function viewProduct($slug) {
+        $product = Product::where('slug', $slug)->first()->load(['images', 'category']);
 
-        $productCategory = DB::table('products')
-            ->join('categories', 'categories.id_category', '=', 'products.id_category')
-            ->where('products.id_category', '=', $product->id_category)->limit(5)->get();
+        $comments = [];
+
+        $productCategory = [];
 
         $product->view += 1;
         $product->save();

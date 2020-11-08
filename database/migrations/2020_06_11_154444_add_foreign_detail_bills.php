@@ -17,7 +17,7 @@ class AddForeignDetailBills extends Migration
             $table->foreign('id_bill')->references('id_bill')
                 ->on('bills')->onDelete('cascade');
 
-            $table->foreign('id_product')->references('id_product')
+            $table->foreign('product_id')->references('id')
                 ->on('products')->onDelete('cascade');
         });
     }
@@ -31,7 +31,7 @@ class AddForeignDetailBills extends Migration
     {
         Schema::table('detail_bills', function (Blueprint $table) {
             $table->dropForeign('detail_bills_id_bill_foreign');
-            $table->dropForeign('detail_bills_id_product_foreign');
+            $table->dropForeign('detail_bills_product_id_foreign');
         });
     }
 }

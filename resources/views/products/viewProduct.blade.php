@@ -18,7 +18,7 @@
                 <span>
                     <i class="fal fa-angle-right"></i>
                 </span>
-                <a href="{{route('products')}}/{{ $product->id_product }}">{{ $product->name_product }}</a>
+                <a href="{{route('products')}}/{{ $product->slug }}">{{ $product->name_product }}</a>
             </div>
         </div>
     </div>
@@ -28,17 +28,17 @@
 
             <div class="col-md-5">
                 <div class="viewProduct">
-                    <img src="{{asset('images')}}/{{$product->img_product}}" alt="">
+                    <img src="{{ Helper::exec()->getFirstImage($product->images) }}" alt="">
                 </div>
                 <div class="viewProduct__images">
                     <div class="box_img">
-                        <img class="img" src="{{asset('images')}}/{{$product->img_product}}" alt="">
+                        <img class="img" src="{{ Helper::exec()->getFirstImage($product->images) }}" alt="">
                     </div>
                     <div class="box_img">
-                        <img class="img" src="{{asset('images')}}/{{$product->img_product_2}}" alt="">
+                        <img class="img" src="{{ Helper::exec()->getSecondImage($product->images) }}" alt="">
                     </div>
                     <div class="box_img">
-                        <img class="img" src="{{asset('images')}}/{{$product->img_product_3}}" alt="">
+                        <img class="img" src="{{ Helper::exec()->getThirdImage($product->images) }}" alt="">
                     </div>
                 </div>
             </div>

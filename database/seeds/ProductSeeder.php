@@ -5,13 +5,14 @@ use App\Product;
 
 class ProductSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
-        //
+        factory(Product::class, 20)->create()->each(function ($product) {
+            for($i = 0; $i < 3; $i++) {
+                $product->images()->create([
+                    'image' => config('settings.default_product')
+                ]);
+            }
+        });
     }
 }

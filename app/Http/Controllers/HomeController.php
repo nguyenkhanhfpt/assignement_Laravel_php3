@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Product;
+use App\Category;
 use DB;
 
 class HomeController extends Controller
@@ -10,36 +12,29 @@ class HomeController extends Controller
     protected $limit_col = 8;
 
     protected function index() {
-        $datas = DB::table('products')
-            ->join('categories', 'categories.id_category', '=', 'products.id_category')
-            ->limit($this->limit_col)->get();
+        $datas = Product::allProduct()->take(config('settings.limit'))->get();
 
         // Select sản phẩm được đề xuất
-        $nominationPro = DB::table('products')
-            ->join('categories', 'categories.id_category', '=', 'products.id_category')
-            ->where('nomination', 1)->limit($this->limit_col)->get();
-
+        $nominationPro = Product::allProduct()
+            ->where('nomination', 1)
+            ->take(config('settings.limit'))
+            ->get();
+        
         // Sắp xếp theo ngày nhập
-        $newProducts = DB::table('products')
-            ->join('categories', 'categories.id_category', '=', 'products.id_category')
-            ->orderByRaw('date DESC')->get();
-
-        // Sắp xếp theo view
-        $productView = DB::table('products')
-            ->join('categories', 'categories.id_category', '=', 'products.id_category')
-            ->orderByRaw('view DESC')->limit($this->limit_col)->get();
-
-        // Select danh mục sản phẩm
-        $categories = DB::table('products as pr')
-            ->select('ca.id_category', 'ca.name', 'ca.img_category', DB::raw('COUNT(pr.id_category) as total'))
-            ->rightJoin('categories as ca', 'ca.id_category', '=', 'pr.id_category')
-            ->groupBy('ca.id_category')
+        $newProducts = Product::allProduct()
+            ->orderBy('date', 'desc')
+            ->take(config('settings.limit') * 2)
             ->get();
 
-        
-        return view('home', compact(['datas','nominationPro','newProducts', 'productView', 'categories']), [
-            'limit_col' => $this->limit_col
-        ]);
+        // Sắp xếp theo view
+        $productView = Product::allProduct()
+            ->orderBy('view', 'desc')
+            ->take(config('settings.limit'))
+            ->get();
 
+        // Select danh mục sản phẩm
+        $categories = Category::with('products')->get();
+        
+        return view('home', compact(['datas','nominationPro','newProducts', 'productView', 'categories']));
     }
 }

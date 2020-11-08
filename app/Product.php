@@ -3,25 +3,36 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\ProductImage;
 
 class Product extends Model
 {
-    protected $table = 'products';
-    protected $primaryKey = 'id_product';
-    protected $keyType = 'string';
     public $timestamps = false;
+
     public $fillable = [
-        'id_product',
+        'slug',
         'name_product',
-        'id_category',
+        'category_id',
         'price_product', 
         'sale', 
-        'quantity_product', 
-        'img_product', 
+        'quantity_product',
         'decscription', 
         'nomination',
         'view',
-        'img_product_2', 
-        'img_product_3'
     ];
+
+    public function images()
+    {
+        return $this->hasMany(ProductImage::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function scopeAllProduct($query)
+    {
+        return $query->with(['category', 'images']);
+    }
 }
