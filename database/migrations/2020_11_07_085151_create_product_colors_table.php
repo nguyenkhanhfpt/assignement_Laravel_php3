@@ -14,9 +14,9 @@ class CreateProductColorsTable extends Migration
     public function up()
     {
         Schema::create('product_colors', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->unsignedBigInteger('product_id');
-            $table->bigInteger('color_id');
+            $table->unsignedBigInteger('color_id');
             $table->timestamps();
         });
     }

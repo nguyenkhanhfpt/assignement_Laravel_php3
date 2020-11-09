@@ -44,7 +44,7 @@ Route::get('/checkout', 'BillController@checkoutCart')->name('checkout');
 // Comment
 Route::post('/addComment', 'CommentController@addComment')->name('addComment')->middleware('checkLoginComment');
 
-Route::get('/comment/delete/{id}', 'CommentController@deleteComment')->middleware('auth');
+Route::get('/comment/delete/{id}', 'CommentController@deleteComment')->name('comment.destroy')->middleware('auth');
 
 
 // Account

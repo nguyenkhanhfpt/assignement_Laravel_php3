@@ -22,13 +22,13 @@
                         @csrf
 
                         <div class="form-group form-group-grid">
-                            <label for="id_member" class="col-form-label">Tên đăng nhập</label>
+                            <label for="email" class="col-form-label">Email đăng nhập</label>
                             
                             <div class="w-100">
-                                <input id="id_member" type="text" class="form-control @error('id_member') is-invalid @enderror" 
-                                name="id_member" value="{{ old('id_member') }}" autofocus>
+                                <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" 
+                                name="email" value="{{ old('email') }}" autofocus>
 
-                                @error('id_member')
+                                @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

@@ -73,7 +73,7 @@
                                 <span type="button" id="decrementQuan">
                                     <i class="fal fa-minus"></i>
                                 </span>
-                                <input type="hidden" name="id_product" value="{{$product->id_product}}">
+                                <input type="hidden" name="id_product" value="{{ $product->id }}">
                                 <input type="text" name="quantity" id="quantity">
                                 <span type="button" id="incrementQuan">
                                     <i class="fal fa-plus"></i>
@@ -125,7 +125,7 @@
                 <form action="{{route('addComment')}}" method="POST">
                     @csrf
                     <div class="form-group box-comment">
-                        <input type="hidden" name="id_product" value={{ $product->id_product }}>
+                        <input type="hidden" name="product_id" value={{ $product->id }}>
                         <textarea class="form-control" name="content" cols="30" rows="1" placeholder="Để lại phản hồi của bạn"></textarea>
                         <input type="submit" value="Bình luận" class="button-comment">
                     </div>
@@ -134,13 +134,15 @@
                 <div class="comment">
                     @foreach($comments as $comment)
                         <div class="comment__box">
-                            <img src="{{asset('images')}}/{{$comment->img_member}}" alt="">
+                            <img src="{{ asset('images')}}/{{$comment->member->img_member}}" alt="">
                             <div class="comment__content">
-                                <h3 class="comment__info">{{$comment->name_member }} <span>({{ $comment->date_comment }})</span></h3>
-                                <p>{{$comment->content}}</p>
+                                <h3 class="comment__info">{{$comment->member->name_member }} 
+                                    <span>({{ $comment->date_comment }})</span>
+                                </h3>
+                                <p>{{ $comment->content }}</p>
                             </div>
                             @if(\Helper::exec()->displayDeleteComment($comment->id_member))
-                                <a href="/comment/delete/{{$comment->id_comment}}" 
+                                <a href="{{ route('comment.destroy', $comment->id) }}" 
                                     onClick="return confirm('Bạn có muốn xóa bình luận!')" class="remove-comment">
                                     <i class="fal fa-backspace"></i>
                                 </a>
@@ -161,23 +163,22 @@
             <h2>Sản phẩm tương tự</h2>
         </div>
 
-        <div id="product-category">
+        <div id="product-cate" class="owl-carousel">
             @foreach($productCategory as $product)
                 <div class="product">
                     <div class="product__img">
-                        <a href="{{route('products')}}/{{$product->id_product}}">
-                            <img src="{{asset('images')}}/{{$product->img_product}}" alt="">
+                        <a href="{{route('products')}}/{{$product->slug}}">
+                            <img src="{{ Helper::exec()->getFirstImage($product->images) }}" alt="">
                         </a>
-
                     </div>
                     <div class="product__decs">
                         <div class="manufacturer">
-                        <p class="id__product d-none">{{$product->id_product}}</p>
-                            <a href="{{route('products')}}?category={{$product->id_category}}">{{ $product->name }}</a>
+                            <a href="{{route('products')}}?category={{$product->category->id}}">{{$product->category->name}}</a>
                         </div>
                         <h2 class="product__name">
-                            <a href="{{route('products')}}/{{$product->id_product}}" class="one-line" 
-                            title="{{ $product->name_product }}" >{{ $product->name_product }}</a>
+                            <p class="id__product d-none">{{$product->id}}</p>
+                            <a href="{{route('products')}}/{{$product->slug}}" class="one-line" 
+                            title="{{$product->name_product}}">{{$product->name_product}}</a>
                         </h2>
                         <div class="product__price">
                             @if($product->sale > 0)
@@ -196,13 +197,12 @@
                         <div class="product__add-cart">
                             <div class="d-flex justify-content-between align-items-center">
                                 <a href="" class="add-cart">ADD TO CART</a>
-                                <a href="" class="add_wishlist" data-name="{{$product->name_product}}" 
-                                data-id="{{$product->id_product}}">
+                                <a href="" class="add_wishlist" data-name="{{$product->name_product}}" data-id="{{$product->id}}">
                                     <i class="far fa-heart"></i>
-                                </a> 
+                                </a>
                             </div>
+                            
                         </div>
-
                     </div>
 
                     @if(\Helper::exec()->time_between_two_days($product->date)) 
@@ -234,7 +234,6 @@
     </script>
 
     <script src="{{asset('js/addWishList.js')}}"></script>
-
 
     <script>
         var getImageName = function() {

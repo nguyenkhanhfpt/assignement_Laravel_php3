@@ -1,5 +1,10 @@
 $(document).ready(function() {
     const owl = $("#products");
+    const owl2 = $("#product-sale");
+    const owl3 = $("#new-product");
+    const owl4 = $("#products-view");
+    const owlProductCate = $("#product-cate");
+
     owl.owlCarousel({
         margin: 10,
         nav: true,
@@ -17,7 +22,6 @@ $(document).ready(function() {
         }
     });
 
-    const owl2 = $("#product-sale");
     owl2.owlCarousel({
         margin: 10,
         nav: true,
@@ -35,7 +39,6 @@ $(document).ready(function() {
         }
     });
 
-    const owl3 = $("#new-product");
     owl3.owlCarousel({
         margin: 10,
         nav: true,
@@ -53,8 +56,24 @@ $(document).ready(function() {
         }
     });
 
-    const owl4 = $("#products-view");
     owl4.owlCarousel({
+        margin: 10,
+        nav: true,
+        loop: true,
+        responsive: {
+            0: {
+                items: 2
+            },
+            600: {
+                items: 3
+            },
+            1000: {
+                items: 5
+            }
+        }
+    });
+    
+    owlProductCate.owlCarousel({
         margin: 10,
         nav: true,
         loop: true,

@@ -61,17 +61,20 @@ class ProductController extends Controller
     }
 
     protected function viewProduct($slug) {
-        $product = Product::where('slug', $slug)->first()->load(['images', 'category']);
+        $product = Product::where('slug', $slug)
+            ->first()->load(['images', 'category', 'comments', 'comments.member']);
+        $idCate = $product->category->id;
 
-        $comments = [];
+        $comments = $product->comments;
 
-        $productCategory = [];
+        $productCategory = Category::find($idCate)
+            ->products
+            ->take(config('setting.limit'))
+            ->load(['images', 'category']);
 
         $product->view += 1;
         $product->save();
 
-        return view('products.viewProduct', compact(['comments', 'productCategory']), [
-            'product' => $product
-        ]);
+        return view('products.viewProduct', compact(['comments', 'productCategory', 'product']));
     }
 }

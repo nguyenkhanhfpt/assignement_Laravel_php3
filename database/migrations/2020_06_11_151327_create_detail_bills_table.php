@@ -14,8 +14,8 @@ class CreateDetailBillsTable extends Migration
     public function up()
     {
         Schema::create('detail_bills', function (Blueprint $table) {
-            $table->increments('id_detail_bill');
-            $table->integer('id_bill');
+            $table->id();
+            $table->unsignedBigInteger('bill_id');
             $table->unsignedBigInteger('product_id');
             $table->integer('quantity_buy');
             $table->float('amount', 11, 0);

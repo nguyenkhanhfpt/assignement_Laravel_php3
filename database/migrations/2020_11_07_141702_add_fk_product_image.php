@@ -13,10 +13,10 @@ class AddFkProductImage extends Migration
      */
     public function up()
     {
-        // Schema::table('product_image', function (Blueprint $table) {
-        //     $table->foreign('product_id')->references('id_product')
-        //         ->on('products')->onDelete('cascade');
-        // });
+        Schema::table('product_image', function (Blueprint $table) {
+            $table->foreign('product_id')->references('id')
+                ->on('products')->onDelete('cascade');
+        });
     }
 
     /**
@@ -26,8 +26,8 @@ class AddFkProductImage extends Migration
      */
     public function down()
     {
-        // Schema::table('product_image', function (Blueprint $table) {
-        //     $table->dropForeign('product_image_product_id_foreign');
-        // });
+        Schema::table('product_image', function (Blueprint $table) {
+            $table->dropForeign('product_image_product_id_foreign');
+        });
     }
 }

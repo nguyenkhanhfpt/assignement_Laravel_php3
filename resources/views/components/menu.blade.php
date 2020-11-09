@@ -98,7 +98,7 @@
                                 @foreach(session('cart', []) as $key => $cart)
                                     <div class="product product-list">
                                         <div class="product-list-img">
-                                            <img src="{{asset('images')}}/{{$cart['img_product']}}" alt="">
+                                            <img src="{{ $cart['img_product'] }}" alt="">
                                         </div>
                                         <div class="product__decs">
                                             <h2 class="product__name">

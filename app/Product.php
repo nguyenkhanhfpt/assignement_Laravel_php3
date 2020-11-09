@@ -31,6 +31,11 @@ class Product extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
     public function scopeAllProduct($query)
     {
         return $query->with(['category', 'images']);

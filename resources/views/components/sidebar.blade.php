@@ -30,7 +30,7 @@
         
         <nav class="sidebar-nav">
             <ul id="sidebarnav">
-                <li>
+                <!-- <li>
                     <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
                         <i class="fal fa-tachometer-alt-fastest"></i>
                         <span class="hide-menu">Dashboard
@@ -51,7 +51,7 @@
                             <a href="index4.html">Modern</a>
                         </li>
                     </ul>
-                </li>
+                </li> -->
 
                 <li>
                     <a class="waves-effect waves-dark" href="{{ route('admin') }}" aria-expanded="false">
@@ -87,16 +87,9 @@
                 </li>
 
                 <li>
-                    <a class="waves-effect waves-dark" href="http://eliteadmin.themedesigner.in/demos/bt4/documentation/documentation.html" aria-expanded="false">
-                        <i class="far fa-list"></i>
-                        <span class="hide-menu">Sản phẩm</span>
-                    </a>
-                </li>
-
-                <li>
                     <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
                         <i class="far fa-list"></i>
-                        <span class="hide-menu">Ui Elements
+                        <span class="hide-menu">Đơn hàng
                             <span class="badge badge-pill badge-primary text-white ml-auto">25</span>
                         </span>
                     </a>

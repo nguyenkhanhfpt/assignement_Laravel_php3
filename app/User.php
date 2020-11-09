@@ -11,8 +11,6 @@ class User extends Authenticatable
     use Notifiable;
 
     public $table = 'members';
-    protected $primaryKey = 'id_member';
-    protected $keyType = 'string';
     public $timestamps = false;
 
     protected $attributes = [
@@ -22,7 +20,6 @@ class User extends Authenticatable
     ];
     
     protected $fillable = [
-        'id_member', 
         'name_member', 
         'email', 
         'password',
@@ -33,10 +30,13 @@ class User extends Authenticatable
         'provider_name',
         'provider_id'
     ];
-
     
     protected $hidden = [
         'password', 'remember_token',
     ];
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }

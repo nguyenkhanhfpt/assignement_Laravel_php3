@@ -9,10 +9,10 @@ use App\Comment;
 class CommentController extends Controller
 {
     protected function addComment(Request $request) {
-        $id_product = $request->id_product;
+        $product_id = $request->product_id;
         $content = $request->content;
 
-        $data = ['content' => $content, 'id_member' => Auth::user()->id_member, 'id_product' => $id_product];
+        $data = ['content' => $content, 'member_id' => Auth::id(), 'product_id' => $product_id];
 
         Comment::create($data);
 
@@ -22,7 +22,7 @@ class CommentController extends Controller
     protected function deleteComment($id) {
         $comment = Comment::find($id);
 
-        if(Auth::user()->id_member != $comment->id_member) {
+        if(Auth::id() != $comment->member_id) {
             return redirect()->back()->with('errorComment', 'Bạn không thể xóa bình luận này!');
         }
 

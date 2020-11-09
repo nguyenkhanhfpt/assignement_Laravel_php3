@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Product;
+use Helper;
 
 class CartController extends Controller
 {
@@ -52,7 +53,8 @@ class CartController extends Controller
             session(["cart.$id" => $newSession]);
         }
         else {
-            session()->put("cart.$id", ['img_product' => $product->img_product, 
+            session()->put("cart.$id", [
+                'img_product' => Helper::exec()->getFirstImage($product->images), 
                 'name_product' => $product->name_product, 
                 'quantity' => $quantity,
                 'price_product' => $this->match_price($product->price_product, $product->sale)

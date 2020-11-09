@@ -23,21 +23,6 @@
                         @csrf
 
                         <div class="form-group form-group-grid">
-                            <label for="id_member" class="col-form-label">Tên đăng nhập</label>
-                            
-                            <div class="w-100">
-                                <input id="id_member" type="text" class="form-control @error('id_member') is-invalid @enderror" 
-                                name="id_member" value="{{ old('id_member') }}" autofocus>
-
-                                @error('id_member')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group form-group-grid">
                             <label for="name_member" class="col-form-label">Tên người dùng</label>
                             <div class="w-100">
                                 <input id="name_member" type="text" class="form-control @error('name_member') is-invalid @enderror" 

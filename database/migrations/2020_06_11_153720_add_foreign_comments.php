@@ -14,7 +14,7 @@ class AddForeignComments extends Migration
     public function up()
     {
         Schema::table('comments', function (Blueprint $table) {
-            $table->foreign('id_member')->references('id_member')
+            $table->foreign('member_id')->references('id')
                 ->on('members')->onDelete('cascade');
 
             $table->foreign('product_id')->references('id')
@@ -30,7 +30,7 @@ class AddForeignComments extends Migration
     public function down()
     {
         Schema::table('comments', function (Blueprint $table) {
-            $table->dropForeign('comments_id_member_foreign');
+            $table->dropForeign('comments_member_id_foreign');
             $table->dropForeign('comments_product_id_foreign');
         });
     }

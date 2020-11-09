@@ -38,7 +38,7 @@
                         @foreach($sessionCart as $key => $cart)
                             <div class="cart__product">
                                 <div class="cart__product-img">
-                                    <img src="{{asset('images')}}/{{$cart['img_product']}}" alt="">
+                                    <img src="{{ $cart['img_product'] }}" alt="">
                                 </div>
                                 <div class="cart__product-name">
                                     <a href="{{route('products')}}/{{$key}}" class="name_product">{{$cart['name_product']}}</a>

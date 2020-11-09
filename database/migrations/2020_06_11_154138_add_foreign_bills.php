@@ -14,7 +14,7 @@ class AddForeignBills extends Migration
     public function up()
     {
         Schema::table('bills', function (Blueprint $table) {
-            $table->foreign('id_member')->references('id_member')
+            $table->foreign('member_id')->references('id')
                 ->on('members')->onDelete('cascade');
         });
     }
@@ -27,7 +27,7 @@ class AddForeignBills extends Migration
     public function down()
     {
         Schema::table('bills', function (Blueprint $table) {
-            $table->dropForeign('bills_id_member_foreign');
+            $table->dropForeign('bills_member_id_foreign');
         });
     }
 }

@@ -86,20 +86,19 @@
                                 </div>
                                 <div class="product__decs">
                                     <div class="manufacturer">
-                                        <a href="{{route('products')}}?category={{$product->category->id}}">
-                                            {{ $product->category->name}}
-                                        </a>
+                                        <a href="{{route('products')}}?category={{$product->category->id}}">{{$product->category->name}}</a>
                                     </div>
                                     <h2 class="product__name">
-                                        <p class="id__product d-none">{{$product->id_product}}</p>
-                                        <a href="{{route('products')}}/{{$product->slug}}" class="one-line" title="{{ $product->name_product }}" >{{ $product->name_product }}</a>
+                                        <p class="id__product d-none">{{$product->id}}</p>
+                                        <a href="{{route('products')}}/{{$product->slug}}" class="one-line" 
+                                        title="{{$product->name_product}}">{{$product->name_product}}</a>
                                     </h2>
                                     <div class="product__price">
                                         @if($product->sale > 0)
                                             <div class="product__price-sale">
                                                 <span><del>{{number_format($product->price_product)}} đ</del></span>
                                                 <span class="new-price">
-                                                    {{number_format($product->price_product - ($product->price_product / 100 * $product->sale))}} đ
+                                                    {{number_format(\Helper::exec()->match_price_sale($product->price_product, $product->sale))}} đ
                                                 </span>
                                             </div>
                                         @else
@@ -111,8 +110,7 @@
                                     <div class="product__add-cart">
                                         <div class="d-flex justify-content-between align-items-center">
                                             <a href="" class="add-cart">ADD TO CART</a>
-                                            <a href="" class="add_wishlist" data-name="{{$product->name_product}}" 
-                                            data-id="{{$product->id}}">
+                                            <a href="" class="add_wishlist" data-name="{{$product->name_product}}" data-id="{{$product->id}}">
                                                 <i class="far fa-heart"></i>
                                             </a>
                                         </div>
@@ -125,14 +123,13 @@
                                         New
                                     </div>
                                 @endif
-                                
 
                                 @if($product->sale > 0)
                                     <div class="sale">
                                         {{ $product->sale }}%
                                     </div>
                                 @endif
-                            
+
                             </div>
                         </div>
                     @endforeach
