@@ -38,6 +38,12 @@ a {
   color: #253237;
 }
 
+@media (min-width: 768px) {
+  .ml-md-45 {
+    margin-left: 1.7rem !important;
+  }
+}
+
 .feature {
   padding: 5rem 0;
 }

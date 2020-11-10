@@ -15,7 +15,6 @@ use Illuminate\Http\Request;
 |
 */
 
-
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/products', 'ProductController@index')->name('products');
@@ -71,9 +70,9 @@ Route::get('auth/redirect/{provider}', 'Auth\LoginSocialite@redirect')->name('au
 Route::get('auth/callback/{provider}', 'Auth\LoginSocialite@callback');
 
 
-
 Auth::routes();
 
+Route::get('/language/{locale}', 'LanguageController@changeLanguage')->name('languale');
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['auth', 'checkRole']], function() {
     // Admin

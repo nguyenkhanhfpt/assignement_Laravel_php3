@@ -45,3 +45,9 @@ a {
     text-decoration: none !important;
     color: $primary-color;
 }
+
+@media (min-width: 768px){
+    .ml-md-45{
+        margin-left: 1.7rem!important;
+    }
+}

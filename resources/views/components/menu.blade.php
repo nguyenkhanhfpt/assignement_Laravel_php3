@@ -1,36 +1,68 @@
 <nav class="wrapper">
     <div class="nav__top">
-        <p class="mb-0 d-none d-md-block">Chào mừng bạn đến với Ecolife!</p>
+        <div class="d-flex">
+            <p class="mb-0 d-none d-md-block">{{ trans('view.welcome', ['app' => env('APP_NAME')] ) }}</p>
+            <div class="language-area ml-md-45">
+                <ul>
+                    <li>
+                        @if (session('locale', config('app.locale')) == 'vi')
+                            <img src="{{asset('images')}}/vietnam.png" />
+                            <a href="{{ route('languale', 'vi') }}">Tiếng Việt</a>
+                        @else
+                            <img src="{{asset('images')}}/united-kingdom.png" />
+                            <a href="{{ route('languale', 'en') }}">Englist</a>
+                        @endif
+                        <i class="fal fa-angle-down ml-2"></i>
+                        <div class="language-area-sub">
+                            <ul>
+                                <li>
+                                @if (session('locale', config('app.locale')) == 'vi')
+                                    <img src="{{asset('images')}}/united-kingdom.png" />
+                                    <a href="{{ route('languale', 'en') }}">Englist</a>
+                                @else
+                                    <img src="{{asset('images')}}/vietnam.png" />
+                                    <a href="{{ route('languale', 'vi') }}">Tiếng Việt</a>
+                                @endif
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+        </div>
+        
         <div class="nav__top-right">
             <div class="nav__top-item">
                 <i class="fal fa-heart"></i>
-                <a href="{{route('wishlist')}}">Yêu thích</a>
+                <a href="{{route('wishlist')}}">{{ trans('view.love') }}</a>
             </div>
             @guest
                 <div class="nav__top-item">
                     <i class="fal fa-user"></i>
-                    <a href="{{route('login')}}">Đăng nhập</a>
+                    <a href="{{route('login')}}">{{ trans('view.sign_in') }}</a>
                 </div>
                 <div class="nav__top-item">
                     <i class="fal fa-lock-alt"></i>
-                    <a href="{{route('register')}}">Đăng ký</a>
+                    <a href="{{route('register')}}">{{ trans('view.sign_up') }}</a>
                 </div>
             @else
                 <div class="nav__top-item">
-                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" 
+                        aria-haspopup="true" aria-expanded="false" v-pre>
                         {{ Auth::user()->name_member }} <span class="caret"></span>
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" 
                     style="padding: .5rem .8rem;">
-                        <a href="{{route('account')}}" class="dropdown-item">Tài khoản</a>
+                        <a href="{{route('account')}}" class="dropdown-item">{{ trans('view.account_setting') }}</a>
                         @if(Auth::user()->role > 0)
-                            <a href="{{route('admin')}}" class="dropdown-item">Quản trị trang web</a>
+                            <a href="{{route('admin')}}" class="dropdown-item">{{ trans('view.manage_web') }}</a>
                         @endif
                         <a class="dropdown-item dropdown-item-danger" href="{{ route('logout') }}"
                             onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">
-                            Đăng xuất
+                            {{ trans('view.logout') }}
                         </a>
 
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -43,25 +75,25 @@
     </div>
 
     <div class="nav__bottom">
-        <h2 class="nav__logo"><a href={{route('home')}}>Ecolife</a></h2>
+        <h2 class="nav__logo"><a href={{route('home')}}>{{ env('APP_NAME') }}</a></h2>
         <div class="nav__list">
             <ul>
                 <li class="nav__item">
-                    <a class="nav__link" href={{route('home')}}>Trang chủ</a>
+                    <a class="nav__link" href={{route('home')}}>{{ trans('view.home') }}</a>
                 </li>
                 <li class="nav__item">
-                    <a class="nav__link" href={{route('products')}}>Sản phẩm
+                    <a class="nav__link" href={{route('products')}}>{{ trans('view.products') }}
                     <i class="fal fa-angle-down"></i>
                     </a>
                 </li>
                 <li class="nav__item">
-                    <a class="nav__link" href="">Giới thiệu</a>
+                    <a class="nav__link" href="">{{ trans('view.introduce') }}</a>
                 </li>
                 <li class="nav__item">
-                    <a class="nav__link" href="">Liên hệ</a>
+                    <a class="nav__link" href="">{{ trans('view.contact') }}</a>
                 </li>
                 <li class="nav__item">
-                    <a class="nav__link" href={{route('cart')}}>Giỏ hàng</a>
+                    <a class="nav__link" href={{route('cart')}}>{{ trans('view.carts') }}</a>
                 </li>
             </ul>
         </div>

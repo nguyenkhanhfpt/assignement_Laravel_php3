@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Ecolife')
+@section('title', env('APP_NAME'))
 
 @section('menu')
     @include('components.menu')
@@ -12,8 +12,6 @@
         <img src="{{asset('images/header.jpg')}}" alt="">
     </header>
     
-
-
     <div class="contai">
         <section class="feature">
             <div class="feature__box">
@@ -49,7 +47,6 @@
                 </div>
             </div>
         </section>   
-
 
         <!-- Products -->
         <div class="best_seller">
