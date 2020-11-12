@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use App\Member;
+use App\User;
 use DB;
 
 class AccountController extends Controller
@@ -18,26 +18,18 @@ class AccountController extends Controller
     protected function index() {
         $user = Auth::user();
 
-        $bills = DB::table('bills as B')
-                    ->join('detail_bills as D', 'B.id_bill', '=', 'D.id_bill')
-                    ->join('products as P', 'P.id_product', '=', 'D.id_product')
-                    ->where('B.id_member', '=', Auth::user()->id_member)
-                    ->orderBy('B.date_buy', 'DESC')
-                    ->get(); 
+        $bills = []; 
 
-        return view('account', compact('bills'),[
-            'user' => $user
-        ]);
+        return view('account', compact(['bills', 'user']));
     }
 
     protected function updateProfile(Request $request) {
         $request->validate([
-            'name_member' => 'required',
-            'phone_number' => 'required',
-            'address' => 'required'
+            'name_member' => 'required'
         ]);
-
-        $member = Member::find(Auth::user()->id_member);
+        
+        //dd(Auth::id());
+        $member = User::find(Auth::id());
 
         $member->name_member = $request->name_member;
         $member->phone_number = $request->phone_number;

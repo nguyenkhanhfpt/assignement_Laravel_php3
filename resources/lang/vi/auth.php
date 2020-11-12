@@ -13,8 +13,8 @@ return [
     |
     */
 
-    'failed' => 'Email or Password is incorrect!',
-    'statusFailed' => 'Your account has not been activated!',
-    'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    'failed' => 'Tên đăng nhập hoặc mật khẩu không chính xác!',
+    'statusFailed' => 'Tài khoản của bạn chưa được kích hoạt!',
+    'throttle' => 'Đăng nhập quá nhiều. Vui lòng thử lại sau :seconds seconds.',
 
 ];

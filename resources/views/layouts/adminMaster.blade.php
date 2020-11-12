@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     
     <link rel="icon" type="image/png" sizes="16x16" href="http://eliteadmin.themedesigner.in/demos/bt4/assets/images/favicon.png">
     <title>Elite Admin Template - The Ultimate Multipurpose admin template</title>
@@ -18,6 +20,15 @@
     <link href="http://eliteadmin.themedesigner.in/demos/bt4/inverse/dist/css/style.min.css" rel="stylesheet">
     
     <link href="http://eliteadmin.themedesigner.in/demos/bt4/inverse/dist/css/pages/dashboard1.css" rel="stylesheet">
+
+    <!-- sweetAlert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+    <!-- This Page CSS -->
+    <link rel="stylesheet" type="text/css"
+        href="http://eliteadmin.themedesigner.in/demos/bt4/assets/node_modules/datatables.net-bs4/css/dataTables.bootstrap4.css">
+    <link rel="stylesheet" type="text/css"
+        href="http://eliteadmin.themedesigner.in/demos/bt4/assets/node_modules/datatables.net-bs4/css/responsive.dataTables.min.css">
     
     <link rel="stylesheet" href="{{asset('css/all.css')}}">
 
@@ -27,16 +38,13 @@
     <div class="preloader">
         <div class="loader">
             <div class="loader__figure"></div>
-            <p class="loader__label">Ecolife</p>
+            <p class="loader__label">{{ env('APP_NAME') }}</p>
         </div>
     </div>
 
     <div id="main-wrapper">
         <header class="topbar">
             <nav class="navbar top-navbar navbar-expand-md navbar-dark">
-                <!-- ============================================================== -->
-                <!-- Logo -->
-                <!-- ============================================================== -->
                 <div class="navbar-header">
                     <a class="navbar-brand" href="{{ route('home') }}">
                         <!-- Logo icon --><b>
@@ -296,10 +304,10 @@
     <script src="http://eliteadmin.themedesigner.in/demos/bt4/assets/node_modules/raphael/raphael-min.js"></script>
     <script src="http://eliteadmin.themedesigner.in/demos/bt4/assets/node_modules/morrisjs/morris.min.js"></script>
     <script src="http://eliteadmin.themedesigner.in/demos/bt4/assets/node_modules/jquery-sparkline/jquery.sparkline.min.js"></script>
-    <!-- Popup message jquery -->
-    <script src="http://eliteadmin.themedesigner.in/demos/bt4/assets/node_modules/toast-master/js/jquery.toast.js"></script>
     <!-- Chart JS -->
     <!-- <script src="http://eliteadmin.themedesigner.in/demos/bt4/inverse/dist/js/dashboard1.js"></script> -->
     <script src="http://eliteadmin.themedesigner.in/demos/bt4/assets/node_modules/toast-master/js/jquery.toast.js"></script>
+
+    @yield('script')
 </body>
 </html>

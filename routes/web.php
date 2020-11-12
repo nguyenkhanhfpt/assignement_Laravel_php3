@@ -91,6 +91,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
 
     Route::post('/category/add', 'CategoryController@addCategory');
 
+    // Admin color
+    Route::resource('/colors', 'ColorController');
+
 
     // Admin product
     Route::get('/products', 'ProductController@index')->name('adminProduct');

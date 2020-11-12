@@ -75,7 +75,7 @@
                     </a>
                     <ul aria-expanded="false" class="collapse">
                         <li>
-                            <a href="index.html">Màu</a>
+                            <a href="{{ route('colors.index') }}">Màu</a>
                         </li>
                         <li>
                             <a href="index2.html">Size</a>
