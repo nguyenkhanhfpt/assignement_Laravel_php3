@@ -5,41 +5,30 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
-use App\Color;
+use App\Size;
 
-class ColorController extends Controller
+class SizeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $colors = Color::get();
+            $sizes = Size::get();
         
-            return DataTables::of($colors)->make(true);
+            return DataTables::of($sizes)->make(true);
         }
 
-        return view('admins.colors');
+        return view('admins.size');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|max:250|unique:colors'
+            'size' => 'required|max:250|unique:sizes'
         ]);
 
-        $color = Color::create($request->all());
+        $size = Size::create($request->all());
 
-        if ($color) {
+        if ($size) {
             return response()->json([
                 'status' => 200, 
                 'message' => 'Thêm mới thành công!'
@@ -54,28 +43,21 @@ class ColorController extends Controller
 
     public function edit($id)
     {
-        $color = Color::findOrFail($id);
+        $size = Size::findOrFail($id);
 
-        return $color;
+        return $size;
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required|max:250'
+            'size' => 'required|max:250'
         ]);
 
-        $color = Color::findOrFail($id);
+        $size = Size::findOrFail($id);
 
-        $color->name = $request->name;
-        $result = $color->save();
+        $size->size = $request->size;
+        $result = $size->save();
 
         if ($result) {
             return response()->json([
@@ -98,9 +80,9 @@ class ColorController extends Controller
      */
     public function destroy($id)
     {
-        $color = Color::findOrFail($id);
+        $size = Size::findOrFail($id);
 
-        $result = $color->delete();
+        $result = $size->delete();
 
         if ($result) {
             return response()->json([

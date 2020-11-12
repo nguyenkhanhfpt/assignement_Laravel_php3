@@ -277,3 +277,35 @@ a {
   left: 19px;
 }
 
+.swal2-popup {
+  padding: 1em;
+}
+
+.swal2-header {
+  padding: 0;
+}
+
+.swal2-styled.swal2-confirm,
+.swal2-styled.swal2-cancel {
+  font-size: 0.95em;
+}
+
+.swal2-styled {
+  padding: 0.6em 1.8em;
+}
+
+.swal2-title {
+  color: #424242;
+  font-size: 1.8em;
+  margin-bottom: 0;
+  font-family: "Roboto", sans-serif;
+}
+
+.swal2-actions:not(.swal2-loading) .swal2-styled:active {
+  background-image: none;
+}
+
+.swal2-styled:focus {
+  box-shadow: none;
+}
+

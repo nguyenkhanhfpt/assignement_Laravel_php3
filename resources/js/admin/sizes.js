@@ -9,17 +9,17 @@ $(document).ready(function() {
 });
 
 function listen() {
-    getListColor();
-    addNewColor();
-    deleteColor();
-    editColor();
-    updateColor();
+    getListSizes();
+    addNewSize();
+    deleteSize();
+    editSize();
+    updateSize();
 }
 
-function getListColor() {
-    let url = '/admin/colors';
+function getListSizes() {
+    let url = '/admin/sizes';
 
-    $('#table-color').DataTable({
+    $('#table-size').DataTable({
         processing: true,
         serverSide: true,
         ajax: {
@@ -28,7 +28,7 @@ function getListColor() {
         },
         columns: [
             { data: 'id'},
-            { data: 'name'},
+            { data: 'size'},
             {
                 data: null,
                 searchable: false,
@@ -38,9 +38,10 @@ function getListColor() {
                         <button class="btn btn-info edit-btn" title="Chỉnh sửa" data-id='${data.id}'>
                             <i class="fal fa-eye"></i>
                         </button>
-                        <button class="btn btn-danger reset-confirm-btn btn-delete-color" data-id='${data.id}' title="Xóa">
+                        <button class="btn btn-danger reset-confirm-btn btn-delete-size" data-id='${data.id}' title="Xóa">
                             <i class="far fa-trash"></i>
-                        </button>`
+                        </button>   
+                        `
                 },
             },
         ],
@@ -51,16 +52,16 @@ function getListColor() {
     });
 }
 
-function addNewColor() {
-    $('#btn-add-color').on('click', function() {
-        let name = $('#name').val();
-        let url = '/admin/colors';
+function addNewSize() {
+    $('#btn-add-size').on('click', function() {
+        let size = $('#size').val();
+        let url = '/admin/sizes';
 
         $.ajax({
             method: 'POST',
             url: url,
             data: {
-                name: name
+                size: size
             },
             success: function(res) {
                 if (res.status = 200) {
@@ -69,10 +70,10 @@ function addNewColor() {
                         icon: "success",
                         confirmButtonText: "Tiếp tục"
                     }).then(val => {
-                        $('#table-color').DataTable().ajax.reload();
+                        $('#table-size').DataTable().ajax.reload();
 
-                        $('#addColors .close').click();
-                        $('#form-colors').trigger("reset");
+                        $('#addSizes .close').click();
+                        $('#form-sizes').trigger("reset");
                     });
                 } else {
                     Swal.fire({
@@ -91,8 +92,8 @@ function addNewColor() {
     });
 }
 
-function deleteColor() {
-    $('#table-color').on('click', '.btn-delete-color', function() {
+function deleteSize() {
+    $('#table-size').on('click', '.btn-delete-size', function() {
         let id = $(this).data('id');
 
         Swal.fire({
@@ -105,7 +106,7 @@ function deleteColor() {
             if (result.value) {
                 $.ajax({
                     method: 'DELETE',
-                    url: `/admin/colors/${id}`,
+                    url: `/admin/sizes/${id}`,
                     success: function (res) {
                         if (res.status = 200) {
                             Swal.fire({
@@ -114,7 +115,7 @@ function deleteColor() {
                                 confirmButtonText: "Tiếp tục"
                             });
 
-                            $('#table-color').DataTable().ajax.reload();
+                            $('#table-size').DataTable().ajax.reload();
                         } else {
                             Swal.fire({
                                 title: res.message,
@@ -137,18 +138,18 @@ function deleteColor() {
     })
 }
 
-function editColor() {
-    $('#table-color').on('click', '.edit-btn', function() {
+function editSize() {
+    $('#table-size').on('click', '.edit-btn', function() {
         let id = $(this).data('id');
 
         $.ajax({
             method: 'GET',
-            url: '/admin/colors/' +id+ '/edit',
+            url: '/admin/sizes/' +id+ '/edit',
             success: function(res) {
                 if (res.id) {
-                    $('#name-edit').val(res.name);
+                    $('#size-edit').val(res.size);
                     $('#id-edit').val(id);
-                    $('#editColors').modal('show');
+                    $('#editSizes').modal('show');
                 }
             },
             error: function(error) {
@@ -161,27 +162,27 @@ function editColor() {
     })
 }
 
-function updateColor() {
-    $('#btn-edit-color').on('click', function() {
-        let name = $('#name-edit').val();
+function updateSize() {
+    $('#btn-edit-size').on('click', function() {
+        let size = $('#size-edit').val();
         let id = $('#id-edit').val();
 
         $.ajax({
             method: 'PATCH',
-            url: '/admin/colors/' +id,
+            url: '/admin/sizes/' +id,
             data: {
-                name: name
+                size: size
             },
             success: function(res) {
                 if (res.status = 200) {
-                    $('#table-color').DataTable().ajax.reload();
+                    $('#table-size').DataTable().ajax.reload();
 
                     Swal.fire({
                         title: res.message,
                         icon: "success",
                         confirmButtonText: "Tiếp tục"
                     }).then(result => {
-                        $('#editColors .close').click();
+                        $('#editSizes .close').click();
                         $('#form-edit-colors').trigger("reset");
                     });
                 } else {

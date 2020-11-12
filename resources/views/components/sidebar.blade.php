@@ -78,7 +78,7 @@
                             <a href="{{ route('colors.index') }}">Màu</a>
                         </li>
                         <li>
-                            <a href="index2.html">Size</a>
+                            <a href="{{ route('sizes.index') }}">Size</a>
                         </li>
                         <li>
                             <a href="{{ route('adminProduct') }}">Danh sách</a>

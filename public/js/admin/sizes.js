@@ -81,15 +81,15 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/js/admin/colors.js":
-/*!**************************************!*\
-  !*** ./resources/js/admin/colors.js ***!
-  \**************************************/
+/***/ "./resources/js/admin/sizes.js":
+/*!*************************************!*\
+  !*** ./resources/js/admin/sizes.js ***!
+  \*************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -103,16 +103,16 @@ $(document).ready(function () {
 });
 
 function listen() {
-  getListColor();
-  addNewColor();
-  deleteColor();
-  editColor();
-  updateColor();
+  getListSizes();
+  addNewSize();
+  deleteSize();
+  editSize();
+  updateSize();
 }
 
-function getListColor() {
-  var url = '/admin/colors';
-  $('#table-color').DataTable({
+function getListSizes() {
+  var url = '/admin/sizes';
+  $('#table-size').DataTable({
     processing: true,
     serverSide: true,
     ajax: {
@@ -122,13 +122,13 @@ function getListColor() {
     columns: [{
       data: 'id'
     }, {
-      data: 'name'
+      data: 'size'
     }, {
       data: null,
       searchable: false,
       orderable: false,
       render: function render(data) {
-        return "\n                        <button class=\"btn btn-info edit-btn\" title=\"Ch\u1EC9nh s\u1EEDa\" data-id='".concat(data.id, "'>\n                            <i class=\"fal fa-eye\"></i>\n                        </button>\n                        <button class=\"btn btn-danger reset-confirm-btn btn-delete-color\" data-id='").concat(data.id, "' title=\"X\xF3a\">\n                            <i class=\"far fa-trash\"></i>\n                        </button>");
+        return "\n                        <button class=\"btn btn-info edit-btn\" title=\"Ch\u1EC9nh s\u1EEDa\" data-id='".concat(data.id, "'>\n                            <i class=\"fal fa-eye\"></i>\n                        </button>\n                        <button class=\"btn btn-danger reset-confirm-btn btn-delete-size\" data-id='").concat(data.id, "' title=\"X\xF3a\">\n                            <i class=\"far fa-trash\"></i>\n                        </button>   \n                        ");
       }
     }],
     language: {
@@ -138,15 +138,15 @@ function getListColor() {
   });
 }
 
-function addNewColor() {
-  $('#btn-add-color').on('click', function () {
-    var name = $('#name').val();
-    var url = '/admin/colors';
+function addNewSize() {
+  $('#btn-add-size').on('click', function () {
+    var size = $('#size').val();
+    var url = '/admin/sizes';
     $.ajax({
       method: 'POST',
       url: url,
       data: {
-        name: name
+        size: size
       },
       success: function success(res) {
         if (res.status = 200) {
@@ -155,9 +155,9 @@ function addNewColor() {
             icon: "success",
             confirmButtonText: "Tiếp tục"
           }).then(function (val) {
-            $('#table-color').DataTable().ajax.reload();
-            $('#addColors .close').click();
-            $('#form-colors').trigger("reset");
+            $('#table-size').DataTable().ajax.reload();
+            $('#addSizes .close').click();
+            $('#form-sizes').trigger("reset");
           });
         } else {
           Swal.fire({
@@ -176,8 +176,8 @@ function addNewColor() {
   });
 }
 
-function deleteColor() {
-  $('#table-color').on('click', '.btn-delete-color', function () {
+function deleteSize() {
+  $('#table-size').on('click', '.btn-delete-size', function () {
     var id = $(this).data('id');
     Swal.fire({
       title: 'Bạn có chắc muốn xóa màu!',
@@ -189,7 +189,7 @@ function deleteColor() {
       if (result.value) {
         $.ajax({
           method: 'DELETE',
-          url: "/admin/colors/".concat(id),
+          url: "/admin/sizes/".concat(id),
           success: function success(res) {
             if (res.status = 200) {
               Swal.fire({
@@ -197,7 +197,7 @@ function deleteColor() {
                 icon: "success",
                 confirmButtonText: "Tiếp tục"
               });
-              $('#table-color').DataTable().ajax.reload();
+              $('#table-size').DataTable().ajax.reload();
             } else {
               Swal.fire({
                 title: res.message,
@@ -217,17 +217,17 @@ function deleteColor() {
   });
 }
 
-function editColor() {
-  $('#table-color').on('click', '.edit-btn', function () {
+function editSize() {
+  $('#table-size').on('click', '.edit-btn', function () {
     var id = $(this).data('id');
     $.ajax({
       method: 'GET',
-      url: '/admin/colors/' + id + '/edit',
+      url: '/admin/sizes/' + id + '/edit',
       success: function success(res) {
         if (res.id) {
-          $('#name-edit').val(res.name);
+          $('#size-edit').val(res.size);
           $('#id-edit').val(id);
-          $('#editColors').modal('show');
+          $('#editSizes').modal('show');
         }
       },
       error: function error(_error2) {
@@ -240,25 +240,25 @@ function editColor() {
   });
 }
 
-function updateColor() {
-  $('#btn-edit-color').on('click', function () {
-    var name = $('#name-edit').val();
+function updateSize() {
+  $('#btn-edit-size').on('click', function () {
+    var size = $('#size-edit').val();
     var id = $('#id-edit').val();
     $.ajax({
       method: 'PATCH',
-      url: '/admin/colors/' + id,
+      url: '/admin/sizes/' + id,
       data: {
-        name: name
+        size: size
       },
       success: function success(res) {
         if (res.status = 200) {
-          $('#table-color').DataTable().ajax.reload();
+          $('#table-size').DataTable().ajax.reload();
           Swal.fire({
             title: res.message,
             icon: "success",
             confirmButtonText: "Tiếp tục"
           }).then(function (result) {
-            $('#editColors .close').click();
+            $('#editSizes .close').click();
             $('#form-edit-colors').trigger("reset");
           });
         } else {
@@ -280,86 +280,14 @@ function updateColor() {
 
 /***/ }),
 
-/***/ "./resources/sass/account.scss":
-/*!*************************************!*\
-  !*** ./resources/sass/account.scss ***!
-  \*************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "./resources/sass/admin.scss":
-/*!***********************************!*\
-  !*** ./resources/sass/admin.scss ***!
-  \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "./resources/sass/app.scss":
-/*!*********************************!*\
-  !*** ./resources/sass/app.scss ***!
-  \*********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "./resources/sass/customCarousel.scss":
-/*!********************************************!*\
-  !*** ./resources/sass/customCarousel.scss ***!
-  \********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "./resources/sass/home.scss":
-/*!**********************************!*\
-  !*** ./resources/sass/home.scss ***!
-  \**********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "./resources/sass/productsPage.scss":
-/*!******************************************!*\
-  !*** ./resources/sass/productsPage.scss ***!
-  \******************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 0:
-/*!***********************************************************************************************************************************************************************************************************************************!*\
-  !*** multi ./resources/js/admin/colors.js ./resources/sass/app.scss ./resources/sass/home.scss ./resources/sass/customCarousel.scss ./resources/sass/productsPage.scss ./resources/sass/account.scss ./resources/sass/admin.scss ***!
-  \***********************************************************************************************************************************************************************************************************************************/
+/***/ 1:
+/*!*******************************************!*\
+  !*** multi ./resources/js/admin/sizes.js ***!
+  \*******************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/user/Desktop/Dev/assignement_Laravel_php3/resources/js/admin/colors.js */"./resources/js/admin/colors.js");
-__webpack_require__(/*! /home/user/Desktop/Dev/assignement_Laravel_php3/resources/sass/app.scss */"./resources/sass/app.scss");
-__webpack_require__(/*! /home/user/Desktop/Dev/assignement_Laravel_php3/resources/sass/home.scss */"./resources/sass/home.scss");
-__webpack_require__(/*! /home/user/Desktop/Dev/assignement_Laravel_php3/resources/sass/customCarousel.scss */"./resources/sass/customCarousel.scss");
-__webpack_require__(/*! /home/user/Desktop/Dev/assignement_Laravel_php3/resources/sass/productsPage.scss */"./resources/sass/productsPage.scss");
-__webpack_require__(/*! /home/user/Desktop/Dev/assignement_Laravel_php3/resources/sass/account.scss */"./resources/sass/account.scss");
-module.exports = __webpack_require__(/*! /home/user/Desktop/Dev/assignement_Laravel_php3/resources/sass/admin.scss */"./resources/sass/admin.scss");
+module.exports = __webpack_require__(/*! /home/user/Desktop/Dev/assignement_Laravel_php3/resources/js/admin/sizes.js */"./resources/js/admin/sizes.js");
 
 
 /***/ })

@@ -17,4 +17,5 @@ mix.sass('resources/sass/app.scss', 'public/css')
     .sass('resources/sass/productsPage.scss', 'public/css')
     .sass('resources/sass/account.scss', 'public/css')
     .sass('resources/sass/admin.scss', 'public/css')
-    .js('resources/js/admin/colors.js', 'public/js/admin');
+    .js('resources/js/admin/colors.js', 'public/js/admin')
+    .js('resources/js/admin/sizes.js', 'public/js/admin');
