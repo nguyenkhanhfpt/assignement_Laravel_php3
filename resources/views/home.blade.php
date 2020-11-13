@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', env('APP_NAME'))
+@section('title', env('APP_NAME') .' - Áo quần, Phụ kiện thời trang chính hãng, uy tín')
 
 @section('menu')
     @include('components.menu')

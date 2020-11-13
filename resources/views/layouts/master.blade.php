@@ -3,6 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="Thời trang nam, Thoi trang nam, ao quan, áo quần, sale, shop nam, shop gia re, thoi trang da nang, Thời trang Đà Nẵng" />
+    <meta name="description" content="Hệ thống bán lẻ áo quần thời trang nam, đạt chuẩn xuất khẩu, uy tín giá rẻ nhất Đà Nẵng. Mua hàng online tại 
+    {{ env('APP_NAME') }} với giá cả cạnh tranh, giao hàng COD toàn quốc, đổi trả miễn phí 30 ngày." />
+    <meta property="og:title" content="{{ env('APP_NAME') }} - Áo quần, Phụ kiện thời trang chính hãng, uy tín" />
+    <meta property="og:description" content="Hệ thống bán lẻ áo quần thời trang nam, đạt chuẩn xuất khẩu, uy tín giá rẻ nhất Đà Nẵng. Mua hàng online tại 
+    {{ env('APP_NAME') }} với giá cả cạnh tranh, giao hàng COD toàn quốc, đổi trả miễn phí 30 ngày." />
+    <meta property="og:site_name" content="{{ url('') }}"/>
+    <meta property="og:url" content="{{ url('') }}"/>
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="vi_VN" />
+    <meta itemprop="image" content="{{ asset('images') }}/ecolife-side.jpeg"/>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
     <title>@yield('title')</title>
