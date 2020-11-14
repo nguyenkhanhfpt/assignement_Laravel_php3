@@ -1,10 +1,11 @@
 {
     "/js/admin/colors.js": "/js/admin/colors.js",
+    "/js/admin/sizes.js": "/js/admin/sizes.js",
+    "/js/sendContact.js": "/js/sendContact.js",
     "/css/app.css": "/css/app.css",
     "/css/home.css": "/css/home.css",
     "/css/customCarousel.css": "/css/customCarousel.css",
     "/css/productsPage.css": "/css/productsPage.css",
     "/css/account.css": "/css/account.css",
-    "/css/admin.css": "/css/admin.css",
-    "/js/admin/sizes.js": "/js/admin/sizes.js"
+    "/css/admin.css": "/css/admin.css"
 }

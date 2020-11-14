@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -280,86 +280,14 @@ function updateColor() {
 
 /***/ }),
 
-/***/ "./resources/sass/account.scss":
-/*!*************************************!*\
-  !*** ./resources/sass/account.scss ***!
-  \*************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "./resources/sass/admin.scss":
-/*!***********************************!*\
-  !*** ./resources/sass/admin.scss ***!
-  \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "./resources/sass/app.scss":
-/*!*********************************!*\
-  !*** ./resources/sass/app.scss ***!
-  \*********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "./resources/sass/customCarousel.scss":
+/***/ 1:
 /*!********************************************!*\
-  !*** ./resources/sass/customCarousel.scss ***!
+  !*** multi ./resources/js/admin/colors.js ***!
   \********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "./resources/sass/home.scss":
-/*!**********************************!*\
-  !*** ./resources/sass/home.scss ***!
-  \**********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "./resources/sass/productsPage.scss":
-/*!******************************************!*\
-  !*** ./resources/sass/productsPage.scss ***!
-  \******************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 0:
-/*!***********************************************************************************************************************************************************************************************************************************!*\
-  !*** multi ./resources/js/admin/colors.js ./resources/sass/app.scss ./resources/sass/home.scss ./resources/sass/customCarousel.scss ./resources/sass/productsPage.scss ./resources/sass/account.scss ./resources/sass/admin.scss ***!
-  \***********************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/user/Desktop/Dev/assignement_Laravel_php3/resources/js/admin/colors.js */"./resources/js/admin/colors.js");
-__webpack_require__(/*! /home/user/Desktop/Dev/assignement_Laravel_php3/resources/sass/app.scss */"./resources/sass/app.scss");
-__webpack_require__(/*! /home/user/Desktop/Dev/assignement_Laravel_php3/resources/sass/home.scss */"./resources/sass/home.scss");
-__webpack_require__(/*! /home/user/Desktop/Dev/assignement_Laravel_php3/resources/sass/customCarousel.scss */"./resources/sass/customCarousel.scss");
-__webpack_require__(/*! /home/user/Desktop/Dev/assignement_Laravel_php3/resources/sass/productsPage.scss */"./resources/sass/productsPage.scss");
-__webpack_require__(/*! /home/user/Desktop/Dev/assignement_Laravel_php3/resources/sass/account.scss */"./resources/sass/account.scss");
-module.exports = __webpack_require__(/*! /home/user/Desktop/Dev/assignement_Laravel_php3/resources/sass/admin.scss */"./resources/sass/admin.scss");
+module.exports = __webpack_require__(/*! /home/user/Desktop/Dev/assignement_Laravel_php3/resources/js/admin/colors.js */"./resources/js/admin/colors.js");
 
 
 /***/ })

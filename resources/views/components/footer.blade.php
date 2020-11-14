@@ -1,7 +1,7 @@
 <footer>
     <div class="footer__box">
         <div class="footer__info">
-            <h2 class="nav__logo"><a href="">Ecolife</a></h2>
+            <h2 class="nav__logo"><a href="">{{ env('APP_NAME') }}</a></h2>
 
             <div class="footer__info-item">
                 <i class="fal fa-map-marker-alt"></i>
@@ -23,11 +23,11 @@
                 <p class="mt-3" style="font-size: 1.5rem">{{ session('successEmail') }}</p>
             @endif
 
-            <form action="{{route('sendMailContact')}}" method="POST">
+            <form action="{{route('sendMailContact')}}" method="POST" id="form-contact">
                 @csrf
-                <input type="email" placeholder="Email của bạn" name="your_email">
-                <textarea name="review" placeholder="Viết đáng giá của bạn" cols="30" rows="4"></textarea>
-                <input type="submit" value="Gửi" class="footer__contact-submit">
+                <input type="email" placeholder="{{ trans('view.your_email') }}" name="your_email">
+                <textarea name="review" placeholder="{{ trans('view.write_review') }}" cols="30" rows="4"></textarea>
+                <input type="submit" value="{{ trans('view.send') }}" class="footer__contact-submit" id="contact-submit">
             </form>
         </div>
     </div>

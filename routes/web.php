@@ -60,10 +60,8 @@ Route::get('/wishlist/delete/{id}', 'WishlistController@deleteWish');
 
 Route::post('/wishlist/add', 'WishlistController@addWish');
 
-
 // send Mail
 Route::post('/sendMailContact', 'SendMailContact@sendMail')->name('sendMailContact');
-
 
 // Login with google 
 Route::get('auth/redirect/{provider}', 'Auth\LoginSocialite@redirect')->name('auth_redirect');

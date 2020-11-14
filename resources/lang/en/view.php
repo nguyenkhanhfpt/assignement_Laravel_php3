@@ -13,4 +13,8 @@ return [
     'account_setting' => 'Account Setting',
     'manage_web' => 'Manage web page',
     'logout' => 'Logout',
+    'your_email' => 'Your email',
+    'write_review' => 'Write your review',
+    'send' => 'Send',
+    'contact_success' => 'Send review successfully!',
 ];

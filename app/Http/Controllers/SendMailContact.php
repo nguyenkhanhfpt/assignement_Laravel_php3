@@ -3,19 +3,25 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Jobs\SendMailContactJob;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ContactMail;
 
 class SendMailContact extends Controller
 {
     protected function sendMail(Request $request) {
+        $request->validate([
+            'your_email' => 'required|email',
+            'review' => 'required'
+        ]);
+
         $datas = [
-            'addressEmail' => $request->your_email,
+            'email' => $request->your_email,
             'content' => $request->review
         ];
 
-        Mail::to('khanh26122000@gmail.com')->send(new ContactMail($datas));
+        SendMailContactJob::dispatch($datas);
 
-        return redirect()->back()->with('successEmail', 'Cảm ơn bạn đã để lại ý kiến của mình');
+        return response()->json(['status' => 200, 'message' => trans('view.contact_success')]);
     }
 }
