@@ -17,6 +17,8 @@ class CreateDetailBillsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('bill_id');
             $table->unsignedBigInteger('product_id');
+            $table->unsignedBigInteger('color_id')->nullable();
+            $table->unsignedBigInteger('size_id')->nullable();
             $table->integer('quantity_buy');
             $table->float('amount', 11, 0);
         });

@@ -37,8 +37,5 @@
             <a class="btn btn-primary" href={{route('adminCategory')}}>Danh sách danh mục</a>
         </form>
 
-        
     </div>
-    
-
 @endsection

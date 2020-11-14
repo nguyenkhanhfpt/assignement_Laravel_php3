@@ -98,6 +98,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
     // Admin product
     Route::get('/products', 'ProductController@index')->name('adminProduct');
 
+    Route::post('/uploadFile', 'ImageLibrary@store')->name('uploadImage');
+
+    Route::get('/uploadFile', 'ImageLibrary@index');
+
     Route::get('/products/add', 'ProductController@viewAdd')->name('adminProductAdd');
 
     Route::get('/products/delete/{id}', 'ProductController@delete');

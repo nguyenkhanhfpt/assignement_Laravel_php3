@@ -90,7 +90,7 @@
                     <a class="nav__link" href="">{{ trans('view.introduce') }}</a>
                 </li>
                 <li class="nav__item">
-                    <a class="nav__link" href="">{{ trans('view.contact') }}</a>
+                    <a class="nav__link" id="link_contact" href="">{{ trans('view.contact') }}</a>
                 </li>
                 <li class="nav__item">
                     <a class="nav__link" href={{route('cart')}}>{{ trans('view.carts') }}</a>

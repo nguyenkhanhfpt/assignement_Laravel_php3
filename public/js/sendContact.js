@@ -126,6 +126,12 @@ $(document).ready(function () {
       }
     });
   });
+  $('#link_contact').on('click', function (event) {
+    event.preventDefault();
+    $([document.documentElement, document.body]).animate({
+      scrollTop: $(".footer__contact").offset().top
+    }, 1800);
+  });
 });
 
 /***/ }),
