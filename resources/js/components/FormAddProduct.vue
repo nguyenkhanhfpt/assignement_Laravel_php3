@@ -184,17 +184,6 @@
 
                 this.$v.$touch();
                 if (this.$v.$invalid) {
-                    store.commit('setLoadding');
-                    return;
-                }
-
-                if (this.imagesChoosed.length == 0) {
-                    store.commit('setLoadding');
-
-                    Swal.fire({
-                        title: 'Phải chọn ít nhất 1 ảnh cho sản phẩm!',
-                        icon: "error"
-                    });
                     return;
                 }
 
