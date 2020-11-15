@@ -4,10 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Category;
 use App\Product;
 use App\ProductImage;
+use App\Library;
 use DB;
+use Exception;
 
 class ProductController extends Controller
 {
@@ -30,23 +33,17 @@ class ProductController extends Controller
     protected function validateInsert($request) {
         $request->validate([
             'name_product' => 'required|unique:products',
-            'id_category' => 'required',
+            'category_id' => 'required',
             'price_product' => 'required|integer|min:1',
-            'img_product' => 'required',
             'quantity_product' => 'required|integer|min:1',
-            'img_product_2' => 'required',
-            'img_product_3' => 'required',
             'decscription' => 'required'
         ], [
             'name_product.required' => 'Tên sản phẩm không được để trống',
             'name_product.unique' => 'Tên sản phẩm đã có trong cửa hàng',
-            'id_category.required' => 'Tên danh mục không được để trống',
+            'category_id.required' => 'Tên danh mục không được để trống',
             'price_product.min' => 'Sản phẩm không được nhỏ hơn 1',
-            'img_product.required' => 'Ảnh sản phẩm không được để trống',
             'quantity_product.required' => 'Số lượng sản phẩm không được để trống',
             'quantity_product.min' => 'Số lượng sản phẩm không được nhỏ hơn 1',
-            'img_product_2.required' => 'Ảnh sản phẩm không được để trống',
-            'img_product_3.required' => 'Ảnh sản phẩm không được để trống',
             'decscription.required' => 'Mô tả sản phẩm không được để trống'
         ]);
     }
@@ -54,51 +51,45 @@ class ProductController extends Controller
     protected function insert(Request $request) {
         $this->validateInsert($request);
 
-        $file = $request->img_product;
-        $file2 = $request->img_product_2;
-        $file3 = $request->img_product_3;
-
-        $img_product = $file->getClientOriginalName();
-        $img_product_2 = $file2->getClientOriginalName();
-        $img_product_3 = $file3->getClientOriginalName();
-
-        $file->move('images/products', $img_product);
-        $file2->move('images/products', $img_product_2);
-        $file3->move('images/products', $img_product_3);
-
-        $imagesUpload = [
-            $img_product,
-            $img_product_2,
-            $img_product_3
-        ];
-
-        //return response()->json($imagesUpload);
-
         $datas = [];
-        
-        $id = vn_to_eng($request->name_product);
 
-        $datas['id_product'] = $id;
         $datas['name_product'] = $request->name_product;
-        $datas['id_category'] = $request->id_category;
+        $datas['slug'] = Str::slug($request->name_product);
+        $datas['category_id'] = $request->category_id['id'];
         $datas['price_product'] = floatval($request->price_product);
         $datas['sale'] = $request->sale || 0;
-        $datas['view'] = 0;
         $datas['quantity_product'] = intval($request->quantity_product);
         $datas['decscription'] = $request->decscription;
         $datas['nomination'] = $request->nomination ? 1 : 0;
 
-        Product::create($datas);
+        DB::beginTransaction();
 
-        $product = Product::find($id);
+        try {
+            $product = Product::create($datas);
 
-        foreach ($imagesUpload as $image) {
-            $product->images()->create([
-                'image' => $image
-            ]);
+            foreach ($request->images as $image) {
+                $imageLibrary = Library::findOrFail($image['id']);
+                $product->images()->create([
+                    'image' => $imageLibrary->image
+                ]);
+            }
+
+            foreach ($request->colors as $color) {
+                $product->colors()->attach($color['id']);
+            }
+
+            foreach ($request->sizes as $size) {
+                $product->sizes()->attach($size['id']);
+            }
+
+            DB::commit();
+
+            return response()->json(['status' => 200, 'message' => 'Thêm sản phẩm thành công!']);
+        } catch(Exception $e) {
+            DB::rollBack();
+        
+            throw new Exception($e->getMessage());
         }
-
-        return redirect(route('adminProduct'));
     }
 
     protected function delete($id) {

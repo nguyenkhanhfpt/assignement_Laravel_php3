@@ -8,7 +8,7 @@ export default new Vuex.Store({
     state: {
         loadding: false,
         libraries: {},
-        imagesChoosed: {}
+        imagesChoosed: []
     },
 
     getters: {

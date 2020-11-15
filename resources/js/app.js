@@ -9,7 +9,10 @@ require('./bootstrap');
 import Vue from 'vue';
 import Vuex from 'vuex';
 import store from './store';
+import Multiselect from 'vue-multiselect';
+import Vuelidate from 'vuelidate';
 
+Vue.use(Vuelidate)
 Vue.use(Vuex);
 /**
  * The following block of code may be used to automatically register your
@@ -26,6 +29,7 @@ Vue.component('form-add-product', require('./components/FormAddProduct.vue').def
 Vue.component('ModalImage', require('./components/ModalImage.vue').default);
 Vue.component('ImageLibrary', require('./components/ImageLibrary.vue').default);
 Vue.component('ImageChoosed', require('./components/ImagesChoosed.vue').default);
+Vue.component('multiselect', Multiselect);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

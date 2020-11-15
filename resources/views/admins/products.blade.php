@@ -34,7 +34,9 @@
                         <tr>
                             <td>{{ $product->name_product }}</td>
                             <td>
-                                <img src="{{asset('images/products')}}/{{ $product->images[0]->image }}" alt="">
+                                @if (count($product->images))
+                                    <img src="{{asset('images/products')}}/{{ $product->images[0]->image }}" alt="">
+                                @endif
                             </td>
                             <td>{{ number_format($product->price_product) }} đ</td>
                             <td>{{ $product->quantity_product }}</td>
@@ -47,8 +49,7 @@
                                 @endif
                             </td>
                             <td>
-                                <img src="{{asset('images/products')}}/{{ $product->images[1]->image }}" alt="">
-                                <img src="{{asset('images/products')}}/{{ $product->images[2]->image }}" alt="">
+                                
                             </td>
                             <td>
                                 <a href="{{route('adminProduct')}}/update/{{ $product->id_product }}" 

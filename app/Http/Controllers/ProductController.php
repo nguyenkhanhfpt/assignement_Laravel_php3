@@ -62,7 +62,8 @@ class ProductController extends Controller
 
     protected function viewProduct($slug) {
         $product = Product::where('slug', $slug)
-            ->first()->load(['images', 'category', 'comments', 'comments.member']);
+            ->first()->load(['images', 'category', 'comments', 
+            'comments.member', 'sizes', 'colors']);
         $idCate = $product->category->id;
 
         $comments = $product->comments;
