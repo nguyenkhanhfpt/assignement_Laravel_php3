@@ -13,22 +13,22 @@
     <link rel="icon" type="image/png" sizes="16x16" href="http://eliteadmin.themedesigner.in/demos/bt4/assets/images/favicon.png">
     <title>Elite Admin Template - The Ultimate Multipurpose admin template</title>
     
-    <link href="http://eliteadmin.themedesigner.in/demos/bt4/assets/node_modules/morrisjs/morris.css" rel="stylesheet">
+    <link href="{{ asset('css') }}/morris.css" rel="stylesheet">
     
-    <link href="http://eliteadmin.themedesigner.in/demos/bt4/assets/node_modules/toast-master/css/jquery.toast.css" rel="stylesheet">
+    <link href="{{ asset('css') }}/jquery.toast.css" rel="stylesheet">
     
-    <link href="http://eliteadmin.themedesigner.in/demos/bt4/inverse/dist/css/style.min.css" rel="stylesheet">
+    <link href="{{ asset('css') }}/style.min.css" rel="stylesheet">
     
-    <link href="http://eliteadmin.themedesigner.in/demos/bt4/inverse/dist/css/pages/dashboard1.css" rel="stylesheet">
+    <link href="{{ asset('css') }}/dashboard1.css" rel="stylesheet">
+
+    <script src="{{ asset('js/admin') }}/jquery-3.2.1.min.js"></script>
 
     <!-- sweetAlert -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="{{ asset('js/admin') }}/sweetalert2@9.js"></script>
 
     <!-- This Page CSS -->
-    <link rel="stylesheet" type="text/css"
-        href="http://eliteadmin.themedesigner.in/demos/bt4/assets/node_modules/datatables.net-bs4/css/dataTables.bootstrap4.css">
-    <link rel="stylesheet" type="text/css"
-        href="http://eliteadmin.themedesigner.in/demos/bt4/assets/node_modules/datatables.net-bs4/css/responsive.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css') }}/dataTables.bootstrap4.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css') }}/responsive.dataTables.min.css">
     
     <link rel="stylesheet" href="{{asset('css/all.css')}}">
 
@@ -288,27 +288,24 @@
 
     @yield('script')
 
-    <script src="http://eliteadmin.themedesigner.in/demos/bt4/assets/node_modules/jquery/jquery-3.2.1.min.js"></script>
     <!-- Bootstrap popper Core JavaScript -->
-    <script src="http://eliteadmin.themedesigner.in/demos/bt4/assets/node_modules/popper/popper.min.js"></script>
-    <script src="http://eliteadmin.themedesigner.in/demos/bt4/assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="{{ asset('js/admin') }}/popper.min.js"></script>
+    <script src="{{ asset('js/admin') }}/bootstrap.min.js"></script>
     <!-- slimscrollbar scrollbar JavaScript -->
-    <script src="http://eliteadmin.themedesigner.in/demos/bt4/inverse/dist/js/perfect-scrollbar.jquery.min.js"></script>
+    <script src="{{ asset('js/admin') }}/perfect-scrollbar.jquery.min.js"></script>
     <!--Wave Effects -->
-    <script src="http://eliteadmin.themedesigner.in/demos/bt4/inverse/dist/js/waves.js"></script>
+    <script src="{{ asset('js/admin') }}/waves.js"></script>
     <!--Menu sidebar -->
-    <script src="http://eliteadmin.themedesigner.in/demos/bt4/inverse/dist/js/sidebarmenu.js"></script>
+    <script src="{{ asset('js/admin') }}/sidebarmenu.js"></script>
     <!--Custom JavaScript -->
-    <script src="http://eliteadmin.themedesigner.in/demos/bt4/inverse/dist/js/custom.min.js"></script>
-    <!-- ============================================================== -->
-    <!-- This page plugins -->
-    <!-- ============================================================== -->
+    <script src="{{ asset('js/admin') }}/custom.min.js"></script>
+    
     <!--morris JavaScript -->
-    <script src="http://eliteadmin.themedesigner.in/demos/bt4/assets/node_modules/raphael/raphael-min.js"></script>
-    <script src="http://eliteadmin.themedesigner.in/demos/bt4/assets/node_modules/morrisjs/morris.min.js"></script>
-    <script src="http://eliteadmin.themedesigner.in/demos/bt4/assets/node_modules/jquery-sparkline/jquery.sparkline.min.js"></script>
+    <script src="{{ asset('js/admin') }}/raphael-min.js"></script>
+    <script src="{{ asset('js/admin') }}/morris.min.js"></script>
+    <script src="{{ asset('js/admin') }}/jquery.sparkline.min.js"></script>
     <!-- Chart JS -->
     <!-- <script src="http://eliteadmin.themedesigner.in/demos/bt4/inverse/dist/js/dashboard1.js"></script> -->
-    <script src="http://eliteadmin.themedesigner.in/demos/bt4/assets/node_modules/toast-master/js/jquery.toast.js"></script>
+    <script src="{{ asset('js/admin') }}/jquery.toast.js"></script>
 </body>
 </html>
