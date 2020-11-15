@@ -2113,6 +2113,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.$v.$touch();
 
       if (this.$v.$invalid) {
+        _store__WEBPACK_IMPORTED_MODULE_3__["default"].commit('setLoadding');
+        return;
+      }
+
+      if (this.imagesChoosed.length == 0) {
+        _store__WEBPACK_IMPORTED_MODULE_3__["default"].commit('setLoadding');
+        Swal.fire({
+          title: 'Phải chọn ít nhất 1 ảnh cho sản phẩm!',
+          icon: "error"
+        });
         return;
       }
 
@@ -55256,7 +55266,7 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_0__
   state: {
     loadding: false,
     libraries: {},
-    imagesChoosed: {}
+    imagesChoosed: []
   },
   getters: {
     loadding: function loadding(state) {
