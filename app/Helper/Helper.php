@@ -84,7 +84,7 @@ class Helper
     public function getSecondImage($images)
     {
         if (count($images) > 1) {
-            return asset('images/products') . '/' . $images[0]->image;
+            return asset('images/products') . '/' . $images[1]->image;
         } else {
             return asset('images/products') . '/' . config('settings.default_product');
         }
@@ -93,7 +93,7 @@ class Helper
     public function getThirdImage($images)
     {
         if (count($images) > 2) {
-            return asset('images/products') . '/' . $images[0]->image;
+            return asset('images/products') . '/' . $images[2]->image;
         } else {
             return asset('images/products') . '/' . config('settings.default_product');
         }

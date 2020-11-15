@@ -100,6 +100,8 @@ class ColorController extends Controller
     {
         $color = Color::findOrFail($id);
 
+        $color->products()->detach();
+
         $result = $color->delete();
 
         if ($result) {

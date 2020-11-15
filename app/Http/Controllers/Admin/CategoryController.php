@@ -8,7 +8,7 @@ use App\Category;
 
 class CategoryController extends Controller
 {
-    protected function index() {
+    protected function index(Request $request) {
         $datas = Category::all();
 
         return view('admins.category', [

@@ -82,6 +82,8 @@ class SizeController extends Controller
     {
         $size = Size::findOrFail($id);
 
+        $size->products()->detach();
+
         $result = $size->delete();
 
         if ($result) {

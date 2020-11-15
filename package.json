@@ -33,6 +33,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "vee-validate": "^3.4.5",
+    "vue-multiselect": "^2.1.6",
+    "vuelidate": "^0.7.6",
     "vuex": "^3.5.1"
   }
 }
