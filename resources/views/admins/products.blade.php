@@ -27,7 +27,6 @@
                         <th>Số lượng</th>
                         <th>Giảm giá</th>
                         <th>Đề xuất</th>
-                        <th>Ảnh thêm</th>
                         <th></th>
                     </tr>
                     @foreach($products as $product)
@@ -42,23 +41,19 @@
                             <td>{{ $product->quantity_product }}</td>
                             <td>{{ $product->sale }} %</td>
                             <td>
-                                @if($product->nomination == 1)
+                                @if($product->nomination)
                                     <div class="badges success"></div>
                                 @else 
                                     <div class="badges"></div>
                                 @endif
                             </td>
                             <td>
-                                
-                            </td>
-                            <td>
-                                <a href="{{route('adminProduct')}}/update/{{ $product->id_product }}" 
+                                <a href="{{route('adminProduct')}}/update/{{ $product->id }}" 
                                 data-toggle="tooltip" data-placement="top" title="Thay đổi">
                                     <i class="fal fa-edit"></i>
                                 </a>
-                                <a onClick="return confirm('Bạn có muốn xóa sản phẩm')" 
-                                href="{{route('adminProduct')}}/delete/{{ $product->id_product }}" 
-                                data-toggle="tooltip" data-placement="top" title="Xóa">
+                                <a href="" data-id="{{ $product->id }}" class="product-{{ $product->id }} btn-delete-product" 
+                                    data-toggle="tooltip" data-placement="top" title="Xóa">
                                     <i class="fal fa-trash-alt"></i>
                                 </a>
                             </td>
@@ -69,5 +64,11 @@
             </div>
         </div>
     </div>
+
+    @section('script')
+        <script src="{{ asset('js/admin') }}/jquery.dataTables.min.js"></script>
+
+        <script src="{{ asset('js/admin') }}/products.js"></script>
+    @endsection
 
 @endsection

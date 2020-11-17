@@ -2157,6 +2157,268 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FormEditProduct.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/FormEditProduct.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuelidate/lib/validators */ "./node_modules/vuelidate/lib/validators/index.js");
+/* harmony import */ var vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store */ "./resources/js/store.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['id'],
+  data: function data() {
+    return {
+      categories: [],
+      colors: [],
+      sizes: [],
+      submited: false,
+      form: {
+        name_product: '',
+        price_product: '',
+        category_id: '',
+        sale: 0,
+        quantity_product: null,
+        decscription: '',
+        nomination: false,
+        colors: [],
+        sizes: [],
+        images: []
+      }
+    };
+  },
+  validations: {
+    form: {
+      name_product: {
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
+      },
+      price_product: {
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
+      },
+      category_id: {
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
+      },
+      quantity_product: {
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
+      },
+      decscription: {
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__["required"]
+      }
+    }
+  },
+  created: function created() {
+    var _this = this;
+
+    axios__WEBPACK_IMPORTED_MODULE_2___default.a.get('/api/categories').then(function (res) {
+      _this.categories = res.data;
+    });
+    axios__WEBPACK_IMPORTED_MODULE_2___default.a.get('/api/colors').then(function (res) {
+      _this.colors = res.data;
+    });
+    axios__WEBPACK_IMPORTED_MODULE_2___default.a.get('/api/sizes').then(function (res) {
+      _this.sizes = res.data;
+    });
+    axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("/admin/products/update/".concat(this.id)).then(function (res) {
+      var data = res.data;
+      console.log(data);
+      $('.card-title').text(data.name_product);
+      _this.form = {
+        name_product: data.name_product,
+        price_product: data.price_product,
+        category_id: data.category,
+        sale: 0,
+        quantity_product: data.quantity_product,
+        decscription: data.decscription,
+        nomination: data.nomination,
+        colors: data.colors,
+        sizes: data.sizes
+      };
+      _store__WEBPACK_IMPORTED_MODULE_3__["default"].commit('setImagesChoosed', data.libraries);
+    });
+  },
+  methods: {
+    updateProduct: function updateProduct() {
+      _store__WEBPACK_IMPORTED_MODULE_3__["default"].commit('setLoadding');
+      this.submited = true;
+      this.$v.$touch();
+
+      if (this.$v.$invalid) {
+        _store__WEBPACK_IMPORTED_MODULE_3__["default"].commit('setLoadding');
+        return;
+      }
+
+      if (this.imagesChoosed.length == 0) {
+        _store__WEBPACK_IMPORTED_MODULE_3__["default"].commit('setLoadding');
+        Swal.fire({
+          title: 'Phải chọn ít nhất 1 ảnh cho sản phẩm!',
+          icon: "error"
+        });
+        return;
+      }
+
+      this.form.images = this.imagesChoosed;
+      this.submited = false;
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a.patch("/admin/products/update/".concat(this.id), this.form).then(function (res) {
+        if (res.status == 200) {
+          _store__WEBPACK_IMPORTED_MODULE_3__["default"].commit('setLoadding');
+          Swal.fire({
+            title: res.data.message,
+            icon: "success"
+          }).then(function (result) {
+            location.reload();
+          });
+        }
+      })["catch"](function (error) {
+        _store__WEBPACK_IMPORTED_MODULE_3__["default"].commit('setLoadding');
+        Swal.fire({
+          title: 'Lỗi khi cập nhật sản phẩm!',
+          icon: "error"
+        });
+      });
+    }
+  },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(['loadding', 'imagesChoosed']))
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ImageLibrary.vue?vue&type=script&lang=js&":
 /*!***********************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ImageLibrary.vue?vue&type=script&lang=js& ***!
@@ -6779,6 +7041,25 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /*!**************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--12-2!./node_modules/sass-loader/dist/cjs.js??ref--12-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/FormAddProduct.vue?vue&type=style&index=1&lang=scss& ***!
   \**************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".line-loading {\n  width: 100%;\n  height: 0.2rem;\n  position: fixed;\n  margin: 0 auto;\n  left: 0;\n  z-index: 9999;\n  top: 0px;\n}\n.line-loading:before {\n  content: \"\";\n  position: absolute;\n  right: auto;\n  left: 0;\n  height: 100%;\n  background-color: var(--primary);\n  -webkit-animation: lineLoading 1s forwards infinite linear;\n          animation: lineLoading 1s forwards infinite linear;\n}\n@-webkit-keyframes lineLoading {\n0% {\n    right: 100%;\n}\n50% {\n    right: 0;\n    left: 0;\n}\n100% {\n    right: 0;\n    left: 100%;\n}\n}\n@keyframes lineLoading {\n0% {\n    right: 100%;\n}\n50% {\n    right: 0;\n    left: 0;\n}\n100% {\n    right: 0;\n    left: 100%;\n}\n}", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FormEditProduct.vue?vue&type=style&index=1&lang=scss&":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--12-2!./node_modules/sass-loader/dist/cjs.js??ref--12-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/FormEditProduct.vue?vue&type=style&index=1&lang=scss& ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -38010,6 +38291,36 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FormEditProduct.vue?vue&type=style&index=1&lang=scss&":
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--12-2!./node_modules/sass-loader/dist/cjs.js??ref--12-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/FormEditProduct.vue?vue&type=style&index=1&lang=scss& ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--12-2!../../../node_modules/sass-loader/dist/cjs.js??ref--12-3!../../../node_modules/vue-loader/lib??vue-loader-options!./FormEditProduct.vue?vue&type=style&index=1&lang=scss& */ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FormEditProduct.vue?vue&type=style&index=1&lang=scss&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ImageLibrary.vue?vue&type=style&index=0&id=05f5eacb&lang=scss&scoped=true&":
 /*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader!./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--12-2!./node_modules/sass-loader/dist/cjs.js??ref--12-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ImageLibrary.vue?vue&type=style&index=0&id=05f5eacb&lang=scss&scoped=true& ***!
@@ -39126,9 +39437,483 @@ var render = function() {
             [_vm._v("Thêm mới")]
           ),
           _vm._v(" "),
-          _c("a", { staticClass: "btn btn-primary", attrs: { href: "" } }, [
-            _vm._v("Danh sách sản phẩm")
-          ])
+          _c(
+            "a",
+            {
+              staticClass: "btn btn-primary",
+              attrs: { href: "/admin/products" }
+            },
+            [_vm._v("Danh sách sản phẩm")]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("ModalImage")
+    ],
+    1
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "img_product" } }, [
+            _vm._v("Ảnh sản phẩm")
+          ]),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "d-block btn btn-primary",
+              attrs: {
+                type: "button",
+                "data-toggle": "modal",
+                "data-target": "#modal-image"
+              }
+            },
+            [
+              _c("i", { staticClass: "fal fa-images" }),
+              _vm._v(
+                "\n                                Chon ảnh\n                            "
+              )
+            ]
+          )
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FormEditProduct.vue?vue&type=template&id=be4677f4&":
+/*!******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/FormEditProduct.vue?vue&type=template&id=be4677f4& ***!
+  \******************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _vm.loadding ? _c("div", { staticClass: "line-loading" }) : _vm._e(),
+      _vm._v(" "),
+      _c(
+        "form",
+        {
+          staticClass: "mt-2",
+          attrs: {
+            id: "form-add-product",
+            action: "",
+            method: "POST",
+            enctype: "multipart/form-data"
+          },
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              return _vm.updateProduct($event)
+            }
+          }
+        },
+        [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col" }, [
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", { attrs: { for: "name_product" } }, [
+                  _vm._v("Tên sản phẩm")
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.name_product,
+                      expression: "form.name_product"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  class: {
+                    "is-invalid":
+                      _vm.submited && _vm.$v.form.name_product.$error
+                  },
+                  attrs: {
+                    type: "text",
+                    name: "name_product",
+                    id: "name_product",
+                    placeholder: "Nhập tên sản phẩm"
+                  },
+                  domProps: { value: _vm.form.name_product },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "name_product", $event.target.value)
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _vm.submited && !_vm.$v.form.name_product.required
+                  ? _c("div", { staticClass: "invalid-feedback" }, [
+                      _vm._v(
+                        "\n                        Tên sản phẩm không được để trống\n                    "
+                      )
+                    ])
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "form-group" },
+                [
+                  _c("label", { attrs: { for: "id_category" } }, [
+                    _vm._v("Tên danh mục")
+                  ]),
+                  _vm._v(" "),
+                  _c("multiselect", {
+                    attrs: {
+                      label: "name",
+                      "track-by": "id",
+                      options: _vm.categories,
+                      taggable: true
+                    },
+                    model: {
+                      value: _vm.form.category_id,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "category_id", $$v)
+                      },
+                      expression: "form.category_id"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "form-group" },
+                [
+                  _c("label", { attrs: { for: "color_product" } }, [
+                    _vm._v("Chọn màu sản phẩm")
+                  ]),
+                  _vm._v(" "),
+                  _c("multiselect", {
+                    attrs: {
+                      placeholder: "Tìm kiếm màu",
+                      label: "name",
+                      "track-by": "id",
+                      options: _vm.colors,
+                      multiple: true,
+                      "close-on-select": false
+                    },
+                    model: {
+                      value: _vm.form.colors,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "colors", $$v)
+                      },
+                      expression: "form.colors"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", { attrs: { for: "price_product" } }, [
+                  _vm._v("Giá sản phẩm")
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.price_product,
+                      expression: "form.price_product"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  class: {
+                    "is-invalid":
+                      _vm.submited && _vm.$v.form.price_product.$error
+                  },
+                  attrs: {
+                    type: "number",
+                    min: "0",
+                    name: "price_product",
+                    id: "price_product",
+                    placeholder: "Nhập giá của sản phẩm"
+                  },
+                  domProps: { value: _vm.form.price_product },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "price_product", $event.target.value)
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _vm.submited && !_vm.$v.form.price_product.required
+                  ? _c("div", { staticClass: "invalid-feedback" }, [
+                      _vm._v(
+                        "\n                        Giá sản phẩm không được để trống\n                    "
+                      )
+                    ])
+                  : _vm._e()
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col" }, [
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", { attrs: { for: "sale" } }, [_vm._v("Giảm giá")]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.sale,
+                      expression: "form.sale"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "number",
+                    min: "0",
+                    name: "sale",
+                    id: "sale",
+                    placeholder: "Giảm giá cho sản phẩm"
+                  },
+                  domProps: { value: _vm.form.sale },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "sale", $event.target.value)
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", { attrs: { for: "quantity_product" } }, [
+                  _vm._v("Số lượng sản phẩm")
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.quantity_product,
+                      expression: "form.quantity_product"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  class: {
+                    "is-invalid":
+                      _vm.submited && _vm.$v.form.quantity_product.$error
+                  },
+                  attrs: {
+                    type: "number",
+                    min: "0",
+                    name: "quantity_product",
+                    id: "quantity_product",
+                    placeholder: "Số lượng sản phẩm"
+                  },
+                  domProps: { value: _vm.form.quantity_product },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(
+                        _vm.form,
+                        "quantity_product",
+                        $event.target.value
+                      )
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _vm.submited && !_vm.$v.form.quantity_product.required
+                  ? _c("div", { staticClass: "invalid-feedback" }, [
+                      _vm._v(
+                        "\n                        Số lượng sản phẩm không được để trống\n                    "
+                      )
+                    ])
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "form-group" },
+                [
+                  _c("label", { attrs: { for: "color_product" } }, [
+                    _vm._v("Chọn size cho sản phẩm")
+                  ]),
+                  _vm._v(" "),
+                  _c("multiselect", {
+                    attrs: {
+                      placeholder: "Tìm kiếm size",
+                      label: "size",
+                      "track-by": "id",
+                      options: _vm.sizes,
+                      multiple: true,
+                      "close-on-select": false
+                    },
+                    model: {
+                      value: _vm.form.sizes,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "sizes", $$v)
+                      },
+                      expression: "form.sizes"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm._m(0)
+            ])
+          ]),
+          _vm._v(" "),
+          _c("ImageChoosed"),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "decscription" } }, [
+              _vm._v("Mô tả sản phẩm")
+            ]),
+            _vm._v(" "),
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.decscription,
+                  expression: "form.decscription"
+                }
+              ],
+              staticClass: "form-control",
+              class: {
+                "is-invalid": _vm.submited && _vm.$v.form.decscription.$error
+              },
+              attrs: { id: "decscription", rows: "5", name: "decscription" },
+              domProps: { value: _vm.form.decscription },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.form, "decscription", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _vm.submited && !_vm.$v.form.decscription.required
+              ? _c("div", { staticClass: "invalid-feedback" }, [
+                  _vm._v(
+                    "\n                Mô tả sản phẩm không được để trống\n            "
+                  )
+                ])
+              : _vm._e()
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "custom-control custom-checkbox mr-sm-2 mb-3" },
+            [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.nomination,
+                    expression: "form.nomination"
+                  }
+                ],
+                staticClass: "custom-control-input",
+                attrs: {
+                  type: "checkbox",
+                  name: "nomination",
+                  id: "nomination"
+                },
+                domProps: {
+                  checked: Array.isArray(_vm.form.nomination)
+                    ? _vm._i(_vm.form.nomination, null) > -1
+                    : _vm.form.nomination
+                },
+                on: {
+                  change: function($event) {
+                    var $$a = _vm.form.nomination,
+                      $$el = $event.target,
+                      $$c = $$el.checked ? true : false
+                    if (Array.isArray($$a)) {
+                      var $$v = null,
+                        $$i = _vm._i($$a, $$v)
+                      if ($$el.checked) {
+                        $$i < 0 &&
+                          _vm.$set(_vm.form, "nomination", $$a.concat([$$v]))
+                      } else {
+                        $$i > -1 &&
+                          _vm.$set(
+                            _vm.form,
+                            "nomination",
+                            $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                          )
+                      }
+                    } else {
+                      _vm.$set(_vm.form, "nomination", $$c)
+                    }
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c(
+                "label",
+                {
+                  staticClass: "custom-control-label",
+                  attrs: { checked: _vm.form.nomination, for: "nomination" }
+                },
+                [_vm._v("Đề cử sản phẩm")]
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+            [_vm._v("Cập nhật sản phẩm")]
+          ),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "btn btn-primary",
+              attrs: { href: "/admin/products" }
+            },
+            [_vm._v("Danh sách sản phẩm")]
+          )
         ],
         1
       ),
@@ -54832,6 +55617,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('form-add-product', __webpack_require__(/*! ./components/FormAddProduct.vue */ "./resources/js/components/FormAddProduct.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('form-edit-product', __webpack_require__(/*! ./components/FormEditProduct.vue */ "./resources/js/components/FormEditProduct.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('ModalImage', __webpack_require__(/*! ./components/ModalImage.vue */ "./resources/js/components/ModalImage.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('ImageLibrary', __webpack_require__(/*! ./components/ImageLibrary.vue */ "./resources/js/components/ImageLibrary.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('ImageChoosed', __webpack_require__(/*! ./components/ImagesChoosed.vue */ "./resources/js/components/ImagesChoosed.vue")["default"]);
@@ -54978,6 +55764,95 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormAddProduct_vue_vue_type_template_id_8fa4e9c6___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormAddProduct_vue_vue_type_template_id_8fa4e9c6___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/FormEditProduct.vue":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/FormEditProduct.vue ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _FormEditProduct_vue_vue_type_template_id_be4677f4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FormEditProduct.vue?vue&type=template&id=be4677f4& */ "./resources/js/components/FormEditProduct.vue?vue&type=template&id=be4677f4&");
+/* harmony import */ var _FormEditProduct_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FormEditProduct.vue?vue&type=script&lang=js& */ "./resources/js/components/FormEditProduct.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var vue_multiselect_dist_vue_multiselect_min_css_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-multiselect/dist/vue-multiselect.min.css?vue&type=style&index=0&lang=css& */ "./node_modules/vue-multiselect/dist/vue-multiselect.min.css?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _FormEditProduct_vue_vue_type_style_index_1_lang_scss___WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./FormEditProduct.vue?vue&type=style&index=1&lang=scss& */ "./resources/js/components/FormEditProduct.vue?vue&type=style&index=1&lang=scss&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_4__["default"])(
+  _FormEditProduct_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _FormEditProduct_vue_vue_type_template_id_be4677f4___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _FormEditProduct_vue_vue_type_template_id_be4677f4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/FormEditProduct.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/FormEditProduct.vue?vue&type=script&lang=js&":
+/*!******************************************************************************!*\
+  !*** ./resources/js/components/FormEditProduct.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FormEditProduct_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./FormEditProduct.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FormEditProduct.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FormEditProduct_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/FormEditProduct.vue?vue&type=style&index=1&lang=scss&":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/components/FormEditProduct.vue?vue&type=style&index=1&lang=scss& ***!
+  \***************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_12_2_node_modules_sass_loader_dist_cjs_js_ref_12_3_node_modules_vue_loader_lib_index_js_vue_loader_options_FormEditProduct_vue_vue_type_style_index_1_lang_scss___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--12-2!../../../node_modules/sass-loader/dist/cjs.js??ref--12-3!../../../node_modules/vue-loader/lib??vue-loader-options!./FormEditProduct.vue?vue&type=style&index=1&lang=scss& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FormEditProduct.vue?vue&type=style&index=1&lang=scss&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_12_2_node_modules_sass_loader_dist_cjs_js_ref_12_3_node_modules_vue_loader_lib_index_js_vue_loader_options_FormEditProduct_vue_vue_type_style_index_1_lang_scss___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_12_2_node_modules_sass_loader_dist_cjs_js_ref_12_3_node_modules_vue_loader_lib_index_js_vue_loader_options_FormEditProduct_vue_vue_type_style_index_1_lang_scss___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_12_2_node_modules_sass_loader_dist_cjs_js_ref_12_3_node_modules_vue_loader_lib_index_js_vue_loader_options_FormEditProduct_vue_vue_type_style_index_1_lang_scss___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_12_2_node_modules_sass_loader_dist_cjs_js_ref_12_3_node_modules_vue_loader_lib_index_js_vue_loader_options_FormEditProduct_vue_vue_type_style_index_1_lang_scss___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_12_2_node_modules_sass_loader_dist_cjs_js_ref_12_3_node_modules_vue_loader_lib_index_js_vue_loader_options_FormEditProduct_vue_vue_type_style_index_1_lang_scss___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/components/FormEditProduct.vue?vue&type=template&id=be4677f4&":
+/*!************************************************************************************!*\
+  !*** ./resources/js/components/FormEditProduct.vue?vue&type=template&id=be4677f4& ***!
+  \************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormEditProduct_vue_vue_type_template_id_be4677f4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./FormEditProduct.vue?vue&type=template&id=be4677f4& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/FormEditProduct.vue?vue&type=template&id=be4677f4&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormEditProduct_vue_vue_type_template_id_be4677f4___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormEditProduct_vue_vue_type_template_id_be4677f4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

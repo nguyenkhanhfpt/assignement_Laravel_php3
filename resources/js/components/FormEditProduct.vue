@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-if="loadding" class="line-loading"></div>
-        <form @submit.prevent="addProduct" id="form-add-product" action="" method="POST" enctype="multipart/form-data" class="mt-2">
+        <form @submit.prevent="updateProduct" id="form-add-product" action="" method="POST" enctype="multipart/form-data" class="mt-2">
             <div class="row">
                 <div class="col">
                     <div class="form-group">
@@ -107,10 +107,10 @@
 
             <div class="custom-control custom-checkbox mr-sm-2 mb-3">
                 <input type="checkbox" v-model="form.nomination" class="custom-control-input" name="nomination" id="nomination">
-                <label class="custom-control-label" for="nomination">Đề cử sản phẩm</label>
+                <label class="custom-control-label" :checked="form.nomination" for="nomination">Đề cử sản phẩm</label>
             </div>
 
-            <button type="submit" class="btn btn-primary">Thêm mới</button>
+            <button type="submit" class="btn btn-primary">Cập nhật sản phẩm</button>
             <a class="btn btn-primary" href="/admin/products">Danh sách sản phẩm</a>
         </form>
 
@@ -125,6 +125,7 @@
     import store from '../store';
 
     export default { 
+        props: ['id'],
         data: function() {
             return {
                 categories: [],
@@ -158,13 +159,6 @@
             axios.get('/api/categories')
             .then(res => {
                 this.categories = res.data;
-            }).catch(error => {
-                Swal.fire({
-                    title: 'Có lỗi xảy ra, vui lòng thử lại sau!',
-                    icon: "error"
-                }).then(res => {
-                    history.back();
-                });
             });
 
             axios.get('/api/colors')
@@ -176,9 +170,29 @@
             .then(res => {
                 this.sizes = res.data;
             })
+
+            axios.get(`/admin/products/update/${this.id}`)
+            .then(res => {
+                let data = res.data;
+                console.log(data)
+                $('.card-title').text(data.name_product)
+                this.form = {
+                    name_product: data.name_product,
+                    price_product: data.price_product,
+                    category_id: data.category,
+                    sale: 0,
+                    quantity_product: data.quantity_product,
+                    decscription: data.decscription,
+                    nomination: data.nomination,
+                    colors: data.colors,
+                    sizes: data.sizes,
+                }
+
+                store.commit('setImagesChoosed', data.libraries);
+            })
         },
         methods: {
-            addProduct() {
+            updateProduct() {
                 store.commit('setLoadding');
                 this.submited = true;
 
@@ -201,7 +215,7 @@
                 this.form.images = this.imagesChoosed;
                 this.submited = false;
 
-                axios.post('/admin/products/add', this.form)
+                axios.patch(`/admin/products/update/${this.id}`, this.form)
                 .then(res => {
                     if (res.status == 200) {
                         store.commit('setLoadding');
@@ -210,19 +224,14 @@
                             title: res.data.message,
                             icon: "success"
                         }).then(result => {
-                            this.form = {
-                                colors: [],
-                                sizes: [],
-                                images: []
-                            };
-                            store.commit('setImagesChoosed', []);
+                            location.reload();
                         });
                     }
                 }).catch(error => {
                     store.commit('setLoadding');
 
                     Swal.fire({
-                        title: 'Lỗi khi thêm sản phẩm!',
+                        title: 'Lỗi khi cập nhật sản phẩm!',
                         icon: "error"
                     });
                 })

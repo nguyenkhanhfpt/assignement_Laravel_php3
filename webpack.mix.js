@@ -20,4 +20,5 @@ mix.sass('resources/sass/app.scss', 'public/css')
     .js('resources/js/sendContact.js', 'public/js')
     .js('resources/js/app.js', 'public/js')
     .js('resources/js/admin/colors.js', 'public/js/admin')
-    .js('resources/js/admin/sizes.js', 'public/js/admin');
+    .js('resources/js/admin/sizes.js', 'public/js/admin')
+    .js('resources/js/admin/products.js', 'public/js/admin');

@@ -1,5 +1,6 @@
 {
     "/js/admin/colors.js": "/js/admin/colors.js",
+    "/js/admin/products.js": "/js/admin/products.js",
     "/js/admin/sizes.js": "/js/admin/sizes.js",
     "/js/app.js": "/js/app.js",
     "/js/sendContact.js": "/js/sendContact.js",

@@ -104,11 +104,11 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
 
     Route::get('/products/add', 'ProductController@viewAdd')->name('adminProductAdd');
 
-    Route::get('/products/delete/{id}', 'ProductController@delete');
+    Route::delete('/products/{id}', 'ProductController@delete');
 
     Route::get('/products/update/{id}', 'ProductController@viewUpdate');
 
-    Route::post('/products/update/{id}', 'ProductController@update');
+    Route::patch('/products/update/{id}', 'ProductController@update');
 
     Route::post('/products/add', 'ProductController@insert');
 

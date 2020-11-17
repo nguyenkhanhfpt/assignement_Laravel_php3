@@ -26,6 +26,7 @@ Vue.use(Vuex);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('form-add-product', require('./components/FormAddProduct.vue').default);
+Vue.component('form-edit-product', require('./components/FormEditProduct.vue').default);
 Vue.component('ModalImage', require('./components/ModalImage.vue').default);
 Vue.component('ImageLibrary', require('./components/ImageLibrary.vue').default);
 Vue.component('ImageChoosed', require('./components/ImagesChoosed.vue').default);
