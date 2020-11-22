@@ -77,7 +77,7 @@
             <div class="col-md-9">
                 <div class="row">
                     @foreach($products as $product)
-                        <div class="col-md-3">
+                        <div class="col-6 col-md-3">
                             <div class="product">
                                 <div class="product__img">
                                     <a href="{{route('products')}}/{{$product->slug}}">

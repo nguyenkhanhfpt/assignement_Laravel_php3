@@ -82,8 +82,6 @@ $(document).ready(function() {
     });
 
     $(".add-cart").each(function() {
-        
-
         let nameProduct = $(this)
             .parent()
             .parent()
@@ -99,48 +97,64 @@ $(document).ready(function() {
     
         $(this).on("click", function(event) {
             event.preventDefault();
-    
+
             $.ajax({
-                type: "POST",
-                url: "/cart/checkQuantity",
-                data: {
-                    id_product: idProduct
-                },
+                method: "GET",
+                url: `/cart/checkSizeColor/${idProduct}`,
                 success: function(result) {
-                    if (result == true) { // Nếu còn số lượng thì cho phép thêm vào cart
+                    $('#view-product .modal-body').html();
+
+                    if (result !== 'false') {
+                        $('#view-product .modal-body').html(result);
+
+                        $('#view-product').modal();
+
+                        return;
+                    } else {
                         $.ajax({
                             type: "POST",
-                            url: "/cart/addCart",
+                            url: "/cart/checkQuantity",
                             data: {
                                 id_product: idProduct
                             },
                             success: function(result) {
-                                $(".number-cart").html(result.count);
-                                $(".cart__amount span").html(result.total.toLocaleString());
+                                if (result == true) { // Nếu còn số lượng thì cho phép thêm vào cart
+                                    $.ajax({
+                                        type: "POST",
+                                        url: "/cart/addCart",
+                                        data: {
+                                            id_product: idProduct
+                                        },
+                                        success: function(result) {
+                                            $(".number-cart").html(result.count);
+                                            $(".cart__amount span").html(result.total.toLocaleString());
+                                        }
+                                    });
+                
+                                    Swal.fire({
+                                        title: nameProduct.trim(),
+                                        text: "Đã được thêm vào giỏ hàng!",
+                                        icon: "success",
+                                        confirmButtonText: "Tiếp tục mua hàng"
+                                    });
+                
+                                    $.ajax({
+                                        type: "GET",
+                                        url: "/cart/viewCart",
+                                        success: function(result) {
+                                            $(".cart__mini-content").html(result);
+                                        }
+                                    });
+                                }
+                                else {
+                                    Swal.fire({
+                                        title: nameProduct.trim(),
+                                        text: "Sản phẩm tạm thời hết hàng!",
+                                        icon: "error",
+                                        confirmButtonText: "Tiếp tục mua hàng"
+                                    });
+                                }
                             }
-                        });
-    
-                        Swal.fire({
-                            title: nameProduct.trim(),
-                            text: "Đã được thêm vào giỏ hàng!",
-                            icon: "success",
-                            confirmButtonText: "Tiếp tục mua hàng"
-                        });
-    
-                        $.ajax({
-                            type: "GET",
-                            url: "/cart/viewCart",
-                            success: function(result) {
-                                $(".cart__mini-content").html(result);
-                            }
-                        });
-                    }
-                    else {
-                        Swal.fire({
-                            title: nameProduct.trim(),
-                            text: "Sản phẩm tạm thời hết hàng!",
-                            icon: "error",
-                            confirmButtonText: "Tiếp tục mua hàng"
                         });
                     }
                 }

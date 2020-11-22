@@ -47,7 +47,7 @@ a {
 }
 
 ::-webkit-scrollbar {
-  width: 4px;
+  width: 5px;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -238,6 +238,39 @@ a {
 
 .nav__bottom a:hover {
   color: #4fb68d;
+}
+
+@media screen and (max-width: 876px) {
+  .nav__bottom {
+    grid-template-columns: 180px 1fr;
+  }
+
+  .nav__bottom .nav__logo a {
+    font-size: 2.9rem;
+    padding-left: 0;
+  }
+
+  .nav__bottom .nav__bottom-item {
+    grid-template-columns: auto 50px;
+  }
+
+  .nav__bottom .nav__search {
+    display: none;
+  }
+
+  .nav__bottom .nav__cart {
+    justify-content: flex-end;
+  }
+
+  .nav__bottom .menu-toggle {
+    text-align: right;
+  }
+
+  .nav__bottom .menu-toggle i {
+    cursor: pointer;
+    font-size: 2.6rem;
+    display: inline-block;
+  }
 }
 
 @-webkit-keyframes fadeInDown {

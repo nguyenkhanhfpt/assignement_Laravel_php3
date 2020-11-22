@@ -70,7 +70,7 @@
                         <p class="alert_nothing">Không có sản phẩm nào trong giỏ hàng</p>
                     @endif
                     
-                    <a href="{{route('products')}}" class="btn__buy btn__buy-margin">Tiếp tục mua hàng</a>
+                    <a href="{{route('products')}}" class="btn__buy btn__buy-margin mb-4">Tiếp tục mua hàng</a>
                 </div>    
                 <div class="cart__checkout">
                     <div class="card cart-summary">

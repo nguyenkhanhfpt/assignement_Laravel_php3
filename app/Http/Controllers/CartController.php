@@ -51,6 +51,17 @@ class CartController extends Controller
         }
     }
 
+    public function checkSizeColor($id)
+    {
+        $product = Product::with(['colors', 'sizes', 'images'])->find($id);
+
+        if (count($product->sizes) || count($product->colors)) {
+            return view('components.viewProduct', compact('product'));
+        } else {
+            return response()->json('false');
+        }
+    }
+
     protected function addCart(Request $request) {
         $id = $request->id_product;
         $quantity = $request->quantity ? $request->quantity : 1; // nếu được thêm bằng nút 'ADD TO CART' thì quantity mặc định = 1

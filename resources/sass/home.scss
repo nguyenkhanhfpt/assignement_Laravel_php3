@@ -329,12 +329,17 @@
 }
 
 
-
 .hot-product {
     display: grid;
     grid-template-columns: 4fr 8fr;
     grid-gap: 2rem;
     padding: 0 5px;
+}
+
+@media screen and (max-width: 876px) {
+    .hot-product {
+        grid-template-columns: 1fr;
+    }
 }
 
 #product-sale {
@@ -480,6 +485,47 @@
         font-weight: 700;
         color: #19dc8e;
         margin-bottom: 1.5rem;
+    }
+
+    @media screen and (max-width: 865px) {
+        &__item {
+            padding-right: 0;
+        }
+
+        &__box {
+            grid-template-columns: 1fr;
+        }
+
+        &__product {
+            grid-template-columns: .5fr 3.5fr 2fr 3fr;
+
+            &-icon {
+                position: relative;
+
+                input {
+                    width: 6rem;
+                    margin-right: 5px;
+                }
+
+                a {
+                    position: absolute;
+                    bottom: 5px;
+                    right: 0;
+                }
+            }
+
+            &-name {
+                padding-left: 1rem;
+                padding-right: 0;
+            }
+
+            &-img {
+                width: 7.5rem;
+                height: 9rem;
+            }
+        }
+
+        
     }
 }
 

@@ -231,6 +231,12 @@
     }
 
     &__desc {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 5; /* number of lines to show */
+        -webkit-box-orient: vertical;
+
         margin-bottom: 2rem;
         font-size: 1.45rem;
         color: #888;
@@ -240,6 +246,40 @@
 
     &__desc-line {
         line-height: 1.6;
+    }
+}
+
+#view-product {
+    .viewProduct {
+        img {
+            height: 30rem;
+            width: 100%;
+        }
+
+        &__desc {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 5; /* number of lines to show */
+            -webkit-box-orient: vertical;
+
+
+            margin-bottom: 2rem;
+            font-size: 1.45rem;
+            color: #888;
+            line-height: 2;
+            text-align: justify;
+        }
+    }
+
+    & .modal-lg {
+        margin-top: 10vh;
+    }
+
+    @media (min-width: 992px){
+        & .modal-lg, .modal-xl {
+            max-width: 1100px;
+        }
     }
 }
 

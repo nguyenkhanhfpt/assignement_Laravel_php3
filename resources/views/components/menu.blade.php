@@ -76,7 +76,7 @@
 
     <div class="nav__bottom">
         <h2 class="nav__logo"><a href={{route('home')}}>{{ env('APP_NAME') }}</a></h2>
-        <div class="nav__list">
+        <div class="d-none d-md-block nav__list">
             <ul>
                 <li class="nav__item">
                     <a class="nav__link" href={{route('home')}}>{{ trans('view.home') }}</a>
@@ -98,7 +98,7 @@
             </ul>
         </div>
         <div class="nav__bottom-item">
-            <div class="nav__search">
+            <div class=" nav__search">
                 <div class="nav__box-search">
                     <form action="{{route('findProducts')}}" method="GET">
                         <input type="text" name="q">
@@ -167,7 +167,10 @@
                         </div>
                     </div>
             </div>
-
+            <div class="d-block d-md-none menu-toggle">
+                <i class="fal fa-bars ti-menu"></i>
+            </div>   
+        
         </div>
     </div>
 </nav>

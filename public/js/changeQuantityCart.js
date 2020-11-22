@@ -1,9 +1,9 @@
-let quantity = 1;
-const input = document.getElementById('quantity');
+var quantity = 1;
+var input = document.getElementById('quantity');
 input.value = quantity;
 
-const decrement = document.getElementById('decrementQuan');
-const increment = document.getElementById('incrementQuan');
+var decrement = document.getElementById('decrementQuan');
+var increment = document.getElementById('incrementQuan');
 
 increment.addEventListener('click', () => {
     quantity += 1;
@@ -20,7 +20,7 @@ decrement.addEventListener('click', () => {
 });
 
 input.addEventListener('change', () => {
-    const testString = /[a-zA-Z]/g;
+    var testString = /[a-zA-Z]/g;
     let value = parseInt(input.value);
 
     if(value < 1) {

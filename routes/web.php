@@ -30,6 +30,8 @@ Route::get('/cart/viewCart', 'CartController@viewCart')->name('viewCart');
 
 Route::post('/cart/checkQuantity', 'CartController@checkQuantityPro');
 
+Route::get('/cart/checkSizeColor/{id}', 'CartController@checkSizeColor');
+
 Route::post('/cart/addCart', 'CartController@addCart')->name('addCart');
 
 Route::patch('/cart/update/{idCart}/{idProduct}', 'CartController@undateCart');
