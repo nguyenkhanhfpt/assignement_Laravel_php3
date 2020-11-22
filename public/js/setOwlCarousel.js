@@ -4,6 +4,7 @@ $(document).ready(function() {
     const owl3 = $("#new-product");
     const owl4 = $("#products-view");
     const owlProductCate = $("#product-cate");
+    const productImages = $('#product-images');
 
     owl.owlCarousel({
         margin: 10,
@@ -86,6 +87,20 @@ $(document).ready(function() {
             },
             1000: {
                 items: 5
+            }
+        }
+    });
+
+    productImages.owlCarousel({
+        responsive: {
+            0: {
+                items: 2
+            },
+            600: {
+                items: 3
+            },
+            1000: {
+                items: 4
             }
         }
     });

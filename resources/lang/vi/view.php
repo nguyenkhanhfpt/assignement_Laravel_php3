@@ -17,4 +17,7 @@ return [
     'write_review' => 'Viết nhận xét của bạn',
     'send' => 'Gửi',
     'contact_success' => 'Gửi đánh giá thành công!',
+    'add_to_cart' => 'Thêm vào giỏ',
+    'code' => 'Mã giảm giá',
+    'apply' => 'Áp dụng',
 ];

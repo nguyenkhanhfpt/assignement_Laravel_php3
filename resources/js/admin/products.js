@@ -31,9 +31,8 @@ function deleteProduct() {
                     url: `/admin/products/${id}`,
                     success: function (res) {
                         if (res.status = 200) {
-                            let dom = $(`.product-${id}`).parent().parent().remove();
-                            console.log(dom)
-
+                            $(`.product-${id}`).parent().parent().remove();
+                            
                             Swal.fire({
                                 title: res.message,
                                 icon: "success",

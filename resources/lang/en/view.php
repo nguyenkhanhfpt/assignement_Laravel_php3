@@ -17,4 +17,7 @@ return [
     'write_review' => 'Write your review',
     'send' => 'Send',
     'contact_success' => 'Send review successfully!',
+    'add_to_cart' => 'Add to cart',
+    'code' => 'Code',
+    'apply' => 'Apply',
 ];

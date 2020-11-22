@@ -81,15 +81,15 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/js/admin/products.js":
-/*!****************************************!*\
-  !*** ./resources/js/admin/products.js ***!
-  \****************************************/
+/***/ "./resources/js/cart.js":
+/*!******************************!*\
+  !*** ./resources/js/cart.js ***!
+  \******************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -99,126 +99,52 @@ $(document).ready(function () {
       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
   });
-  listen();
-});
-
-function listen() {
-  deleteProduct();
-}
-
-function deleteProduct() {
-  $('.table__product').on('click', '.btn-delete-product', function (event) {
-    event.preventDefault();
+  $('.input-quantity-cart').on('change', function () {
     var id = $(this).data('id');
-    Swal.fire({
-      title: 'Bạn có chắc muốn xóa sản phẩm!',
-      icon: "question",
-      showDenyButton: true,
-      showCancelButton: true,
-      confirmButtonText: "X\xF3a"
-    }).then(function (result) {
-      if (result.value) {
-        $.ajax({
-          method: 'DELETE',
-          url: "/admin/products/".concat(id),
-          success: function success(res) {
-            if (res.status = 200) {
-              $(".product-".concat(id)).parent().parent().remove();
-              Swal.fire({
-                title: res.message,
-                icon: "success",
-                confirmButtonText: "Tiếp tục"
-              });
-            } else {
-              Swal.fire({
-                title: res.message,
-                icon: "error"
-              });
-            }
-          },
-          error: function error(_error) {
-            Swal.fire({
-              title: 'Lỗi khi xóa!',
-              icon: "error"
-            });
-          }
-        });
-      }
-    });
-  });
-}
-
-function editSize() {
-  $('#table-size').on('click', '.edit-btn', function () {
-    var id = $(this).data('id');
-    $.ajax({
-      method: 'GET',
-      url: '/admin/sizes/' + id + '/edit',
-      success: function success(res) {
-        if (res.id) {
-          $('#size-edit').val(res.size);
-          $('#id-edit').val(id);
-          $('#editSizes').modal('show');
-        }
-      },
-      error: function error(_error2) {
-        Swal.fire({
-          title: 'Has some errors!',
-          icon: "error"
-        });
-      }
-    });
-  });
-}
-
-function updateSize() {
-  $('#btn-edit-size').on('click', function () {
-    var size = $('#size-edit').val();
-    var id = $('#id-edit').val();
+    var idCart = $(this).data('cart');
+    var quantity = $(this).val();
     $.ajax({
       method: 'PATCH',
-      url: '/admin/sizes/' + id,
+      url: "/cart/update/".concat(idCart, "/").concat(id),
       data: {
-        size: size
+        quantity: quantity
       },
       success: function success(res) {
-        if (res.status = 200) {
-          $('#table-size').DataTable().ajax.reload();
+        if (res.status == 200) {
+          $(".quantity-".concat(idCart)).parent().find('.total-price').html(res.price_product);
+          $('.match_total').text(res.match_total);
+        }
+
+        if (res.status == 402) {
+          $(".quantity-".concat(idCart)).val(quantity - 1);
           Swal.fire({
             title: res.message,
-            icon: "success",
+            icon: "error",
             confirmButtonText: "Tiếp tục"
-          }).then(function (result) {
-            $('#editSizes .close').click();
-            $('#form-edit-colors').trigger("reset");
-          });
-        } else {
-          Swal.fire({
-            title: res.message,
-            icon: "error"
           });
         }
       },
       error: function error(err) {
         Swal.fire({
-          title: 'Lỗi khi cập nhật!',
-          icon: "error"
+          title: 'Không thể cập nhật số lượng giỏ hàng',
+          icon: "error",
+          confirmButtonText: "Tiếp tục"
         });
       }
     });
   });
-}
+});
 
 /***/ }),
 
-/***/ 5:
-/*!**********************************************!*\
-  !*** multi ./resources/js/admin/products.js ***!
-  \**********************************************/
+/***/ 2:
+/*!************************************!*\
+  !*** multi ./resources/js/cart.js ***!
+  \************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/user/Desktop/Dev/assignement_Laravel_php3/resources/js/admin/products.js */"./resources/js/admin/products.js");
+module.exports = __webpack_require__(/*! /home/user/Desktop/Dev/assignement_Laravel_php3/resources/js/cart.js */"./resources/js/cart.js");
 
 
 /***/ })

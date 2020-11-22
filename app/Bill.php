@@ -6,13 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Bill extends Model
 {
-    protected $table = 'bills';
-    protected $primaryKey = 'id_bill';
-    public $incrementing = false;
     public $timestamps = false;
-    public $fillable = ['id_bill' ,'id_member'];
+    public $fillable = [
+        'member_id',
+        'date_buy',
+        'code_id',
+        'status',
+    ];
 
     public function detail_bill() {
-        return $this->hasMany('App\Detail_bill', 'id_bill');
+        return $this->hasMany(Detail_bill::class);
     }
 }

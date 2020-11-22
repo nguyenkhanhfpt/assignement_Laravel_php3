@@ -40,7 +40,6 @@
     <!-- Link Jquery Ui -->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
-
     <link rel="stylesheet" href="{{asset('css/all.css')}}">
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <link rel="stylesheet" href="{{asset('css/home.css')}}">
@@ -49,15 +48,19 @@
     <link rel="stylesheet" href="{{asset('css/customCarousel.css')}}">
 </head>
 <body>
-    @yield('menu')
+    <div id="app">
+        @yield('menu')
 
-    <div class="wrapper">
-        @yield('content')
+        <div class="wrapper">
+            @yield('content')
 
-        @yield('footer')
+            @yield('footer')
 
-        @yield('script')
+            @yield('script')
+        </div>
     </div>
+    
+    @yield('script')
 
     <script src="{{ asset('js/sendContact.js') }}"></script>
 </body>

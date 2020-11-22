@@ -109,7 +109,7 @@
 
                                     <div class="product__add-cart">
                                         <div class="d-flex justify-content-between align-items-center">
-                                            <a href="" class="add-cart">ADD TO CART</a>
+                                            <a href="" class="add-cart">{{ trans('view.add_to_cart') }}</a>
                                             <a href="" class="add_wishlist" data-name="{{$product->name_product}}" data-id="{{$product->id}}">
                                                 <i class="far fa-heart"></i>
                                             </a>

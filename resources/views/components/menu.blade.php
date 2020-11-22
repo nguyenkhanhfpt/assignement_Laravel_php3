@@ -9,7 +9,7 @@
                             <img src="{{asset('images')}}/vietnam.png" />
                             <a href="{{ route('languale', 'vi') }}">Tiếng Việt</a>
                         @else
-                            <img src="{{asset('images')}}/united-kingdom.png" />
+                            <img src="{{asset('images')}}/united-states-of-america.png" />
                             <a href="{{ route('languale', 'en') }}">Englist</a>
                         @endif
                         <i class="fal fa-angle-down ml-2"></i>
@@ -17,7 +17,7 @@
                             <ul>
                                 <li>
                                 @if (session('locale', config('app.locale')) == 'vi')
-                                    <img src="{{asset('images')}}/united-kingdom.png" />
+                                    <img src="{{asset('images')}}/united-states-of-america.png" />
                                     <a href="{{ route('languale', 'en') }}">Englist</a>
                                 @else
                                     <img src="{{asset('images')}}/vietnam.png" />
@@ -134,7 +134,7 @@
                                         </div>
                                         <div class="product__decs">
                                             <h2 class="product__name">
-                                                <a href="{{route('products')}}/{{$key}}" title="{{ $cart['name_product'] }}" class="one-line">{{ $cart['name_product']}}</a>
+                                                <a href="{{route('products')}}/{{ $cart['slug'] }}" title="{{ $cart['name_product'] }}" class="one-line">{{ $cart['name_product']}}</a>
                                             </h2>
                                             <div class="product__price">
                                                 <span>{{$cart['quantity']}} x {{number_format($cart['price_product'])}} đ</span>

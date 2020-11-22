@@ -7,7 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 class Detail_bill extends Model
 {
     protected $table = 'detail_bills';
-    protected $primaryKey = 'id_detail_bill';
     public $timestamps = false;
-    public $fillable = ['id_bill' ,'id_product', 'quantity_buy', 'amount'];
+    public $fillable = [
+        'bill_id',
+        'product_id', 
+        'color_id', 
+        'size_id',
+        'quantity_buy', 
+        'amount'
+    ];
+
+    public function bill()
+    {
+        return $this->belongsTo(Bill::class);
+    }
 }

@@ -1,28 +1,21 @@
-<h3>Cảm ơn bạn đã mua sản phẩm của chúng tôi</h3>
+@component('mail::message')
+# Thông tin đơn hàng của bạn
 
-<table border='1' style="border-collapse:collapse;text-align:center">
-    <thead>
-        <tr>
-            <th style="padding: 10px; background-color: #4fb68d;">Tên sản phẩm</th>
-            <th style="padding: 10px; background-color: #4fb68d;">Số lượng mua</th>
-            <th style="padding: 10px; background-color: #4fb68d;">Thành tiền</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach($datas['cart'] as $key => $cart)
-            <tr>
-                <td style="padding: .8rem">
-                    {{ $cart['name_product'] }}
-                </td>
-                <td style="padding: .8rem">
-                    {{ $cart['quantity'] }}
-                </td>
-                <td style="padding: .8rem">
-                    {{ number_format($cart['quantity'] * $cart['price_product']) }} đ
-                </td>
-            </tr>
-        @endforeach
-    </tbody>
-</table>
+## Tổng tiền: {{ number_format($datas['total']) }} đ
 
-<h3>Tổng số tiền thanh toán là: <span style="color: #f00">{{ number_format($datas['total']) }} đ</span></h3>
+@component('mail::table')
+<tr>
+    <th>Tên sản phẩm</th>
+    <th>Số lượng</th>
+    <th>Thành tiền</th>
+</tr>
+@foreach($datas['cart'] as $key => $cart)
+    <tr>
+        <td style="padding-left: 20px">{{ $cart['name_product'] }}</td>
+        <td style="text-align: center;">{{ $cart['quantity'] }}</td>
+        <td>{{ number_format($cart['price_product'] * $cart['quantity']) }} đ</td>
+    </tr>
+@endforeach
+@endcomponent
+
+@endcomponent

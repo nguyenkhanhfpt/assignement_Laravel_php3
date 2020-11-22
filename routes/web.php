@@ -32,7 +32,7 @@ Route::post('/cart/checkQuantity', 'CartController@checkQuantityPro');
 
 Route::post('/cart/addCart', 'CartController@addCart')->name('addCart');
 
-Route::post('/cart/update', 'CartController@undateCart');
+Route::patch('/cart/update/{idCart}/{idProduct}', 'CartController@undateCart');
 
 Route::get('/cart/delete/{id}', 'CartController@deleteCart');
 

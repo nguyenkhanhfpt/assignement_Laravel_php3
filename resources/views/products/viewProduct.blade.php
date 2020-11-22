@@ -25,21 +25,16 @@
 
     <div class="contai">
         <div class="row" style="padding-top: 6rem">
-
             <div class="col-md-5">
                 <div class="viewProduct">
                     <img src="{{ Helper::exec()->getFirstImage($product->images) }}" alt="">
                 </div>
-                <div class="viewProduct__images">
-                    <div class="box_img">
-                        <img class="img" src="{{ Helper::exec()->getFirstImage($product->images) }}" alt="">
-                    </div>
-                    <div class="box_img">
-                        <img class="img" src="{{ Helper::exec()->getSecondImage($product->images) }}" alt="">
-                    </div>
-                    <div class="box_img">
-                        <img class="img" src="{{ Helper::exec()->getThirdImage($product->images) }}" alt="">
-                    </div>
+                <div id="product-images" class="viewProduct__images owl-carousel">
+                    @foreach($product->images as $image)
+                        <div class="box_img">
+                            <img class="img" src="{{ asset('images/products') }}/{{ $image->image }}" alt="">
+                        </div>
+                    @endforeach
                 </div>
             </div>
 
@@ -66,8 +61,33 @@
 
                     <hr>
 
-                    <form action="{{route('addCart')}}" method="post">
+                    <form action="{{route('addCart')}}" method="post" id="form-add-cart">
                         @csrf
+                        <div class="row choice-cart">
+                            @if(count($product->sizes))
+                                <div class="col-12 col-md-4">
+                                    <label for="">Chọn size</label> 
+                                    <select name="size" class="form-select">
+                                        <option value=""></option>
+                                        @foreach($product->sizes as $size)
+                                            <option value="{{ $size->id }}">{{ $size->size }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            @endif
+                            @if(count($product->colors))
+                                <div class="col-12 col-md-4">
+                                    <label for="">Chọn màu</label> 
+                                    <select name="color" class="form-select">
+                                        <option value=""></option>
+                                        @foreach($product->colors as $color)
+                                            <option value="{{ $color->id }}">{{ $color->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            @endif
+                        </div>
+
                         <div class="d-flex">
                             <div class="quantity__add">
                                 <span type="button" id="decrementQuan">
@@ -79,7 +99,7 @@
                                     <i class="fal fa-plus"></i>
                                 </span>
                             </div>
-                            <input type="submit" value="Thêm vào giỏ hàng" class="btn-addCart">
+                            <input type="submit" value="Thêm vào giỏ hàng" class="btn-addCart" id="btn-addCart">
                         </div>
                     </form>
 
@@ -119,8 +139,6 @@
                         {{session('errorComment')}}
                     </div>
                 @endif
-
-                
 
                 <form action="{{route('addComment')}}" method="POST">
                     @csrf
@@ -196,7 +214,7 @@
 
                         <div class="product__add-cart">
                             <div class="d-flex justify-content-between align-items-center">
-                                <a href="" class="add-cart">ADD TO CART</a>
+                                <a href="" class="add-cart">{{ trans('view.add_to_cart') }}</a>
                                 <a href="" class="add_wishlist" data-name="{{$product->name_product}}" data-id="{{$product->id}}">
                                     <i class="far fa-heart"></i>
                                 </a>
@@ -226,10 +244,9 @@
     </div>
  
 
-    
     <script>
         $(function() {
-            $( "#tabs" ).tabs();
+            $("#tabs").tabs();
         });
     </script>
 

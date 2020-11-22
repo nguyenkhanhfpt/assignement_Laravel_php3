@@ -187,6 +187,7 @@
             font-size: 1.4rem;
             font-weight: 600;
             transition: linear .3s;
+            text-transform: uppercase;
 
             &:hover {
                 color: $secondary-color;
@@ -218,8 +219,32 @@
         @include box(#f00);
         right: 1.2rem;
     }
+}
 
-    
+.choice-cart {
+    margin-bottom: 1.5rem;
+
+    & label {
+        font-size: 1.5rem;
+    }
+
+    & .form-select {
+        display: block;
+        width: 100%;
+        padding: 8px 10px;
+        font-size: 1.4rem;
+        border-radius: 0;
+        background-color: #fff;
+        border: 1px solid #e4e4e4;
+
+        &:focus {
+            outline: none;
+        }
+
+        &:active {
+            outline: nono;
+        }
+    }
 }
 
 .one-line {
@@ -366,13 +391,13 @@
 
     &__product {
         display: grid;
-        grid-template-columns: 1.5fr 4fr 3fr;
+        grid-template-columns: 11rem 4fr 25rem 3fr;
 
         padding: .8rem 0;
         border-bottom: 1px solid $border-color;
 
         &-img {
-            width: 11.5rem;
+            width: 9.5rem;
             height: 11rem;
         }
 
@@ -397,6 +422,17 @@
             .price-product {
                 font-size: 1.5rem;
                 color: #555;
+            }
+        }
+
+        &-property {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding-right: 1.3rem;
+
+            p {
+                font-size: 1.4rem;
             }
         }
  
@@ -459,6 +495,28 @@
 
     &:hover {
         color: $secondary-color;
+    }
+}
+
+.code-sale {
+    display: flex;
+    align-items: center;
+
+    input {
+        font-size: 1.6rem;
+        padding: 20px;
+        border-radius: 0;
+    }
+
+    button {
+        border: 1px solid $primary-color;
+        outline: none;
+
+        height: 40px;
+        width: 120px;
+        font-size: 1.5rem;
+        background-color: $primary-color;
+        color: #fff;
     }
 }
 

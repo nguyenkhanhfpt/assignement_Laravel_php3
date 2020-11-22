@@ -29,6 +29,8 @@ class SendMailBuy extends Mailable
      */
     public function build()
     {
-        return $this->view('mails.buyProduct')->subject('Thông tin đơn hàng ngày ' .date('d-m-Y'));
+        return $this
+            ->subject('Thông tin đơn hàng ngày ' .$this->datas['date'])
+            ->markdown('mails.buyProduct');
     }
 }

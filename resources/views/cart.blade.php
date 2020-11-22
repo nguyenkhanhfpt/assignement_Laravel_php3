@@ -41,11 +41,21 @@
                                     <img src="{{ $cart['img_product'] }}" alt="">
                                 </div>
                                 <div class="cart__product-name">
-                                    <a href="{{route('products')}}/{{$key}}" class="name_product">{{$cart['name_product']}}</a>
+                                    <a href="{{route('products')}}/{{ $cart['slug'] }}" class="name_product">{{$cart['name_product']}}</a>
                                     <p class="price-product">{{number_format($cart['price_product'])}} đ</p>
                                 </div>
+                                <div class="cart__product-property">
+                                    @if ($cart['size'])
+                                        <p>{{ $cart['size'] }}</p>
+                                    @endif
+                                    @if ($cart['color'])
+                                        <p>{{ $cart['color'] }}</p>
+                                    @endif
+                                </div>
                                 <div class="cart__product-icon">
-                                    <input type="number" name="quantity[{{$key}}]" value={{$cart['quantity']}}> 
+                                    <input class="input-quantity-cart quantity-{{$key}}" type="number" 
+                                        data-id="{{ $cart['id'] }}" data-cart="{{ $key }}"
+                                        value={{$cart['quantity']}}> 
                                     <p class="total-price">{{number_format($cart['price_product'] * $cart['quantity'])}} đ</p>
                                     <a href="{{route('cart')}}/delete/{{$key}}">
                                         <i class="fas fa-trash"></i>
@@ -58,10 +68,6 @@
 
                     @if(count($sessionCart) == 0)
                         <p class="alert_nothing">Không có sản phẩm nào trong giỏ hàng</p>
-                    @else
-                        <div>
-                            <a href="" class="update-cart">Cập nhật đơn hàng</a>
-                        </div>
                     @endif
                     
                     <a href="{{route('products')}}" class="btn__buy btn__buy-margin">Tiếp tục mua hàng</a>
@@ -75,7 +81,7 @@
                                     <span class="label js-subtotal">
                                         {{count($sessionCart)}} sản phẩm
                                     </span>
-                                    <span class="value">{{number_format($totalCart)}} đ</span>
+                                    <span class="value match_total">{{number_format($totalCart)}} đ</span>
                                 </div>
                                 <div class="cart-summary-line" id="cart-subtotal-shipping">
                                     <span class="label">
@@ -90,7 +96,16 @@
                             <div class="card-block">
                                 <div class="cart-summary-line cart-total">
                                     <span class="label">Tổng tiền</span>
-                                    <span class="value" style="font-size: 1.7rem; color: #f00;">{{number_format($totalCart)}} đ</span>
+                                    <span class="value match_total" style="font-size: 1.7rem; color: #f00;">{{number_format($totalCart)}} đ</span>
+                                </div>
+                            </div>
+
+                            <hr class="separator">
+
+                            <div class="card-block">
+                                <div class="code-sale">
+                                    <input type="text" class="form-control" placeholder="{{ trans('view.code') }}">
+                                    <button>{{ trans('view.apply') }}</button>
                                 </div>
                             </div>
                             <hr class="separator">
@@ -110,13 +125,6 @@
 
     @include('components.footer')
 
-
-    <script>
-        $('.update-cart').on('click', (event) => {
-            event.preventDefault();
-
-            $('#formCart').submit();   
-        });
-    </script>
+    <script src="{{ asset('js') }}/cart.js"></script>
 
 @endsection
