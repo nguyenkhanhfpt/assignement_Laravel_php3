@@ -106,6 +106,10 @@ a {
   color: #253237;
 }
 
+.viewBill table tr th {
+  font-weight: 700;
+}
+
 .viewBill__info {
   display: flex;
 }
@@ -120,7 +124,8 @@ a {
 }
 
 .viewBill__info-right p {
-  margin-bottom: 10px;
+  margin-bottom: 8px;
+  font-size: 15.7px;
 }
 
 .viewBill__info-right p span {
@@ -307,5 +312,18 @@ a {
 
 .swal2-styled:focus {
   box-shadow: none;
+}
+
+@media (min-width: 1200px) {
+  .modal-lg,
+  .modal-xl {
+    max-width: 1100px;
+  }
+}
+
+@media (min-width: 576px) {
+  .modal-dialog {
+    margin: 4.75rem auto;
+  }
 }
 

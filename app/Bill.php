@@ -14,7 +14,13 @@ class Bill extends Model
         'status',
     ];
 
-    public function detail_bill() {
+    public function detail_bill()
+    {
         return $this->hasMany(Detail_bill::class);
+    }
+
+    public function member()
+    {
+        return $this->belongsTo(User::class);
     }
 }

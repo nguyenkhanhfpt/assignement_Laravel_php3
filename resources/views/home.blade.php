@@ -116,37 +116,7 @@
                 
             <!-- end owl -->
             </div>
-            
         </div>
-
-
-        <div class="categories">
-            <div class="pos_title">
-                <h2>Danh mục sản phẩm</h2>
-                <p class="decs_title">Tất cả các danh mục sản phẩm của chúng tôi</p>
-            </div>
-
-            <div class="categories__box">
-                @foreach($categories as $category)
-                    <div class="categories__item">
-                        <div class="categories__thumb">
-                            <a href="" class="categories__link">
-                                <img src="{{asset('images')}}/{{$category->img_category}}" alt="">
-                            </a>
-                        </div>
-                        <div class="categories__decs">
-                            <h3>{{$category->name}}</h3>
-                            <p>{{ count($category->products) }} sản phẩm</p>
-                            <a href="{{route('products')}}?category={{$category->id}}">Xem sản phẩm
-                                <i class="fal fa-eye"></i>
-                            </a>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-
-        </div>
-
 
         <div class="hot-product">
             <div class="col px-0">

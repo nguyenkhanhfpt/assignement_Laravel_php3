@@ -7,99 +7,59 @@ use Illuminate\Http\Request;
 use DB;
 use App\Bill;
 use App\Product;
+use Yajra\DataTables\Facades\DataTables;
 
 class BillController extends Controller
 {
     protected function index(Request $request) {
-        if($request->orderBy) {
-            $status = $request->orderBy;
-            if($status == 'cancelled') {
-                $status = -1;
-            }
-            else if($status == 'completed') {
-                $status = 1;
-            }
-            else if($status == 'pedding') {
-                $status = 0;
-            }
-            else {
-                $status = " ";
+        if ($request->ajax()) {
+            $bills = Bill::with(['member', 'detail_bill'])->get();
+
+            foreach($bills as $bill) {
+                $sum = 0;
+                $quantity = 0;
+                foreach ($bill->detail_bill as $detail) {
+                    $sum += $detail->amount;
+                    $quantity += $detail->quantity_buy;
+                }
+                $bill->total = number_format($sum) . ' đ';
+                $bill->detail_bill_count = $quantity;
             }
 
-            $bills = DB::table('bills as B')
-                ->join('detail_bills as D', 'B.id_bill', '=', 'D.id_bill')
-                ->join('members as M', 'B.id_member', '=', 'M.id_member')
-                ->select('M.name_member', 'M.img_member', 'B.id_bill', 'B.date_buy', 
-                    'B.status', DB::raw('count(D.id_detail_bill) as totalPro'), 
-                    DB::raw('sum(D.amount) as amount'))
-                ->where('B.status', '=', $status)
-                ->groupBy('B.id_bill')
-                ->orderBy('B.date_buy', 'DESC')
-                ->get(); 
-        }
-        else if($request->find) {
-            $id = $request->find;
-
-            $bills = DB::table('bills as B')
-                ->join('detail_bills as D', 'B.id_bill', '=', 'D.id_bill')
-                ->join('members as M', 'B.id_member', '=', 'M.id_member')
-                ->select('M.name_member', 'M.img_member', 'B.id_bill', 'B.date_buy', 
-                    'B.status', DB::raw('count(D.id_detail_bill) as totalPro'), 
-                    DB::raw('sum(D.amount) as amount'))
-                ->where('B.id_bill', 'LIKE',"\\" . $id . "%")
-                ->groupBy('B.id_bill')
-                ->orderBy('B.date_buy', 'DESC')
-                ->get(); 
-        }
-        else {
-            $bills = DB::table('bills as B')
-                ->join('detail_bills as D', 'B.id_bill', '=', 'D.id_bill')
-                ->join('members as M', 'B.id_member', '=', 'M.id_member')
-                ->select('M.name_member', 'M.img_member', 'B.id_bill', 'B.date_buy', 
-                    'B.status', DB::raw('count(D.id_detail_bill) as totalPro'), 
-                    DB::raw('sum(D.amount) as amount'))
-                ->groupBy('B.id_bill')
-                ->orderBy('B.date_buy', 'DESC')
-                ->get(); 
+            return DataTables::of($bills)
+                ->addColumn('status-box', function($bill) {
+                    if ($bill['status'] == 2) {
+                        return "<span class='badge badge-pill badge-danger'>Đã hủy</span>";
+                    } else if ($bill['status'] == 1) {
+                        return "<span class='badge badge-pill badge-success'>Đã chấp nhận</span>";
+                    } else {
+                        return "<span class='badge badge-pill badge-info'>Đang chờ</span>";
+                    }
+                })
+                ->rawColumns(['status-box'])
+                ->make(true);
         }
 
-        return view('admins.bills', [
-            'bills' => $bills
-        ]);
+        return view('admins.bills');
     }
 
     protected function viewBill($id) {
-        $bill = Bill::find($id);
-
-        if($bill == null) {
-            return redirect()->route('adminBill');
+        $bill = Bill::findOrFail($id)->load([
+            'member',
+            'detail_bill.product.images',
+            'detail_bill.color',
+            'detail_bill.size',
+        ]);
+        $sum = 0;
+        
+        foreach ($bill->detail_bill as $detail) {
+            $sum += $detail->amount;
         }
 
-        $info = DB::table('bills as B')
-            ->join('members as M', 'B.id_member', '=', 'M.id_member')
-            ->select('M.name_member', 'M.img_member', 'B.id_bill', 'B.date_buy', 'M.address',
-                'M.phone_number', 'M.email', 'B.status')
-            ->where('B.id_bill', '=', $id)
-            ->groupBy('B.id_bill')
-            ->first();
+        $bill->total = $sum;
+        //return $bill;
 
-        $productsBuy = DB::table('products as P')
-            ->join('detail_bills as D', 'D.id_product', '=', 'P.id_product')
-            ->where('D.id_bill', '=', $id)
-            ->get();
-
-        $sumAmount = DB::table('detail_bills')
-            ->select(DB::raw('sum(amount) as total'))
-            ->where('id_bill', '=', $id)
-            ->groupBy('id_bill')
-            ->first();
-
-
-        return view('admins.viewBill', [
-            'info' => $info,
-            'productsBuy' => $productsBuy,
-            'sumAmount' => $sumAmount
-        ]);
+        return view('admins.viewBill', compact('bill'));
     }
 
     protected function updateBill(Request $request) {

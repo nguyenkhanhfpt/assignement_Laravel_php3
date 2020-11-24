@@ -4,11 +4,11 @@
         <div class="user-profile">
             <div class="user-pro-body">
                 <div>
-                    <img src="{{ asset('images') }}/user.jpg" alt="user-img" class="img-circle">
+                    <img src="{{ asset('images') }}/{{ Auth::user()->img_member }}" alt="user-img" class="img-circle">
                 </div>
                 <div class="dropdown">
                     <a href="javascript:void(0)" class="dropdown-toggle u-dropdown link hide-menu" data-toggle="dropdown" role="button" aria-haspopup="true"
-                        aria-expanded="false">Nguyen Khanh
+                        aria-expanded="false">{{ Auth::user()->name_member }}
                         <span class="caret"></span>
                     </a>
                     <div class="dropdown-menu animated flipInY">
@@ -84,6 +84,15 @@
                             <a href="{{ route('adminProduct') }}">Danh sách</a>
                         </li>
                     </ul>
+                </li>
+
+                <li>
+                    <a class="waves-effect waves-dark" href="{{ route('adminBill') }}" aria-expanded="false">
+                        <i class="fal fa-cart-plus"></i>
+                        <span class="hide-menu">Đơn hàng
+                            <span class="badge badge-pill badge-primary text-white ml-auto">25</span>
+                        </span>
+                    </a>
                 </li>
 
                 <li>
