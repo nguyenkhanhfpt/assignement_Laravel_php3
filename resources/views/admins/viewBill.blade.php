@@ -11,7 +11,7 @@
             <p><span>Địa chỉ:</span> {{ $bill->member->address }}</p>
             <p><span>Số điện thoại:</span> {{ $bill->member->phone_number }}</p>
             <p><span>Email:</span> {{ $bill->member->email }}</p>
-            <p><span>Mã hóa đơn:</span> #{{ $bill->id }}</p>
+            <p><span>Mã đơn hàng:</span> #{{ $bill->id }}</p>
             <p><span>Thời gian mua:</span> {{ $bill->date_buy }}</p>
         </div>
     </div>
@@ -60,19 +60,32 @@
                         @csrf
                         <input type="hidden" name="id_bill" value={{$bill->id}}>
                         <div class="form-group mb-0">
-                            <select class="form-control" name="status" id="status">
-                                @if($bill->status == config('accepted')) 
-                                    <option value="{{$bill->status}}" selected >Hoàn thành</option>
-                                @elseif($bill->status == config('running')) 
-                                    <option value="{{$bill->status}}" selected >Đang chuyển</option>
-                                @elseif($bill->status == config('rejected'))
-                                    <option value="{{$bill->status}}" selected >Bị hủy</option>
-                                @else
-                                    <option value="{{$bill->status}}" selected >Đang chờ</option>
-                                @endif
-                                <option value="1">Hoàn thành</option>
-                                <option value="0">Đang chờ</option>
-                                <option value="-1">Bị hủy</option>
+                            <select class="form-control" name="status" id="status" 
+                                {{ $bill->status == config('settings.accepted') ? 'disabled' : '' }} 
+                            >
+                                <option 
+                                    {{ $bill->status == config('settings.pedding') ? 'selected' : '' }}
+                                    value={{ config('settings.pedding') }}
+                                    >Đang chờ
+                                </option>
+                                <option 
+                                    {{ $bill->status == config('settings.running') ? 'selected' : '' }}
+                                    value={{ config('settings.running') }}
+                                    >
+                                    Đang giao
+                                </option>
+                                <option 
+                                    {{ $bill->status == config('settings.accepted') ? 'selected' : '' }}
+                                    value={{ config('settings.accepted') }}
+                                    >
+                                    Hoàn thành
+                                </option>
+                                <option 
+                                    {{ $bill->status == config('settings.rejected') ? 'selected' : '' }}
+                                    value={{ config('settings.rejected') }}
+                                    >
+                                    Bị hủy
+                                </option>
                             </select>
                         </div>
                     </form>
@@ -80,7 +93,6 @@
             </tr>
         </tbody>
     </table>
-
 </div>
 
     

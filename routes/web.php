@@ -78,6 +78,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
     // Admin
     Route::get('/', 'HomeController@index')->name('admin');
 
+    Route::get('/update', 'HomeController@updateDom')->name('admin');
+
+
     // Admin category 
     Route::get('/category', 'CategoryController@index')->name('adminCategory');
 
@@ -140,7 +143,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
 
     Route::get('/bills/delete/{id}', 'BillController@deleteBill');
 
-    Route::post('/bills/update', 'BillController@updateBill')->name('updateBill');
+    Route::patch('/bills/update', 'BillController@update')->name('updateBill');
 });
 
 // RestAPI

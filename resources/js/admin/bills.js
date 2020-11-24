@@ -16,17 +16,6 @@ function listen() {
 function getListBill() {
     let url = '/admin/bills';
 
-    $.ajax({
-        method: 'GET',
-        url: url,
-        success: function(res) {
-            console.log(res)
-        },
-        error: function(err) {
-            console.log(res)
-        }
-    })
-
     $('#table-bills').DataTable({
         processing: true,
         serverSide: true,
@@ -82,5 +71,54 @@ function viewDetail() {
                 });
             }
         })
-    })
+    });
+
+    $(document).on('change', '#status', function() {
+        let id = $("[name='id_bill']").val();
+        let status = $('#status').val();
+
+        $.ajax({
+            method: 'PATCH',
+            url: `/admin/bills/update`,
+            data: {
+                id: id,
+                status: status
+            },
+            success: function(res) {
+                if (res.status == 2) {
+                    $('#status').prop('disabled', true);
+                }
+
+                $.toast({
+                    heading: 'Thành công'
+                    , text: 'Cập nhật trạng thái đơn hàng thành công.'
+                    , position: 'top-right'
+                    , loaderBg: '#ff6849'
+                    , icon: 'success'
+                    , hideAfter: 2800
+                    , stack: 6
+                });
+
+                updatedDom();
+
+                $('#table-bills').DataTable().ajax.reload();
+            },
+            error: function(err) {
+                Swal.fire({
+                    title: 'Có một số lỗi khi cập nhật đơn hàng!',
+                    icon: "error"
+                });
+            }
+        });
+    });
+}
+
+function updatedDom() {
+    $.ajax({
+        method: 'GET',
+        url: `/admin/update`,
+        success: function(res) {
+            $('#numPeddingBill').text(res.countBill);
+        }
+    });
 }

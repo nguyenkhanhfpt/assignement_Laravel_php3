@@ -305,7 +305,7 @@
     <script src="{{ asset('js/admin') }}/morris.min.js"></script>
     <script src="{{ asset('js/admin') }}/jquery.sparkline.min.js"></script>
     <!-- Chart JS -->
-    <!-- <script src="http://eliteadmin.themedesigner.in/demos/bt4/inverse/dist/js/dashboard1.js"></script> -->
+    <script src="{{ asset('js/admin') }}/dashboard.js"></script>
     <script src="{{ asset('js/admin') }}/jquery.toast.js"></script>
 </body>
 </html>

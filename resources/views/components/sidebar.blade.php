@@ -30,29 +30,6 @@
         
         <nav class="sidebar-nav">
             <ul id="sidebarnav">
-                <!-- <li>
-                    <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
-                        <i class="fal fa-tachometer-alt-fastest"></i>
-                        <span class="hide-menu">Dashboard
-                            <span class="badge badge-pill badge-cyan ml-auto">4</span>
-                        </span>
-                    </a>
-                    <ul aria-expanded="false" class="collapse">
-                        <li>
-                            <a href="index.html">Minimal</a>
-                        </li>
-                        <li>
-                            <a href="index2.html">Analytical</a>
-                        </li>
-                        <li>
-                            <a href="index3.html">Demographical</a>
-                        </li>
-                        <li>
-                            <a href="index4.html">Modern</a>
-                        </li>
-                    </ul>
-                </li> -->
-
                 <li>
                     <a class="waves-effect waves-dark" href="{{ route('admin') }}" aria-expanded="false">
                         <i class="fal fa-tachometer-alt-fastest"></i>
@@ -90,26 +67,11 @@
                     <a class="waves-effect waves-dark" href="{{ route('adminBill') }}" aria-expanded="false">
                         <i class="fal fa-cart-plus"></i>
                         <span class="hide-menu">Đơn hàng
-                            <span class="badge badge-pill badge-primary text-white ml-auto">25</span>
+                            <span class="badge badge-pill badge-primary text-white ml-auto" id="numPeddingBill">
+                                {{ Helper::exec()->getNumPeddingBill() }}
+                            </span>
                         </span>
                     </a>
-                </li>
-
-                <li>
-                    <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
-                        <i class="far fa-list"></i>
-                        <span class="hide-menu">Đơn hàng
-                            <span class="badge badge-pill badge-primary text-white ml-auto">25</span>
-                        </span>
-                    </a>
-                    <ul aria-expanded="false" class="collapse">
-                        <li>
-                            <a href="ui-cards.html">Cards</a>
-                        </li>
-                        <li>
-                            <a href="ui-user-card.html">User Cards</a>
-                        </li>
-                    </ul>
                 </li>
             </ul>
         </nav>

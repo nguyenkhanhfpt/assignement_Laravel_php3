@@ -28,10 +28,12 @@ class BillController extends Controller
 
             return DataTables::of($bills)
                 ->addColumn('status-box', function($bill) {
-                    if ($bill['status'] == 2) {
+                    if ($bill['status'] == config('settings.rejected')) {
                         return "<span class='badge badge-pill badge-danger'>Đã hủy</span>";
-                    } else if ($bill['status'] == 1) {
-                        return "<span class='badge badge-pill badge-success'>Đã chấp nhận</span>";
+                    } else if ($bill['status'] == config('settings.accepted')) {
+                        return "<span class='badge badge-pill badge-success'>Đã hoàn thành</span>";
+                    } else if ($bill['status'] == config('settings.running')) {
+                        return "<span class='badge badge-pill badge-warning'>Đang giao</span>";
                     } else {
                         return "<span class='badge badge-pill badge-info'>Đang chờ</span>";
                     }
@@ -57,31 +59,8 @@ class BillController extends Controller
         }
 
         $bill->total = $sum;
-        //return $bill;
 
         return view('admins.viewBill', compact('bill'));
-    }
-
-    protected function updateBill(Request $request) {
-        $id_bill = $request->id_bill;
-        $status = $request->status ? $request->status : 0;
-
-        $bill = Bill::find($id_bill);
-        $bill->status = $status;
-        $bill->save();
-
-        // Nếu đơn hàng được hoàn thành thì trừ số lượng của sản phẩm
-        if($status == 1) {
-            $bills = Bill::find($id_bill)->detail_bill;
-
-            foreach ($bills as $pro) {
-                $product = Product::find($pro->id_product);
-                $product->quantity_product -= $pro->quantity_buy;
-                $product->save();
-            }
-        }
-
-        return redirect()->back()->with('successBill', 'Cập nhật đơn hàng thành công!');
     }
 
     protected function deleteBill($id) {
@@ -89,5 +68,16 @@ class BillController extends Controller
         $bill->delete();
 
         return redirect()->route('adminBill');
+    }
+
+    public function update(Request $request)
+    {
+        $bill = Bill::findOrFail($request->id);
+
+        $bill->status = $request->status;
+
+        $bill->save();
+
+        return response()->json($bill);
     }
 }

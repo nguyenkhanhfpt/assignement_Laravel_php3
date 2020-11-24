@@ -5,10 +5,11 @@
 use App\Product;
 use Faker\Generator as Faker;
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 
 $factory->define(Product::class, function (Faker $faker) {
     return [
-        'slug' => Helper::vn_to_eng($faker->name),
+        'slug' => Str::slug($faker->name),
         'category_id' => rand(1, 4),
         'name_product' => $faker->name,
         'price_product' => 20000,
