@@ -1,5 +1,6 @@
 {
     "/js/admin/bills.js": "/js/admin/bills.js",
+    "/js/admin/categories.js": "/js/admin/categories.js",
     "/js/admin/colors.js": "/js/admin/colors.js",
     "/js/admin/products.js": "/js/admin/products.js",
     "/js/admin/sizes.js": "/js/admin/sizes.js",

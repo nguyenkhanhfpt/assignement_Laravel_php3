@@ -78,7 +78,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
     // Admin
     Route::get('/', 'HomeController@index')->name('admin');
 
-    Route::get('/update', 'HomeController@updateDom')->name('admin');
+    Route::get('/update', 'HomeController@updateDom');
 
 
     // Admin category 
@@ -86,11 +86,11 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
 
     Route::get('/category/add', 'CategoryController@viewAdd')->name('adminCategoryAdd');
 
-    Route::get('/category/delete/{id_category}', 'CategoryController@deleteCategory');
+    Route::delete('/category/{id_category}', 'CategoryController@deleteCategory');
 
-    Route::get('/category/update/{id_category}', 'CategoryController@viewUpdate');
+    Route::get('/category/{id_category}/edit', 'CategoryController@edit');
 
-    Route::post('/category/update/{id_category}', 'CategoryController@updateCategory');
+    Route::patch('/category/{id_category}', 'CategoryController@updateCategory');
 
     Route::post('/category/add', 'CategoryController@addCategory');
 

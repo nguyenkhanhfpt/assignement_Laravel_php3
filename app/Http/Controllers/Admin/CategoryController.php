@@ -5,59 +5,66 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Category;
+use Yajra\DataTables\Facades\DataTables;
 
 class CategoryController extends Controller
 {
     protected function index(Request $request) {
-        $datas = Category::all();
+        if ($request->ajax()) {
+            $datas = Category::all();
 
-        return view('admins.category', [
-            'categories' => $datas
-        ]);
-    }
+            return DataTables::of($datas)->make(true);
+        }
 
-    protected function viewAdd() {
-        return view('admins.addCategory');
+        return view('admins.category');
     }
 
     protected function addCategory(Request $request) {
         $request->validate([
             'name' => 'required',
-            'img_category' => 'required'
         ], [
             'name.required' => 'Tên danh mục không được để trống!',
-            'img_category.required' => 'Ảnh danh mục không để trống!'
         ]);
-
         
-        $name = $request->input('name');
-        $file = $request->img_category;
-        $img_category = $file->getClientOriginalName();
+        $name = $request->name;
 
-        $file->move('images', $img_category);
+        $category = Category::create(['name' => $name]);
 
-        $data = ['name' => $name, 'img_category' => $img_category];
-
-        Category::create($data);
-
-        return view('admins.addCategory', [
-            'success' => 'Thêm danh mục mới thành công!'
-        ]);
+        if ($category) {
+            return response()->json([
+                'status' => 200, 
+                'message' => 'Thêm mới thành công!'
+            ]);
+        } else {
+            return response()->json([
+                'status' => 400, 
+                'message' => 'Thêm mới thất bại!'
+            ]);
+        }
     }
 
     protected function deleteCategory($id_category) {
-        Category::find($id_category)->delete();
-        return redirect(route('adminCategory'));
+        $category = Category::findOrFail($id_category);
+
+        $result = $category->delete();
+
+        if ($result) {
+            return response()->json([
+                'status' => 200, 
+                'message' => 'Xóa thành công!'
+            ]);
+        } else {
+            return response()->json([
+                'status' => 400, 
+                'message' => 'Xóa thất bại!'
+            ]);
+        }
     }
 
-    protected function viewUpdate($id_category) {
-        $category = Category::find($id_category);
+    protected function edit($id_category) {
+        $category = Category::findOrFail($id_category);
 
-        return view('admins.updateCategory', [
-            'id_category' => $category->id_category,
-            'name' => $category->name,
-            'img_category' => $category->img_category,
-        ]); 
+        return response()->json($category);
     }
 
     protected function updateCategory(Request $request, $id_category) {
@@ -67,28 +74,21 @@ class CategoryController extends Controller
             'name.required' => 'Tên danh mục không được để trống!'
         ]);
 
-        $name = $request->input('name');
-        $category = Category::find($id_category);
+        $category = Category::findOrFail($id_category);
 
-        if($request->hasFile('img_category')) {
-            $file = $request->img_category;
-            $img_category = $file->getClientOriginalName();
-            $file->move('images', $img_category);
+        $category->name = $request->name;
+        $result = $category->save();
 
-            $category->name = $name;
-            $category->img_category = $img_category;
-            $category->save();
+        if ($result) {
+            return response()->json([
+                'status' => 200, 
+                'message' => 'Cập nhật thành công!'
+            ]);
+        } else {
+            return response()->json([
+                'status' => 400, 
+                'message' => 'Cập nhật thất bại!'
+            ]);
         }
-        else {
-            $category->name = $name;
-            $category->save();
-        }
-
-        return view('admins.updateCategory', [
-            'id_category' => $category->id_category,
-            'name' => $category->name,
-            'img_category' => $category->img_category,
-            'success' => 'Cập nhật danh mục thành công!'
-        ]);
     }
 }
