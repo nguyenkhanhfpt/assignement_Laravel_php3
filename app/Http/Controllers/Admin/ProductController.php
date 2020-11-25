@@ -55,7 +55,7 @@ class ProductController extends Controller
         $datas['slug'] = Str::slug($request->name_product);
         $datas['category_id'] = $request->category_id['id'];
         $datas['price_product'] = floatval($request->price_product);
-        $datas['sale'] = $request->sale || 0;
+        $datas['sale'] = $request->sale ?$request->sale : 0;
         $datas['quantity_product'] = intval($request->quantity_product);
         $datas['decscription'] = $request->decscription;
         $datas['nomination'] = $request->nomination ? 1 : 0;
@@ -166,7 +166,7 @@ class ProductController extends Controller
             $product->slug = Str::slug($request->name_product);
             $product->category_id = $request->category_id['id'];
             $product->price_product = floatval($request->price_product);
-            $product->sale = $request->sale || 0;
+            $product->sale = $request->sale ?$request->sale : 0;
             $product->quantity_product = intval($request->quantity_product);
             $product->decscription = $request->decscription;
             $product->nomination = $request->nomination ? 1 : 0;

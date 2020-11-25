@@ -2357,13 +2357,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     });
     axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("/admin/products/update/".concat(this.id)).then(function (res) {
       var data = res.data;
-      console.log(data);
       $('.card-title').text(data.name_product);
       _this.form = {
         name_product: data.name_product,
         price_product: data.price_product,
         category_id: data.category,
-        sale: 0,
+        sale: data.sale,
         quantity_product: data.quantity_product,
         decscription: data.decscription,
         nomination: data.nomination,

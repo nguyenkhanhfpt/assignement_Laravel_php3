@@ -7,7 +7,7 @@
         </div>
         <div class="col-md-7 align-self-center text-right">
             <div class="d-flex justify-content-end align-items-center">
-                <a href="" type="button" class="btn btn-success">
+                <a href="{{route('adminProductAdd')}}" type="button" class="btn btn-success">
                     <i class="fal fa-plus"></i> Thêm sản phẩm
                 </a>
             </div>

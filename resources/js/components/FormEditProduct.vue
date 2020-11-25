@@ -174,13 +174,12 @@
             axios.get(`/admin/products/update/${this.id}`)
             .then(res => {
                 let data = res.data;
-                console.log(data)
                 $('.card-title').text(data.name_product)
                 this.form = {
                     name_product: data.name_product,
                     price_product: data.price_product,
                     category_id: data.category,
-                    sale: 0,
+                    sale: data.sale,
                     quantity_product: data.quantity_product,
                     decscription: data.decscription,
                     nomination: data.nomination,
