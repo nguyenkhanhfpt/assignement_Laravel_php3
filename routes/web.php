@@ -58,7 +58,7 @@ Route::post('/account/updatePassword', 'AccountController@updatePassword')->name
 // Yêu thích
 Route::get('/wishlist', 'WishlistController@index')->name('wishlist');
 
-Route::get('/wishlist/delete/{id}', 'WishlistController@deleteWish');
+Route::get('/wishlist/delete/{wishlist}', 'WishlistController@deleteWish');
 
 Route::post('/wishlist/add', 'WishlistController@addWish');
 

@@ -712,6 +712,18 @@
 .wishList__box {
     padding-top: 3rem;
     margin-bottom: 3rem;
+
+    .cart {
+        &__product {
+            grid-template-columns: 11.5rem 4fr 3fr;
+        }
+
+        @media screen and (max-width: 865px) {
+            &__product {
+                grid-template-columns: 8rem 4fr 3fr;
+            }
+        }
+    }
 }
 
 @media screen and (min-width: 1400px) {
@@ -727,6 +739,12 @@
 footer {
     padding: 4rem;
     background-color: #f6f6f6;
+
+    @media screen and (max-width: 865px) {
+        & {
+            padding: 2rem 1rem;
+        }
+    }
 
     .footer__box {
         display: grid;

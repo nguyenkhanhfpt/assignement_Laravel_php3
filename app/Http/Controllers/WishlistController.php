@@ -4,33 +4,62 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use Illuminate\Support\Facades\Auth;
+use App\Wishlist;
 
 class WishlistController extends Controller
 {
     protected function index() {
-        return view('wishlist');
+        $wishlists = [];
+
+        if (Auth::user()) {
+            $member = Auth::user();
+            $wishlists = $member->wishlists->load(['product.images']);
+        }
+
+        return view('wishlist', compact('wishlists'));
     }
 
     protected function addWish(Request $request) {
-        $id_product = $request->id_product;
-        $product = Product::find($id_product);
-
-        if($product == null) {
-            return 'false';
+        if (!Auth::user()) {
+            return response()->json([
+                'status' => 400, 
+                'message' => trans('view.add_wishlist_auth')
+            ]);
         }
 
-        $data = ['img_product' => $product->img_product, 
-            'name_product' => $product->name_product, 
-            'price_product' => $this->match_price($product->price_product, $product->sale)
-        ];
+        $data['product_id'] = $request->product_id;
+        $data['member_id'] = $request->member_id ? $request->member_id : Auth::id();
 
-        session()->put("wishList.$id_product", $data);
-        
-        return 'success';
+        $checkWishlist = Wishlist::where('member_id', $data['member_id'])
+            ->where('product_id', $data['product_id'])->first();
+
+        if ($checkWishlist) {
+            return response()->json([
+                'status' => 400, 
+                'message' => trans('view.add_wishlist_existed')
+            ]);
+        }
+
+        $wishlist = Wishlist::create($data);
+
+        if ($wishlist) {
+            return response()->json([
+                'status' => 200, 
+                'message' => trans('view.add_wishlist_succ')
+            ]);
+        } else {
+            return response()->json([
+                'status' => 400, 
+                'message' => trans('view.add_wishlist_failed')
+            ]);
+        }
     }
 
-    protected function deleteWish($id) {
-        session()->forget("wishList.$id");
+    protected function deleteWish(Wishlist $wishlist) {
+        $this->authorize('delete', $wishlist);
+
+        $wishlist->delete();
 
         return redirect()->back();
     }

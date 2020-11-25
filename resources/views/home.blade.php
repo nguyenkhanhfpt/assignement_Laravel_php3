@@ -90,7 +90,7 @@
                             <div class="product__add-cart">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <a href="" class="add-cart">{{ trans('view.add_to_cart') }}</a>
-                                    <a href="" class="add_wishlist" data-name="{{$product->name_product}}" data-id="{{$product->id_product}}">
+                                    <a href="" class="add_wishlist" data-name="{{$product->name_product}}" data-id="{{$product->id}}">
                                         <i class="far fa-heart"></i>
                                     </a>
                                 </div>
@@ -160,7 +160,7 @@
                                 <div class="product__add-cart">
                                     <div class="d-flex justify-content-between align-items-center">
                                         <a href="" class="add-cart">{{ trans('view.add_to_cart') }}</a>
-                                        <a href="" class="add_wishlist" data-name="{{$product->name_product}}" data-id="{{$product->id_product}}">
+                                        <a href="" class="add_wishlist" data-name="{{$product->name_product}}" data-id="{{$product->id}}">
                                             <i class="far fa-heart"></i>
                                         </a>
                                     </div>
@@ -232,7 +232,7 @@
                                         <div class="d-flex justify-content-between align-items-center">
                                             <a href="" class="add-cart">{{ trans('view.add_to_cart') }}</a>
                                             <a href="" class="add_wishlist" data-name="{{$newProducts[$num]->name_product}}" 
-                                            data-id="{{$newProducts[$num]->id_product}}">
+                                            data-id="{{ $newProducts[$num]->id }}">
                                                 <i class="far fa-heart"></i>
                                             </a>
                                         </div>

@@ -18,4 +18,6 @@ Route::group(['namespace' => 'Api'], function() {
     Route::get('/categories', 'CategoryController@index');
     Route::get('/colors', 'ColorController@index');
     Route::get('/sizes', 'SizeController@index');
+
+    Route::resource('wishlists', 'WishlistController')->only(['store', 'destroy']);
 });

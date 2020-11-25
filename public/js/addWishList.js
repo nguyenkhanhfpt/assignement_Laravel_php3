@@ -1,7 +1,6 @@
 $('.add_wishlist').on('click', function(e) {
     e.preventDefault();
     let idProduct = $(this).data("id");
-    let nameProduct = $(this).data('name');
 
     $.ajaxSetup({
         headers: {
@@ -13,25 +12,30 @@ $('.add_wishlist').on('click', function(e) {
         type: "POST",
         url: "/wishlist/add",
         data: {
-            id_product: idProduct
+            product_id: idProduct
         },
         success: function(result) {
-            if(result == 'success') {
+            if(result.status == 200) {
                 Swal.fire({
-                    title: nameProduct.trim(),
-                    text: "Đã được thêm vào danh sách yêu thích!",
+                    title: result.message,
                     icon: "success",
-                    confirmButtonText: "Tiếp tục mua hàng"
+                    confirmButtonText: "Tiếp tục"
                 });
             }
             else {
                 Swal.fire({
-                    title: nameProduct.trim(),
-                    text: "Không thể thêm vào danh sách yêu thích!",
+                    title: result.message,
                     icon: "error",
-                    confirmButtonText: "Tiếp tục mua hàng"
+                    confirmButtonText: "Tiếp tục"
                 });
             }
+        },
+        error: function(err) {
+            Swal.fire({
+                title: 'Có lỗi khi thêm vào danh sách yêu thích!',
+                icon: "error",
+                confirmButtonText: "Tiếp tục"
+            });
         }
     });
 });

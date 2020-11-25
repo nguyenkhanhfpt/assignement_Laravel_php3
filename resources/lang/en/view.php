@@ -20,4 +20,11 @@ return [
     'add_to_cart' => 'Add to cart',
     'code' => 'Code',
     'apply' => 'Apply',
+    'add_wishlist_succ' => 'Add product to the wishlist successfully!',
+    'add_wishlist_failed' => 'Add product to the wishlist failed!',
+    'add_wishlist_auth' => 'Need to login to add to favorites list!',
+    'your_wishlist' => 'Your wishlists',
+    'lists' => 'Lists',
+    'nothing_wishlist' => 'Nothing products in your wishlists',
+    'add_wishlist_existed' => 'Products already exist in your favorites list',
 ];
