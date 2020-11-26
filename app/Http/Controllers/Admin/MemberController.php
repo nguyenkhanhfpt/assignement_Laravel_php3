@@ -5,48 +5,79 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Member;
+use App\User;
+use Yajra\DataTables\Facades\DataTables;
 use DB;
 
 class MemberController extends Controller
 {
-    protected function index() {
-        $members = Member::all();
+    protected function index(Request $request) {
+        if($request->ajax()) {
+            $members = User::where('email', '!=', 'admin@gmail.com')->get();
 
-        return view('admins.members', compact(['members']));
+            return DataTables($members)
+                ->addColumn('info', function($member) {
+                    $img = asset('images') .'/'. $member->img_member;
+                    return "
+                        <span class='round'>
+                            <img src=$img width='50' height='50' alt=''>
+                        </span>
+                        <span class='ml-1'>$member->name_member</span>
+                    ";
+                })
+                ->addColumn('status', function($member) {
+                    $id = $member->id;
+
+                    if ($member->status_member) {
+                        return "<input class='checkbox-member switch' type='checkbox' checked data-id=$id>";
+                    } else {
+                        return "<input class='checkbox-member switch' type='checkbox' data-id=$id>";
+                    }
+                })
+                ->rawColumns(['info', 'status'])
+                ->make(true);
+        }
+
+        return view('admins.members');
     }
 
-    protected function updateStatus0($id) {
-        $member = Member::find($id);
+    protected function updateStatus(Request $request, User $member) {
+        $status = $request->status;
+        $member->status_member = $status;
+        $result = $member->save();
 
-        $member->status_member = 0;
-        $member->save();
+        if ($result) {
+            return response()->json([
+                'status' => 200, 
+                'message' => 'Cập nhật trạng thái người dùng thành công!'
+            ]);
+        } else {
+            return response()->json([
+                'status' => 400, 
+                'message' => 'Cập nhật trạng thái người dùng thất bại!'
+            ]);
+        }
     }
 
-    protected function updateStatus1($id) {
-        $member = Member::find($id);
+    protected function viewMember(User $member) {
+        $member = $member->load(['bills.bill', 'bills.product', 'bills.size', 'bills.color', 'bill']);
 
-        $member->status_member = 1;
-        $member->save();
+        return view('admins.viewMember', compact('member'));
     }
 
-    protected function viewMember($id) {
-        $bills = DB::table('bills as B')
-                    ->join('detail_bills as D', 'B.id_bill', '=', 'D.id_bill')
-                    ->join('products as P', 'P.id_product', '=', 'D.id_product')
-                    ->where('B.id_member', '=', $id)
-                    ->orderBy('B.date_buy', 'DESC')
-                    ->get(); 
+    function deleteMember(User $member) {
+        $result = $member->delete();
 
-        $member = Member::find($id);
-
-        return view('admins.detailMember', compact('bills'), [
-            'member' => $member
-        ]);
-    }
-
-    function deleteMember($id) {
-        Member::find($id)->delete();
-
-        return redirect()->back();
+        if ($result) {
+            return response()->json([
+                'status' => 200, 
+                'message' => 'Cập nhật trạng thái người dùng thành công!'
+            ]);
+        } else {
+            return response()->json([
+                'status' => 400, 
+                'message' => 'Cập nhật trạng thái người dùng thất bại!'
+            ]);
+        }
     }
 }

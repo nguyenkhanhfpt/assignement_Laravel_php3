@@ -168,7 +168,7 @@
                     </div>
             </div>
             <div class="d-block d-md-none menu-toggle">
-                <i class="fal fa-bars ti-menu"></i>
+                <i class="fal fa-bars ti-menu right-side-toggle"></i>
             </div>   
         
         </div>

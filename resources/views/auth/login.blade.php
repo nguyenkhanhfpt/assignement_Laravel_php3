@@ -18,6 +18,12 @@
 
                     <hr>
 
+                    @if(session('error-status'))
+                        <div class="alert alert-danger col-form-label mb-4">
+                            {{ session('error-status') }}
+                        </div>
+                    @endif
+
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 

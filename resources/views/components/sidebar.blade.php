@@ -4,7 +4,7 @@
         <div class="user-profile">
             <div class="user-pro-body">
                 <div>
-                    <img src="{{ asset('images') }}/{{ Auth::user()->img_member }}" alt="user-img" class="img-circle">
+                    <img src="{{ asset('images') }}/{{ Auth::user()->img_member }}" height="50" alt="user-img" class="img-circle">
                 </div>
                 <div class="dropdown">
                     <a href="javascript:void(0)" class="dropdown-toggle u-dropdown link hide-menu" data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -61,6 +61,13 @@
                             <a href="{{ route('adminProduct') }}">Danh sách</a>
                         </li>
                     </ul>
+                </li>
+
+                <li>
+                    <a class="waves-effect waves-dark" href="{{ route('adminMember') }}" aria-expanded="false">
+                        <i class="fal fa-users"></i>
+                        <span class="hide-menu">Người dùng</span>
+                    </a>
                 </li>
 
                 <li>

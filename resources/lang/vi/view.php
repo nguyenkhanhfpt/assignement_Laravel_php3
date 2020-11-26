@@ -27,4 +27,5 @@ return [
     'lists' => 'Danh sách',
     'nothing_wishlist' => 'Chưa có sản phẩm nào trong danh sách yêu thích',
     'add_wishlist_existed' => 'Sản phẩm đã có trong danh sách yêu thích của bạn',
+    'error-status' => 'Tài khoản của bạn chưa được hoạt động',
 ];

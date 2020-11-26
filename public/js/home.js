@@ -81,144 +81,35 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 6);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/js/admin/products.js":
-/*!****************************************!*\
-  !*** ./resources/js/admin/products.js ***!
-  \****************************************/
+/***/ "./resources/js/home.js":
+/*!******************************!*\
+  !*** ./resources/js/home.js ***!
+  \******************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
 $(document).ready(function () {
-  $.ajaxSetup({
-    headers: {
-      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
+  $(".right-side-toggle").click(function () {
+    $(".right-sidebar").slideDown(50);
+    $(".right-sidebar").toggleClass("shw-rside");
   });
-  listen();
 });
-
-function listen() {
-  deleteProduct();
-}
-
-function deleteProduct() {
-  $('.table__product').on('click', '.btn-delete-product', function (event) {
-    event.preventDefault();
-    var id = $(this).data('id');
-    Swal.fire({
-      title: 'Bạn có chắc muốn xóa sản phẩm!',
-      icon: "question",
-      showDenyButton: true,
-      showCancelButton: true,
-      confirmButtonText: "X\xF3a"
-    }).then(function (result) {
-      if (result.value) {
-        $.ajax({
-          method: 'DELETE',
-          url: "/admin/products/".concat(id),
-          success: function success(res) {
-            if (res.status = 200) {
-              $(".product-".concat(id)).parent().parent().remove();
-              Swal.fire({
-                title: res.message,
-                icon: "success",
-                confirmButtonText: "Tiếp tục"
-              });
-            } else {
-              Swal.fire({
-                title: res.message,
-                icon: "error"
-              });
-            }
-          },
-          error: function error(_error) {
-            Swal.fire({
-              title: 'Lỗi khi xóa!',
-              icon: "error"
-            });
-          }
-        });
-      }
-    });
-  });
-}
-
-function editSize() {
-  $('#table-size').on('click', '.edit-btn', function () {
-    var id = $(this).data('id');
-    $.ajax({
-      method: 'GET',
-      url: '/admin/sizes/' + id + '/edit',
-      success: function success(res) {
-        if (res.id) {
-          $('#size-edit').val(res.size);
-          $('#id-edit').val(id);
-          $('#editSizes').modal('show');
-        }
-      },
-      error: function error(_error2) {
-        Swal.fire({
-          title: 'Has some errors!',
-          icon: "error"
-        });
-      }
-    });
-  });
-}
-
-function updateSize() {
-  $('#btn-edit-size').on('click', function () {
-    var size = $('#size-edit').val();
-    var id = $('#id-edit').val();
-    $.ajax({
-      method: 'PATCH',
-      url: '/admin/sizes/' + id,
-      data: {
-        size: size
-      },
-      success: function success(res) {
-        if (res.status = 200) {
-          $('#table-size').DataTable().ajax.reload();
-          Swal.fire({
-            title: res.message,
-            icon: "success",
-            confirmButtonText: "Tiếp tục"
-          }).then(function (result) {
-            $('#editSizes .close').click();
-            $('#form-edit-colors').trigger("reset");
-          });
-        } else {
-          Swal.fire({
-            title: res.message,
-            icon: "error"
-          });
-        }
-      },
-      error: function error(err) {
-        Swal.fire({
-          title: 'Lỗi khi cập nhật!',
-          icon: "error"
-        });
-      }
-    });
-  });
-}
 
 /***/ }),
 
-/***/ 6:
-/*!**********************************************!*\
-  !*** multi ./resources/js/admin/products.js ***!
-  \**********************************************/
+/***/ 3:
+/*!************************************!*\
+  !*** multi ./resources/js/home.js ***!
+  \************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/user/Desktop/Dev/assignement_Laravel_php3/resources/js/admin/products.js */"./resources/js/admin/products.js");
+module.exports = __webpack_require__(/*! /home/user/Desktop/Dev/assignement_Laravel_php3/resources/js/home.js */"./resources/js/home.js");
 
 
 /***/ })

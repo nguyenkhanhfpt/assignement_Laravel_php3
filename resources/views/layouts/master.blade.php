@@ -75,10 +75,25 @@
             </div>
         </div>
 
+        <div class="right-sidebar">
+                <div class="slimscrollright">
+                    <div class="rpanel-title"> Menu
+                        <span>
+                            <i class="fal fa-times right-side-toggle"></i>
+                        </span> 
+                    </div>
+                    <div class="r-panel-body">
+                        
+                    </div>
+                </div>
+            </div>
+
     </div>
     
     @yield('script')
 
     <script src="{{ asset('js/sendContact.js') }}"></script>
+    <!--Custom JavaScript -->
+    <script src="{{ asset('js') }}/home.js"></script>
 </body>
 </html>

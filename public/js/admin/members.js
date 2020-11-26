@@ -81,15 +81,15 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 6);
+/******/ 	return __webpack_require__(__webpack_require__.s = 9);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/js/admin/products.js":
-/*!****************************************!*\
-  !*** ./resources/js/admin/products.js ***!
-  \****************************************/
+/***/ "./resources/js/admin/members.js":
+/*!***************************************!*\
+  !*** ./resources/js/admin/members.js ***!
+  \***************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -103,15 +103,51 @@ $(document).ready(function () {
 });
 
 function listen() {
-  deleteProduct();
+  getListMembers();
+  viewMember();
+  updateStatusMember();
+  deleteMember();
 }
 
-function deleteProduct() {
-  $('.table__product').on('click', '.btn-delete-product', function (event) {
-    event.preventDefault();
+function getListMembers() {
+  var url = '/admin/members';
+  $('#table-color').DataTable({
+    processing: true,
+    serverSide: true,
+    ajax: {
+      type: 'GET',
+      url: url
+    },
+    columns: [{
+      data: 'info'
+    }, {
+      data: 'email'
+    }, {
+      data: 'phone_number'
+    }, {
+      data: 'address'
+    }, {
+      data: 'status'
+    }, {
+      data: null,
+      searchable: false,
+      orderable: false,
+      render: function render(data) {
+        return "\n                        <button class=\"btn btn-info edit-btn\" title=\"Chi ti\u1EBFt th\xE0nh vi\xEAn\" data-id='".concat(data.id, "'>\n                            <i class=\"fal fa-eye\"></i>\n                        </button>\n                        <button class=\"btn btn-danger reset-confirm-btn btn-delete-member\" data-id='").concat(data.id, "' title=\"X\xF3a\">\n                            <i class=\"far fa-trash\"></i>\n                        </button>");
+      }
+    }],
+    language: {
+      "processing": "Đang tải..."
+    },
+    "displayLength": 25
+  });
+}
+
+function deleteMember() {
+  $('#table-color').on('click', '.btn-delete-member', function () {
     var id = $(this).data('id');
     Swal.fire({
-      title: 'Bạn có chắc muốn xóa sản phẩm!',
+      title: 'Bạn có chắc muốn xóa thành viên này!',
       icon: "question",
       showDenyButton: true,
       showCancelButton: true,
@@ -120,15 +156,15 @@ function deleteProduct() {
       if (result.value) {
         $.ajax({
           method: 'DELETE',
-          url: "/admin/products/".concat(id),
+          url: "/admin/members/".concat(id),
           success: function success(res) {
             if (res.status = 200) {
-              $(".product-".concat(id)).parent().parent().remove();
               Swal.fire({
                 title: res.message,
                 icon: "success",
                 confirmButtonText: "Tiếp tục"
               });
+              $('#table-color').DataTable().ajax.reload();
             } else {
               Swal.fire({
                 title: res.message,
@@ -148,22 +184,19 @@ function deleteProduct() {
   });
 }
 
-function editSize() {
-  $('#table-size').on('click', '.edit-btn', function () {
+function viewMember() {
+  $('#table-color').on('click', '.edit-btn', function () {
     var id = $(this).data('id');
     $.ajax({
       method: 'GET',
-      url: '/admin/sizes/' + id + '/edit',
+      url: "/admin/members/".concat(id),
       success: function success(res) {
-        if (res.id) {
-          $('#size-edit').val(res.size);
-          $('#id-edit').val(id);
-          $('#editSizes').modal('show');
-        }
+        $('#view-member .modal-body').html(res);
+        $('#view-member').modal();
       },
       error: function error(_error2) {
         Swal.fire({
-          title: 'Has some errors!',
+          title: 'Đã có lỗi xảy ra!',
           icon: "error"
         });
       }
@@ -171,25 +204,32 @@ function editSize() {
   });
 }
 
-function updateSize() {
-  $('#btn-edit-size').on('click', function () {
-    var size = $('#size-edit').val();
-    var id = $('#id-edit').val();
+function updateStatusMember() {
+  $(document).on('change', '.switch', function () {
+    var id = $(this).data('id');
+    var status = 0;
+
+    if (this.checked) {
+      status = 1;
+    }
+
     $.ajax({
       method: 'PATCH',
-      url: '/admin/sizes/' + id,
+      url: '/admin/members/' + id,
       data: {
-        size: size
+        status: status
       },
       success: function success(res) {
+        console.log(res);
+
         if (res.status = 200) {
-          $('#table-size').DataTable().ajax.reload();
+          $('#table-color').DataTable().ajax.reload();
           Swal.fire({
             title: res.message,
             icon: "success",
             confirmButtonText: "Tiếp tục"
           }).then(function (result) {
-            $('#editSizes .close').click();
+            $('#editColors .close').click();
             $('#form-edit-colors').trigger("reset");
           });
         } else {
@@ -201,7 +241,7 @@ function updateSize() {
       },
       error: function error(err) {
         Swal.fire({
-          title: 'Lỗi khi cập nhật!',
+          title: 'Lỗi khi cập nhật trạng thái!',
           icon: "error"
         });
       }
@@ -211,14 +251,14 @@ function updateSize() {
 
 /***/ }),
 
-/***/ 6:
-/*!**********************************************!*\
-  !*** multi ./resources/js/admin/products.js ***!
-  \**********************************************/
+/***/ 9:
+/*!*********************************************!*\
+  !*** multi ./resources/js/admin/members.js ***!
+  \*********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/user/Desktop/Dev/assignement_Laravel_php3/resources/js/admin/products.js */"./resources/js/admin/products.js");
+module.exports = __webpack_require__(/*! /home/user/Desktop/Dev/assignement_Laravel_php3/resources/js/admin/members.js */"./resources/js/admin/members.js");
 
 
 /***/ })

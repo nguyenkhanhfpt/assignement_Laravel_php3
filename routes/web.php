@@ -15,7 +15,7 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home')->middleware('checkStatus');
 
 Route::get('/products', 'ProductController@index')->name('products');
 
@@ -123,11 +123,11 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
 
     Route::get('/members/notCheck/{id}', 'MemberController@updateStatus0');
     
-    Route::get('/members/checked/{id}', 'MemberController@updateStatus1');
+    Route::patch('/members/{member}', 'MemberController@updateStatus');
 
-    Route::get('/members/delete/{id}', 'MemberController@deleteMember');
+    Route::delete('/members/{member}', 'MemberController@deleteMember');
 
-    Route::get('/members/{id}', 'MemberController@viewMember');
+    Route::get('/members/{member}', 'MemberController@viewMember');
 
 
     // Admin Comment

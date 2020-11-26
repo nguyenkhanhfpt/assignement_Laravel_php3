@@ -44,4 +44,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Wishlist::class, 'member_id');
     }
+
+    public function bills()
+    {
+        return $this->hasManyThrough(Detail_bill::class, Bill::class, 'member_id');
+    }
+
+    public function bill()
+    {
+        return $this->hasMany(Bill::class, 'member_id');
+    }
 }

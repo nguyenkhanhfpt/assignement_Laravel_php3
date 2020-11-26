@@ -27,4 +27,5 @@ return [
     'lists' => 'Lists',
     'nothing_wishlist' => 'Nothing products in your wishlists',
     'add_wishlist_existed' => 'Products already exist in your favorites list',
+    'error-status' => 'Your Account is not activated yet',
 ];

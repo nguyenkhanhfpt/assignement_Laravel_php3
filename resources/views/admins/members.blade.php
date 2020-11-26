@@ -1,98 +1,82 @@
 @extends('layouts.adminMaster')
 
-@section('menu')
-    @include('components.menuAdmin')
-@endsection
-
 @section('content')
-    <h2 class="text-center admin__title">Danh sách thành viên</h2>
-
-    <div class="box">
-        <div class="table-responsive">
-            <table class="table table_member">
-                <thead>
-                    <tr>
-                        <th scope="col">Thành viên</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Số điện thoại</th>
-                        <th scope="col">Địa chỉ</th>
-                        <th scope="col">Giới tính</th>
-                        <th scope="col">Trạng thái</th>
-                        <th scope="col"></th>
-
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($members as $member)
-                        <tr>
-                            <td scope="row">
-                                <img src="{{asset('images')}}/{{$member->img_member}}" alt="">
-                                {{ $member->name_member }}
-                            </td>
-                            <td>
-                                {{ $member->email }}
-                            </td>
-                            <td>
-                                {{ $member->phone_number }}                                                                                                                                                                   
-                            </td>
-                            <td>
-                                {{ $member->address }}
-                            </td>
-                            <td>
-                                {{ $member->gender }}
-                            </td>
-                            <td>
-                                @if($member->status_member == 1)
-                                    <input class="checkbox-member switch" type="checkbox" checked value="{{$member->id_member}}" >
-                                @else
-                                    <input class="checkbox-member switch" type="checkbox" value="{{$member->id_member}}" >
-                                @endif
-                            </td>
-                            <td>
-                                <a href="{{route('adminMember')}}/{{$member->id_member}}" 
-                                data-toggle="tooltip" data-placement="top" title="Chi tiết">
-                                    <i class="fal fa-edit"></i>
-                                </a>
-                                <a onClick="return confirm('Bạn có muốn xóa thành viên này!')" 
-                                href="{{route('adminMember')}}/delete/{{$member->id_member}}" 
-                                data-toggle="tooltip" data-placement="top" title="Xóa">
-                                    <i class="fal fa-trash-alt"></i>
-                                </a>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
+    <div class="row page-titles">
+        <div class="col-md-5 align-self-center py-2">
+            <h4 class="text-themecolor">Quản lý người dùng</h4>
         </div>
-
     </div>
-    
 
-    <script>
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip()
-        })
-    </script>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Danh sách</h4>
+                    <table id="table-color" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Người dùng</th>
+                                <th>Email</th>
+                                <th>Số điện thoại</th>
+                                <th>Địa chỉ</th>
+                                <th>Trạng thái</th>
+                                <th>Hành Động</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <script>
-        $('.checkbox-member').on('change', function() {
-            let notChecks = $(".checkbox-member:not(:checked)");
-            let checks = $(".checkbox-member:checked");
+    <div class="modal fade" id="addColors" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Thêm màu</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                </div>
+                <div class="modal-body">
+                    <form id="form-colors">
+                        <div class="form-group">
+                            <label for="name">Tên màu</label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Nhập tên màu">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
+                    <button type="button" class="btn btn-success" id="btn-add-color">Thêm</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
 
-            for(var i=0; i < notChecks.length; i++){ 
-                $.ajax({
-                    type: "GET",
-                    url: "/admin/members/notCheck/" +$(notChecks[i]).val()
-                });
-            };
+    <div class="modal fade" id="view-member" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Lịch sử mua hàng của thành viên</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                </div>
+                <div class="modal-body">
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
 
-            for(var i=0; i < checks.length; i++){
-                $.ajax({
-                    type: "GET",
-                    url: "/admin/members/checked/" +$(checks[i]).val()
-                });
-            };
-        });
-    </script>
+    @section('script')
+        <script src="{{ asset('js/admin') }}/jquery.dataTables.min.js"></script>
+
+        <script src="{{ asset('js/admin') }}/members.js"></script>
+    @endsection
 
 @endsection

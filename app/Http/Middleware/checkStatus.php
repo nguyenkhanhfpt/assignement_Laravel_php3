@@ -17,7 +17,7 @@ class checkStatus
     {
         if(Auth::check() && Auth::user()->status_member == 0){
             Auth::logout();
-            session()->flash('err', 'Your Account is not activated yet.');
+            session()->flash('error-status', trans('view.error-status'));
             return redirect()->route('login');
         }
 
