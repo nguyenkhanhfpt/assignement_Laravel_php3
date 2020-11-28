@@ -64,6 +64,13 @@
                 </li>
 
                 <li>
+                    <a class="waves-effect waves-dark" href="{{ route('codes.index') }}" aria-expanded="false">
+                        <i class="far fa-barcode"></i>
+                        <span class="hide-menu">Mã giảm giá</span>
+                    </a>
+                </li>
+
+                <li>
                     <a class="waves-effect waves-dark" href="{{ route('adminMember') }}" aria-expanded="false">
                         <i class="fal fa-users"></i>
                         <span class="hide-menu">Người dùng</span>

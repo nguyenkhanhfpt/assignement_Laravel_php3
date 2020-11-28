@@ -1,64 +1,161 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\Auth;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Bill;
 use App\Detail_bill;
 use App\Product;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\SendMailBuy;
+use App\Size;
+use App\Color;
+use App\Code;
+use App\User;
 use Carbon\Carbon;
 use App\Jobs\SendMailOrder;
+use DB;
+use Exception;
 
 class BillController extends Controller
 {
-    protected function checkoutCart(Request $request) {
-        if(!Auth::user()) {
-            return redirect()->back()->with('errCart', 'Bạn cần đăng nhập để mua hàng!');
-        }
-
+    protected function index(Request $request) {
         if(count(session('cart', [])) == 0) {
-            return redirect()->back()->with('errCart', 'Bạn chưa có sản phẩm nào trong giỏ hàng!');
+            return redirect()->back()->with('errCart', trans('view.cart.cart_empty'));
         }
 
+        if(!Auth::user()) {
+            return redirect()->back()->with('errCart', trans('view.cart.need_login'));
+        }
+
+        $member = Auth::user();
+        $sessionCart = session('cart', []);
+        $totalCart = $this->match_total();
+        $totalCartSale = $this->match_total_sale();
+        $carts = [];
+
+        foreach ($sessionCart as $key => $cart) {
+            $size = Size::find($cart['size']);
+            $color = Color::find($cart['color']);
+
+            if ($size) {
+                $cart['size'] = $size->size;
+            }
+
+            if ($color) {
+                $cart['color'] = $color->name;
+            }
+
+            $carts[$key] = $cart;
+        }
+
+        return view('checkout', compact(['carts', 'totalCart', 'member', 'totalCartSale']));
+    }
+
+    public function checkoutCart(Request $request)
+    {
         foreach(session('cart') as $key => $cart) {
-            $product = Product::find($cart['id']);
+            $product = Product::findOrFail($cart['id']);
 
             if($cart['quantity'] > $product->quantity_product) {  
-                return redirect()->back()->with('errQuantity', 
-                "Sản phẩm $product->name_product không đủ với số lượng mà bạn chọn mua!"); 
+                return response()->json([
+                    'status' => 400,
+                    'message' => trans('view.payment.product_not_enough', 
+                        ['product' => $product->name_product]) 
+                ]);
             }
         }
 
-        $bill = Bill::create([
-            'member_id' => Auth::id(),
-            'date_buy' => Carbon::now('Asia/Ho_Chi_Minh'),
-            'status' => 0
-        ]);
+        $member = Auth::user();
 
-        foreach(session('cart') as $key => $cart) {
-            $amount = $cart['quantity'] * $cart['price_product'];
+        DB::beginTransaction();
 
-            $bill->detail_bill()->create([
-                'product_id' => $cart['id'],
-                'size_id' => $cart['size'],
-                'color_id' => $cart['color'],
-                'quantity_buy' => $cart['quantity'],
-                'amount' => $amount,
+        try {
+            $member->name_member = $request->name_member;
+            $member->phone_number = $request->phone_number;
+            $member->address = $request->address;
+            $member->save();
+
+            $bill = Bill::create([
+                'member_id' => Auth::id(),
+                'date_buy' => Carbon::now('Asia/Ho_Chi_Minh'),
+                'status' => 0,
+                'code_id' => session('code.id', null)
+            ]);
+    
+            foreach(session('cart') as $key => $cart) {
+                $amount = $cart['quantity'] * $cart['price_product'];
+    
+                $bill->detail_bill()->create([
+                    'product_id' => $cart['id'],
+                    'size_id' => $cart['size'],
+                    'color_id' => $cart['color'],
+                    'quantity_buy' => $cart['quantity'],
+                    'amount' => $amount,
+                ]);
+            }
+
+            DB::commit();
+
+            // Send mail
+            $this->sendMailtoUserBuy();
+                    
+            session()->forget('cart');
+            session()->forget('code');
+
+            return response()->json([
+                'status' => 200,
+                'message' => trans('view.payment.payment_success')
+            ]);
+        } catch(Exception $e) {
+            DB::rollBack();
+
+            return response()->json([
+                'status' => 400,
+                'message' => trans('view.payment.payment_failed')
             ]);
         }
+    }
 
-        // Send mail
-        $this->sendMailtoUserBuy();
-        
-        session()->forget('cart');
-        return redirect()->back()->with('buySuccess', 'Mua hàng thành công!');
+    public function checkCode(Request $request)
+    {
+        $now = Carbon::now('Asia/Ho_Chi_Minh');
+
+        $code = Code::where('name', $request->code)
+            ->where('start', '<' ,$now)
+            ->where('end', '>' ,$now)
+            ->first();
+
+        if ($code) {
+            if ($code->price < $this->match_total()) {
+                session(['code' => $code]);
+
+                return response()->json([
+                    'status' => 200,
+                    'message' => 'Nhập mã code thành công!',
+                    'totalCartSale' => number_format($this->match_total_sale()) . ' đ'
+                ]);
+            } else {
+                session(['code' => '']);
+
+                return response()->json([
+                    'status' => 400,
+                    'message' => 'Tổng tiền của đơn hàng không đủ để sử dụng mã này!',
+                    'totalCartSale' => number_format($this->match_total_sale()) . ' đ'
+                ]);
+            }
+        } else {
+            session(['code' => '']);
+
+            return response()->json([
+                'status' => 400,
+                'message' => 'Nhập mã code không đúng!',
+                'totalCartSale' => number_format($this->match_total_sale()) . ' đ'
+            ]);
+        }
     }
 
     public function sendMailtoUserBuy() {
-        $total = \Helper::exec()->mathTotalCart();
+        $total = $this->match_total_sale();
         $email = Auth::user()->email;
         $date = date('d-m-Y');
 
@@ -70,5 +167,21 @@ class BillController extends Controller
         ];
 
         SendMailOrder::dispatch($datas);
+    }
+
+    protected function match_total(){
+        $total = 0;
+        foreach(session('cart', []) as $key => $value) {
+            $total += $value['quantity'] * $value['price_product'];
+        }
+        return $total;
+    }
+
+    protected function match_total_sale(){
+        $total = 0;
+        foreach(session('cart', []) as $key => $value) {
+            $total += $value['quantity'] * $value['price_product'];
+        }
+        return $total - session('code.price', 0);
     }
 }

@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 6);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -149,7 +149,7 @@ function addNewSize() {
         size: size
       },
       success: function success(res) {
-        if (res.status = 200) {
+        if (res.status == 200) {
           Swal.fire({
             title: res.message,
             icon: "success",
@@ -191,7 +191,7 @@ function deleteSize() {
           method: 'DELETE',
           url: "/admin/sizes/".concat(id),
           success: function success(res) {
-            if (res.status = 200) {
+            if (res.status == 200) {
               Swal.fire({
                 title: res.message,
                 icon: "success",
@@ -251,7 +251,7 @@ function updateSize() {
         size: size
       },
       success: function success(res) {
-        if (res.status = 200) {
+        if (res.status == 200) {
           $('#table-size').DataTable().ajax.reload();
           Swal.fire({
             title: res.message,
@@ -280,7 +280,7 @@ function updateSize() {
 
 /***/ }),
 
-/***/ 5:
+/***/ 6:
 /*!*******************************************!*\
   !*** multi ./resources/js/admin/sizes.js ***!
   \*******************************************/

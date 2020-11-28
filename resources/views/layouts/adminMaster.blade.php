@@ -288,7 +288,6 @@
 
     @yield('script')
 
-    <!-- Bootstrap popper Core JavaScript -->
     <script src="{{ asset('js/admin') }}/popper.min.js"></script>
     <script src="{{ asset('js/admin') }}/bootstrap.min.js"></script>
     <!-- slimscrollbar scrollbar JavaScript -->

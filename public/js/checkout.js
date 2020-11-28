@@ -81,144 +81,122 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 8);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/js/admin/bills.js":
-/*!*************************************!*\
-  !*** ./resources/js/admin/bills.js ***!
-  \*************************************/
+/***/ "./resources/js/checkout.js":
+/*!**********************************!*\
+  !*** ./resources/js/checkout.js ***!
+  \**********************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
 $(document).ready(function () {
-  $.ajaxSetup({
-    headers: {
-      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  $('.btn__buy').on('click', function (event) {
+    event.preventDefault();
+    var nameMember = $('#name_member').val();
+    var phoneNumber = $('#phone_number').val();
+    var address = $('#address').val();
+
+    if (!nameMember || !phoneNumber || !address) {
+      Swal.fire({
+        title: 'Thông tin người mua hàng không được để trống',
+        icon: "error",
+        confirmButtonText: "Tiếp tục"
+      });
+      return;
     }
-  });
-  listen();
-});
 
-function listen() {
-  getListBill();
-  viewDetail();
-}
-
-function getListBill() {
-  var url = '/admin/bills';
-  $('#table-bills').DataTable({
-    processing: true,
-    serverSide: true,
-    ajax: {
-      type: 'GET',
-      url: url
-    },
-    columns: [{
-      data: 'id'
-    }, {
-      data: 'member.name_member'
-    }, {
-      data: 'detail_bill_count'
-    }, {
-      data: 'total'
-    }, {
-      data: 'date_buy'
-    }, {
-      data: 'status-box'
-    }, {
-      data: null,
-      searchable: false,
-      orderable: false,
-      render: function render(data) {
-        return "\n                        <button class=\"btn btn-info btn-detail-bill\" title=\"Chi ti\u1EBFt \u0111\u01A1n h\xE0ng\" data-id='".concat(data.id, "'>\n                            <i class=\"fal fa-eye\"></i>\n                        </button>\n                    ");
-      }
-    }],
-    language: {
-      "processing": "Đang tải..."
-    },
-    "displayLength": 25,
-    "order": [[0, "desc"]]
-  });
-}
-
-function viewDetail() {
-  $('#table-bills').on('click', '.btn-detail-bill', function () {
-    var id = $(this).data('id');
     $.ajax({
-      method: 'GET',
-      url: "/admin/bills/".concat(id),
-      success: function success(res) {
-        $('#viewDetailBill .modal-body').html(res);
-        $('#viewDetailBill').modal();
-      },
-      error: function error(_error) {
-        Swal.fire({
-          title: 'Có một số lỗi khi hiển thị chi tiết đơn hàng!',
-          icon: "error"
-        });
-      }
-    });
-  });
-  $(document).on('change', '#status', function () {
-    var id = $("[name='id_bill']").val();
-    var status = $('#status').val();
-    $.ajax({
-      method: 'PATCH',
-      url: "/admin/bills/update",
+      method: 'POST',
+      url: 'checkout',
       data: {
-        id: id,
-        status: status
+        name_member: nameMember,
+        phone_number: phoneNumber,
+        address: address
       },
       success: function success(res) {
-        if (res.status == 2) {
-          $('#status').prop('disabled', true);
+        if (res.status == 200) {
+          Swal.fire({
+            title: res.message,
+            icon: "success",
+            confirmButtonText: "Tiếp tục"
+          }).then(function (val) {
+            window.location.href = '/cart';
+          });
+        } else {
+          Swal.fire({
+            title: res.message,
+            icon: "error"
+          });
         }
-
-        $.toast({
-          heading: 'Thành công',
-          text: 'Cập nhật trạng thái đơn hàng thành công.',
-          position: 'top-right',
-          loaderBg: '#ff6849',
-          icon: 'success',
-          hideAfter: 2800,
-          stack: 6
-        });
-        updatedDom();
-        $('#table-bills').DataTable().ajax.reload();
       },
       error: function error(err) {
         Swal.fire({
-          title: 'Có một số lỗi khi cập nhật đơn hàng!',
+          title: 'Sảy ra lỗi khi thanh toán hàng, vui lòng thử lại sau!',
           icon: "error"
         });
       }
     });
   });
-}
+  $('.btn__apply').on('click', function () {
+    var code = $('#code').val();
 
-function updatedDom() {
-  $.ajax({
-    method: 'GET',
-    url: "/admin/update",
-    success: function success(res) {
-      $('#numPeddingBill').text(res.countBill);
+    if (!code) {
+      Swal.fire({
+        title: 'Bạn chưa nhập mã giảm giá!',
+        icon: "error",
+        confirmButtonText: "Tiếp tục"
+      });
+      return;
     }
+
+    $.ajax({
+      method: 'POST',
+      url: 'checkout/checkCode',
+      data: {
+        code: code
+      },
+      success: function success(res) {
+        if (res.status == 200) {
+          $('#match_total_sale').text(res.totalCartSale);
+          Swal.fire({
+            title: res.message,
+            icon: "success",
+            confirmButtonText: "Tiếp tục"
+          });
+        } else {
+          $('#match_total_sale').text(res.totalCartSale);
+          $('#code').val('');
+          Swal.fire({
+            title: res.message,
+            icon: "error"
+          });
+        }
+      },
+      error: function error(err) {
+        Swal.fire({
+          title: 'Sảy ra lỗi khi kiểm tra mã giảm giá!',
+          icon: "error",
+          confirmButtonText: "Tiếp tục"
+        });
+      }
+    });
   });
-}
+});
 
 /***/ }),
 
-/***/ 8:
-/*!*******************************************!*\
-  !*** multi ./resources/js/admin/bills.js ***!
-  \*******************************************/
+/***/ 4:
+/*!****************************************!*\
+  !*** multi ./resources/js/checkout.js ***!
+  \****************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/user/Desktop/Dev/assignement_Laravel_php3/resources/js/admin/bills.js */"./resources/js/admin/bills.js");
+module.exports = __webpack_require__(/*! /home/user/Desktop/Dev/assignement_Laravel_php3/resources/js/checkout.js */"./resources/js/checkout.js");
 
 
 /***/ })

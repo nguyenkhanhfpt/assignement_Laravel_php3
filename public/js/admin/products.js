@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 6);
+/******/ 	return __webpack_require__(__webpack_require__.s = 7);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -122,7 +122,7 @@ function deleteProduct() {
           method: 'DELETE',
           url: "/admin/products/".concat(id),
           success: function success(res) {
-            if (res.status = 200) {
+            if (res.status == 200) {
               $(".product-".concat(id)).parent().parent().remove();
               Swal.fire({
                 title: res.message,
@@ -182,7 +182,7 @@ function updateSize() {
         size: size
       },
       success: function success(res) {
-        if (res.status = 200) {
+        if (res.status == 200) {
           $('#table-size').DataTable().ajax.reload();
           Swal.fire({
             title: res.message,
@@ -211,7 +211,7 @@ function updateSize() {
 
 /***/ }),
 
-/***/ 6:
+/***/ 7:
 /*!**********************************************!*\
   !*** multi ./resources/js/admin/products.js ***!
   \**********************************************/

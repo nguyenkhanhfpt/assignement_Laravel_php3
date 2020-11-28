@@ -85,7 +85,7 @@ function viewDetail() {
                 status: status
             },
             success: function(res) {
-                if (res.status == 2) {
+                if (res.status ==  2) {
                     $('#status').prop('disabled', true);
                 }
 

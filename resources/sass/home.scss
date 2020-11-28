@@ -707,7 +707,6 @@
     }
 }
 
-
 // Wish list
 .wishList__box {
     padding-top: 3rem;
@@ -732,7 +731,6 @@
         padding-left: 6rem;
     }
 }
-
 
 
 // Footer
@@ -802,6 +800,58 @@ footer {
                 background-color: $secondary-color;
                 color: #fff;
             }
+        }
+    }
+}
+
+.payment__box {
+    grid-template-columns: 60% 40%;
+
+    @media screen and (max-width: 865px) {
+        & {
+            grid-template-columns: 100%;
+        }
+    }
+
+    .cart__product {
+        grid-template-columns: 8.8rem 4fr 1rem 3fr;
+
+        &-img {
+            width: 8rem;
+            height: 9rem;
+        }
+
+        &-name {
+            padding-right: 0;
+            text-align: left;
+
+            & .name_product {
+                padding-top: .5rem;
+                word-break: break-all;
+            }
+        }
+    }
+
+    .table th, td {
+        font-size: 1.4rem;
+        text-align: center;
+    }
+
+    .table td img {
+        width: 7rem;
+        height: 8rem;
+        margin-right: 1rem;
+    }
+
+    .form-checkout {
+        label {
+            font-size: 1.5rem;
+        }
+
+        input {
+            font-size: 1.4rem;
+            padding: 20px 15px;
+            border-radius: 0;
         }
     }
 }

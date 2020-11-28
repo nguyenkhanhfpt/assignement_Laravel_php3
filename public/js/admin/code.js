@@ -81,15 +81,15 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 8);
+/******/ 	return __webpack_require__(__webpack_require__.s = 11);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/js/admin/bills.js":
-/*!*************************************!*\
-  !*** ./resources/js/admin/bills.js ***!
-  \*************************************/
+/***/ "./resources/js/admin/code.js":
+/*!************************************!*\
+  !*** ./resources/js/admin/code.js ***!
+  \************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -103,13 +103,14 @@ $(document).ready(function () {
 });
 
 function listen() {
-  getListBill();
-  viewDetail();
+  getListCode();
+  addNewCode();
+  deleteCode();
 }
 
-function getListBill() {
-  var url = '/admin/bills';
-  $('#table-bills').DataTable({
+function getListCode() {
+  var url = '/admin/codes';
+  $('#table-color').DataTable({
     processing: true,
     serverSide: true,
     ajax: {
@@ -119,79 +120,76 @@ function getListBill() {
     columns: [{
       data: 'id'
     }, {
-      data: 'member.name_member'
+      data: 'name'
     }, {
-      data: 'detail_bill_count'
+      data: 'sale'
     }, {
-      data: 'total'
+      data: 'start'
     }, {
-      data: 'date_buy'
+      data: 'end'
     }, {
-      data: 'status-box'
+      data: 'status'
     }, {
       data: null,
       searchable: false,
       orderable: false,
       render: function render(data) {
-        return "\n                        <button class=\"btn btn-info btn-detail-bill\" title=\"Chi ti\u1EBFt \u0111\u01A1n h\xE0ng\" data-id='".concat(data.id, "'>\n                            <i class=\"fal fa-eye\"></i>\n                        </button>\n                    ");
+        return "\n                        <button class=\"btn btn-danger reset-confirm-btn btn-delete-code\" data-id='".concat(data.id, "' title=\"X\xF3a\">\n                            <i class=\"far fa-trash\"></i>\n                        </button>");
       }
     }],
     language: {
       "processing": "Đang tải..."
     },
-    "displayLength": 25,
-    "order": [[0, "desc"]]
+    "displayLength": 25
   });
 }
 
-function viewDetail() {
-  $('#table-bills').on('click', '.btn-detail-bill', function () {
-    var id = $(this).data('id');
-    $.ajax({
-      method: 'GET',
-      url: "/admin/bills/".concat(id),
-      success: function success(res) {
-        $('#viewDetailBill .modal-body').html(res);
-        $('#viewDetailBill').modal();
-      },
-      error: function error(_error) {
-        Swal.fire({
-          title: 'Có một số lỗi khi hiển thị chi tiết đơn hàng!',
-          icon: "error"
-        });
-      }
-    });
-  });
-  $(document).on('change', '#status', function () {
-    var id = $("[name='id_bill']").val();
-    var status = $('#status').val();
-    $.ajax({
-      method: 'PATCH',
-      url: "/admin/bills/update",
-      data: {
-        id: id,
-        status: status
-      },
-      success: function success(res) {
-        if (res.status == 2) {
-          $('#status').prop('disabled', true);
-        }
+function addNewCode() {
+  $('#btn-add-code').on('click', function () {
+    var name = $('#name').val();
+    var price = $('#price').val();
+    var start = $('#start').val();
+    var end = $('#end').val();
+    var url = '/admin/codes';
 
-        $.toast({
-          heading: 'Thành công',
-          text: 'Cập nhật trạng thái đơn hàng thành công.',
-          position: 'top-right',
-          loaderBg: '#ff6849',
-          icon: 'success',
-          hideAfter: 2800,
-          stack: 6
-        });
-        updatedDom();
-        $('#table-bills').DataTable().ajax.reload();
+    if (new Date(start).getTime() > new Date(end).getTime()) {
+      Swal.fire({
+        title: 'Ngày bắt đầu không được sau ngày kết thúc!',
+        icon: "error"
+      });
+      return;
+    }
+
+    $.ajax({
+      method: 'POST',
+      url: url,
+      data: {
+        name: name,
+        price: price,
+        start: start,
+        end: end
+      },
+      success: function success(res) {
+        if (res.status == 200) {
+          Swal.fire({
+            title: res.message,
+            icon: "success",
+            confirmButtonText: "Tiếp tục"
+          }).then(function (val) {
+            $('#table-color').DataTable().ajax.reload();
+            $('#addCodes .close').click();
+            $('#form-colors').trigger("reset");
+          });
+        } else {
+          Swal.fire({
+            title: res.message,
+            icon: "error"
+          });
+        }
       },
       error: function error(err) {
         Swal.fire({
-          title: 'Có một số lỗi khi cập nhật đơn hàng!',
+          title: 'Lỗi khi thêm mới mã giảm giá!',
           icon: "error"
         });
       }
@@ -199,26 +197,57 @@ function viewDetail() {
   });
 }
 
-function updatedDom() {
-  $.ajax({
-    method: 'GET',
-    url: "/admin/update",
-    success: function success(res) {
-      $('#numPeddingBill').text(res.countBill);
-    }
+function deleteCode() {
+  $('#table-color').on('click', '.btn-delete-code', function () {
+    var id = $(this).data('id');
+    Swal.fire({
+      title: 'Bạn có chắc muốn xóa mã giảm giá!',
+      icon: "question",
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: "X\xF3a"
+    }).then(function (result) {
+      if (result.value) {
+        $.ajax({
+          method: 'DELETE',
+          url: "/admin/codes/".concat(id),
+          success: function success(res) {
+            if (res.status == 200) {
+              Swal.fire({
+                title: res.message,
+                icon: "success",
+                confirmButtonText: "Tiếp tục"
+              });
+              $('#table-color').DataTable().ajax.reload();
+            } else {
+              Swal.fire({
+                title: res.message,
+                icon: "error"
+              });
+            }
+          },
+          error: function error(_error) {
+            Swal.fire({
+              title: 'Lỗi khi xóa!',
+              icon: "error"
+            });
+          }
+        });
+      }
+    });
   });
 }
 
 /***/ }),
 
-/***/ 8:
-/*!*******************************************!*\
-  !*** multi ./resources/js/admin/bills.js ***!
-  \*******************************************/
+/***/ 11:
+/*!******************************************!*\
+  !*** multi ./resources/js/admin/code.js ***!
+  \******************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/user/Desktop/Dev/assignement_Laravel_php3/resources/js/admin/bills.js */"./resources/js/admin/bills.js");
+module.exports = __webpack_require__(/*! /home/user/Desktop/Dev/assignement_Laravel_php3/resources/js/admin/code.js */"./resources/js/admin/code.js");
 
 
 /***/ })

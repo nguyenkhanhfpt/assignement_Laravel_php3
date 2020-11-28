@@ -64,7 +64,7 @@ function addNewSize() {
                 size: size
             },
             success: function(res) {
-                if (res.status = 200) {
+                if (res.status == 200) {
                     Swal.fire({
                         title: res.message,
                         icon: "success",
@@ -108,7 +108,7 @@ function deleteSize() {
                     method: 'DELETE',
                     url: `/admin/sizes/${id}`,
                     success: function (res) {
-                        if (res.status = 200) {
+                        if (res.status == 200) {
                             Swal.fire({
                                 title: res.message,
                                 icon: "success",
@@ -174,7 +174,7 @@ function updateSize() {
                 size: size
             },
             success: function(res) {
-                if (res.status = 200) {
+                if (res.status == 200) {
                     $('#table-size').DataTable().ajax.reload();
 
                     Swal.fire({

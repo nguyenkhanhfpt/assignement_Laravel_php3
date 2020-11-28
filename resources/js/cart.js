@@ -17,12 +17,12 @@ $(document).ready(function(){
                 quantity: quantity
             },
             success: function(res) {
-                if (res.status == 200) {
+                if (res.status ==  200) {
                     $(`.quantity-${idCart}`).parent().find('.total-price').html(res.price_product);
                     $('.match_total').text(res.match_total);
                 }
 
-                if(res.status == 402) {
+                if(res.status ==  402) {
                    $(`.quantity-${idCart}`).val(quantity - 1);
 
                     Swal.fire({

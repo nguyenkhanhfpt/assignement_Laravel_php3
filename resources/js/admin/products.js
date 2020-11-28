@@ -30,7 +30,7 @@ function deleteProduct() {
                     method: 'DELETE',
                     url: `/admin/products/${id}`,
                     success: function (res) {
-                        if (res.status = 200) {
+                        if (res.status == 200) {
                             $(`.product-${id}`).parent().parent().remove();
                             
                             Swal.fire({
@@ -96,7 +96,7 @@ function updateSize() {
                 size: size
             },
             success: function(res) {
-                if (res.status = 200) {
+                if (res.status == 200) {
                     $('#table-size').DataTable().ajax.reload();
 
                     Swal.fire({

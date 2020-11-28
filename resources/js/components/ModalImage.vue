@@ -78,7 +78,7 @@
 
                 axios.post(url, formData, { headers: {'Content-Type': 'multipart/form-data'} })
                 .then(res => {
-                    if (res.status == 200) {
+                    if (res.status ==  200) {
                         let resImage = res.data.data;
 
                         let newLibraries = [

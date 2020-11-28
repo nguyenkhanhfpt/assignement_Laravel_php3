@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -149,7 +149,7 @@ function addNewColor() {
         name: name
       },
       success: function success(res) {
-        if (res.status = 200) {
+        if (res.status == 200) {
           Swal.fire({
             title: res.message,
             icon: "success",
@@ -191,7 +191,7 @@ function deleteColor() {
           method: 'DELETE',
           url: "/admin/colors/".concat(id),
           success: function success(res) {
-            if (res.status = 200) {
+            if (res.status == 200) {
               Swal.fire({
                 title: res.message,
                 icon: "success",
@@ -251,7 +251,7 @@ function updateColor() {
         name: name
       },
       success: function success(res) {
-        if (res.status = 200) {
+        if (res.status == 200) {
           $('#table-color').DataTable().ajax.reload();
           Swal.fire({
             title: res.message,
@@ -280,7 +280,7 @@ function updateColor() {
 
 /***/ }),
 
-/***/ 4:
+/***/ 5:
 /*!********************************************!*\
   !*** multi ./resources/js/admin/colors.js ***!
   \********************************************/

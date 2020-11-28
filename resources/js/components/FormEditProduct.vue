@@ -216,7 +216,7 @@
 
                 axios.patch(`/admin/products/update/${this.id}`, this.form)
                 .then(res => {
-                    if (res.status == 200) {
+                    if (res.status ==  200) {
                         store.commit('setLoadding');
 
                         Swal.fire({

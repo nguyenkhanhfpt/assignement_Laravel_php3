@@ -63,7 +63,7 @@ function addNewColor() {
                 name: name
             },
             success: function(res) {
-                if (res.status = 200) {
+                if (res.status == 200) {
                     Swal.fire({
                         title: res.message,
                         icon: "success",
@@ -107,7 +107,7 @@ function deleteColor() {
                     method: 'DELETE',
                     url: `/admin/category/${id}`,
                     success: function (res) {
-                        if (res.status = 200) {
+                        if (res.status == 200) {
                             Swal.fire({
                                 title: res.message,
                                 icon: "success",
@@ -173,7 +173,7 @@ function updateColor() {
                 name: name
             },
             success: function(res) {
-                if (res.status = 200) {
+                if (res.status ==  200) {
                     $('#table-color').DataTable().ajax.reload();
 
                     Swal.fire({

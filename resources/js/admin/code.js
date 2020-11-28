@@ -9,15 +9,13 @@ $(document).ready(function() {
 });
 
 function listen() {
-    getListColor();
-    addNewColor();
-    deleteColor();
-    editColor();
-    updateColor();
+    getListCode();
+    addNewCode();
+    deleteCode();
 }
 
-function getListColor() {
-    let url = '/admin/colors';
+function getListCode() {
+    let url = '/admin/codes';
 
     $('#table-color').DataTable({
         processing: true,
@@ -29,16 +27,17 @@ function getListColor() {
         columns: [
             { data: 'id'},
             { data: 'name'},
+            { data: 'sale' },
+            { data: 'start'},
+            { data: 'end'},
+            { data: 'status'},
             {
                 data: null,
                 searchable: false,
                 orderable: false,
                 render: (data) => {
                     return `
-                        <button class="btn btn-info edit-btn" title="Chỉnh sửa" data-id='${data.id}'>
-                            <i class="fal fa-eye"></i>
-                        </button>
-                        <button class="btn btn-danger reset-confirm-btn btn-delete-color" data-id='${data.id}' title="Xóa">
+                        <button class="btn btn-danger reset-confirm-btn btn-delete-code" data-id='${data.id}' title="Xóa">
                             <i class="far fa-trash"></i>
                         </button>`
                 },
@@ -51,19 +50,33 @@ function getListColor() {
     });
 }
 
-function addNewColor() {
-    $('#btn-add-color').on('click', function() {
+function addNewCode() {
+    $('#btn-add-code').on('click', function() {
         let name = $('#name').val();
-        let url = '/admin/colors';
+        let price = $('#price').val();
+        let start = $('#start').val();
+        let end = $('#end').val();
+        let url = '/admin/codes';
+
+        if (new Date(start).getTime() > new Date(end).getTime()) {
+            Swal.fire({
+                title: 'Ngày bắt đầu không được sau ngày kết thúc!',
+                icon: "error"
+            });
+            return;
+        }
 
         $.ajax({
             method: 'POST',
             url: url,
             data: {
-                name: name
+                name: name,
+                price: price,
+                start: start,
+                end: end
             },
             success: function(res) {
-                if (res.status == 200) {
+                if (res.status ==  200) {
                     Swal.fire({
                         title: res.message,
                         icon: "success",
@@ -71,7 +84,7 @@ function addNewColor() {
                     }).then(val => {
                         $('#table-color').DataTable().ajax.reload();
 
-                        $('#addColors .close').click();
+                        $('#addCodes .close').click();
                         $('#form-colors').trigger("reset");
                     });
                 } else {
@@ -83,7 +96,7 @@ function addNewColor() {
             }, 
             error: function(err) {
                 Swal.fire({
-                    title: 'Lỗi khi thêm mới!',
+                    title: 'Lỗi khi thêm mới mã giảm giá!',
                     icon: "error"
                 });
             }
@@ -91,12 +104,12 @@ function addNewColor() {
     });
 }
 
-function deleteColor() {
-    $('#table-color').on('click', '.btn-delete-color', function() {
+function deleteCode() {
+    $('#table-color').on('click', '.btn-delete-code', function() {
         let id = $(this).data('id');
 
         Swal.fire({
-            title: 'Bạn có chắc muốn xóa màu!',
+            title: 'Bạn có chắc muốn xóa mã giảm giá!',
             icon: "question",
             showDenyButton: true,
             showCancelButton: true,
@@ -105,7 +118,7 @@ function deleteColor() {
             if (result.value) {
                 $.ajax({
                     method: 'DELETE',
-                    url: `/admin/colors/${id}`,
+                    url: `/admin/codes/${id}`,
                     success: function (res) {
                         if (res.status == 200) {
                             Swal.fire({
@@ -135,68 +148,4 @@ function deleteColor() {
         
         
     })
-}
-
-function editColor() {
-    $('#table-color').on('click', '.edit-btn', function() {
-        let id = $(this).data('id');
-
-        $.ajax({
-            method: 'GET',
-            url: '/admin/colors/' +id+ '/edit',
-            success: function(res) {
-                if (res.id) {
-                    $('#name-edit').val(res.name);
-                    $('#id-edit').val(id);
-                    $('#editColors').modal('show');
-                }
-            },
-            error: function(error) {
-                Swal.fire({
-                    title: 'Has some errors!',
-                    icon: "error"
-                });
-            }
-        })
-    })
-}
-
-function updateColor() {
-    $('#btn-edit-color').on('click', function() {
-        let name = $('#name-edit').val();
-        let id = $('#id-edit').val();
-
-        $.ajax({
-            method: 'PATCH',
-            url: '/admin/colors/' +id,
-            data: {
-                name: name
-            },
-            success: function(res) {
-                if (res.status == 200) {
-                    $('#table-color').DataTable().ajax.reload();
-
-                    Swal.fire({
-                        title: res.message,
-                        icon: "success",
-                        confirmButtonText: "Tiếp tục"
-                    }).then(result => {
-                        $('#editColors .close').click();
-                        $('#form-edit-colors').trigger("reset");
-                    });
-                } else {
-                    Swal.fire({
-                        title: res.message,
-                        icon: "error"
-                    });
-                }
-            },
-            error: function(err) {
-                Swal.fire({
-                    title: 'Lỗi khi cập nhật!',
-                    icon: "error"
-                });
-            }
-        });
-    });
 }

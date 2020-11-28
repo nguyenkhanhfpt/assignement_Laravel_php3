@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 8);
+/******/ 	return __webpack_require__(__webpack_require__.s = 9);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -149,7 +149,7 @@ function addNewColor() {
         name: name
       },
       success: function success(res) {
-        if (res.status = 200) {
+        if (res.status == 200) {
           Swal.fire({
             title: res.message,
             icon: "success",
@@ -191,7 +191,7 @@ function deleteColor() {
           method: 'DELETE',
           url: "/admin/category/".concat(id),
           success: function success(res) {
-            if (res.status = 200) {
+            if (res.status == 200) {
               Swal.fire({
                 title: res.message,
                 icon: "success",
@@ -251,7 +251,7 @@ function updateColor() {
         name: name
       },
       success: function success(res) {
-        if (res.status = 200) {
+        if (res.status == 200) {
           $('#table-color').DataTable().ajax.reload();
           Swal.fire({
             title: res.message,
@@ -280,7 +280,7 @@ function updateColor() {
 
 /***/ }),
 
-/***/ 8:
+/***/ 9:
 /*!************************************************!*\
   !*** multi ./resources/js/admin/categories.js ***!
   \************************************************/

@@ -28,4 +28,23 @@ return [
     'nothing_wishlist' => 'Chưa có sản phẩm nào trong danh sách yêu thích',
     'add_wishlist_existed' => 'Sản phẩm đã có trong danh sách yêu thích của bạn',
     'error-status' => 'Tài khoản của bạn chưa được hoạt động',
+    'color' => 'Màu',
+    'quantity' => 'Số lượng',
+    'cart' => [
+        'need_login' => 'Bạn cần đăng nhập để mua hàng!',
+        'cart_empty' => 'Bạn chưa có sản phẩm nào trong giỏ hàng!',
+        'products' => 'sản phẩm',
+        'ship' => 'Phí vận chuyển',
+        'free' => 'Miễn phí',
+        'total' => 'Tổng tiền',
+        'payment' => 'Tiến hành thanh toán',
+        'continue_buy' => 'Tiếp tục mua hàng',
+    ],
+    'payment' => [
+        'confirm' => 'Xác nhận đơn hàng',
+        'back_cart' => 'Quay lại giỏ hàng',
+        'product_not_enough' => 'Sản phẩm :product không đủ để bạn mua!',
+        'payment_success' => 'Mua sản phẩm thành công!',
+        'payment_failed' => 'Mua sản phẩm thất bại, vui lòng thử lại sau!',
+    ],
 ];

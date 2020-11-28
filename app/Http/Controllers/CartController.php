@@ -105,7 +105,12 @@ class CartController extends Controller
 
     protected function deleteCart($id) {
         session()->forget("cart.$id");
-        return redirect()->route('cart');
+
+        if (count(session('cart'))) {
+            return redirect()->back();
+        } else {
+            return redirect()->route('cart');
+        }
     }
 
     protected function undateCart(Request $request, $idCart, $idProduct) {

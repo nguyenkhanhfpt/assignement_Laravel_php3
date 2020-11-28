@@ -9,8 +9,7 @@ class Category extends Model
     protected $table = 'categories';
     public $timestamps = false;
     public $fillable = [
-        'name', 
-        'img_category'
+        'name'
     ];
 
     public function products()

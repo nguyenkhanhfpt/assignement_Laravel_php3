@@ -21,9 +21,11 @@ mix.sass('resources/sass/app.scss', 'public/css')
     .js('resources/js/app.js', 'public/js')
     .js('resources/js/cart.js', 'public/js')
     .js('resources/js/home.js', 'public/js')
+    .js('resources/js/checkout.js', 'public/js')
     .js('resources/js/admin/colors.js', 'public/js/admin')
     .js('resources/js/admin/sizes.js', 'public/js/admin')
     .js('resources/js/admin/products.js', 'public/js/admin')
     .js('resources/js/admin/bills.js', 'public/js/admin')
     .js('resources/js/admin/categories.js', 'public/js/admin')
-    .js('resources/js/admin/members.js', 'public/js/admin');
+    .js('resources/js/admin/members.js', 'public/js/admin')
+    .js('resources/js/admin/code.js', 'public/js/admin');

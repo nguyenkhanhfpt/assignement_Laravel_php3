@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 9);
+/******/ 	return __webpack_require__(__webpack_require__.s = 10);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -158,7 +158,7 @@ function deleteMember() {
           method: 'DELETE',
           url: "/admin/members/".concat(id),
           success: function success(res) {
-            if (res.status = 200) {
+            if (res.status == 200) {
               Swal.fire({
                 title: res.message,
                 icon: "success",
@@ -222,7 +222,7 @@ function updateStatusMember() {
       success: function success(res) {
         console.log(res);
 
-        if (res.status = 200) {
+        if (res.status == 200) {
           $('#table-color').DataTable().ajax.reload();
           Swal.fire({
             title: res.message,
@@ -251,7 +251,7 @@ function updateStatusMember() {
 
 /***/ }),
 
-/***/ 9:
+/***/ 10:
 /*!*********************************************!*\
   !*** multi ./resources/js/admin/members.js ***!
   \*********************************************/

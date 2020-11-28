@@ -69,7 +69,7 @@ function deleteMember() {
                     method: 'DELETE',
                     url: `/admin/members/${id}`,
                     success: function (res) {
-                        if (res.status = 200) {
+                        if (res.status == 200) {
                             Swal.fire({
                                 title: res.message,
                                 icon: "success",
@@ -136,7 +136,7 @@ function updateStatusMember() {
             },
             success: function(res) {
                 console.log(res)
-                if (res.status = 200) {
+                if (res.status == 200) {
                     $('#table-color').DataTable().ajax.reload();
 
                     Swal.fire({

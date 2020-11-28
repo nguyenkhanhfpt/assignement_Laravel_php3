@@ -39,7 +39,11 @@ Route::patch('/cart/update/{idCart}/{idProduct}', 'CartController@undateCart');
 Route::get('/cart/delete/{id}', 'CartController@deleteCart');
 
 // thanh toán
-Route::get('/checkout', 'BillController@checkoutCart')->name('checkout');
+Route::get('/checkout', 'BillController@index')->name('checkout');
+
+Route::post('/checkout', 'BillController@checkoutCart');
+
+Route::post('/checkout/checkCode', 'BillController@checkCode');
 
 
 // Comment
@@ -117,7 +121,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
 
     Route::post('/products/add', 'ProductController@insert');
 
-
     // Admin Member
     Route::get('/members', 'MemberController@index')->name('adminMember');
 
@@ -135,6 +138,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
     
     Route::get('/comments/delete/{id}', 'CommentController@deleteComment');
 
+
+    // Code
+    Route::resource('/codes', 'CodeController')->only(['index', 'store', 'destroy']);
 
     // Admin Bills
     Route::get('/bills', 'BillController@index')->name('adminBill');

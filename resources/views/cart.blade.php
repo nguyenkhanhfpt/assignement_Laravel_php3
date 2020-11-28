@@ -12,7 +12,7 @@
             <div class="cart__box">
                 <div class="cart__item">
                     <div class="pos_title">
-                        <h2>Giỏ hàng</h2>
+                        <h2>{{ trans('view.carts') }}</h2>
                     </div>
 
                     @if(session('buySuccess'))
@@ -70,7 +70,7 @@
                         <p class="alert_nothing">Không có sản phẩm nào trong giỏ hàng</p>
                     @endif
                     
-                    <a href="{{route('products')}}" class="btn__buy btn__buy-margin mb-4">Tiếp tục mua hàng</a>
+                    <a href="{{route('products')}}" class="btn__buy btn__buy-margin mb-4">{{ trans('view.cart.continue_buy') }}</a>
                 </div>    
                 <div class="cart__checkout">
                     <div class="card cart-summary">
@@ -79,15 +79,15 @@
                             <div class="card-block">
                                 <div class="cart-summary-line" id="cart-subtotal-products">
                                     <span class="label js-subtotal">
-                                        {{count($sessionCart)}} sản phẩm
+                                        {{count($sessionCart)}} {{ trans('view.cart.products') }}
                                     </span>
                                     <span class="value match_total">{{number_format($totalCart)}} đ</span>
                                 </div>
                                 <div class="cart-summary-line" id="cart-subtotal-shipping">
                                     <span class="label">
-                                        Phí vận chuyển
+                                        {{ trans('view.cart.ship') }}
                                     </span>
-                                    <span class="value">Miễn phí</span>
+                                    <span class="value">{{ trans('view.cart.free') }}</span>
                                 </div>
                             </div>
                             
@@ -95,24 +95,16 @@
 
                             <div class="card-block">
                                 <div class="cart-summary-line cart-total">
-                                    <span class="label">Tổng tiền</span>
+                                    <span class="label">{{ trans('view.cart.total') }}</span>
                                     <span class="value match_total" style="font-size: 1.7rem; color: #f00;">{{number_format($totalCart)}} đ</span>
                                 </div>
                             </div>
-
-                            <hr class="separator">
-
-                            <div class="card-block">
-                                <div class="code-sale">
-                                    <input type="text" class="form-control" placeholder="{{ trans('view.code') }}">
-                                    <button>{{ trans('view.apply') }}</button>
-                                </div>
-                            </div>
+                            
                             <hr class="separator">
                         </div>
 
                         <div class="checkout text-sm-center card-block">
-                            <a href="{{route('checkout')}}" class="btn__buy">Tiến hành thanh toán</a>
+                            <a href="{{route('checkout')}}" class="btn__buy">{{ trans('view.cart.payment') }}</a>
                         </div>
 
                     </div>
