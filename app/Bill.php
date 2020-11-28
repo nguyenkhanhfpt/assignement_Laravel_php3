@@ -23,4 +23,9 @@ class Bill extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function code()
+    {
+        return $this->belongsTo(Code::class);
+    }
 }

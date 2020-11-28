@@ -68,7 +68,7 @@
 
             <tr>
                 <td colspan="8" class="font-weight-bold" style="font-size: 16px;">
-                    Tổng tiền đơn hàng: <b class="total-amount">0 đ</b>
+                    Tổng tiền đơn hàng: <b class="total-amount">{{ number_format($member->total) }} đ</b>
                 </td>
             </tr>
         </tbody>

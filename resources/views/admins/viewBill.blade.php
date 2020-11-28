@@ -13,6 +13,9 @@
             <p><span>Email:</span> {{ $bill->member->email }}</p>
             <p><span>Mã đơn hàng:</span> #{{ $bill->id }}</p>
             <p><span>Thời gian mua:</span> {{ $bill->date_buy }}</p>
+            @if ($bill->code)
+                <p><span>Mã giảm giá:</span> {{ $bill->code->name }}</p>
+            @endif
         </div>
     </div>
 
@@ -53,7 +56,15 @@
 
             <tr>
                 <td colspan="5" class="font-weight-bold" style="font-size: 16px;">
-                    Tổng tiền đơn hàng: <b class="total-amount">{{ number_format($bill->total) }} đ</b>
+                    @if ($bill->code)
+                        Tổng tiền đơn hàng: <b class="text-muted font-weight-normal">
+                            <del>{{ number_format($bill->total) }} đ</del>
+                            </b> 
+                        <b class="total-amount">{{ number_format($bill->total - $bill->code->price) }} đ</b>
+                    @else
+                        Tổng tiền đơn hàng: 
+                        <b class="total-amount">{{ number_format($bill->total) }} đ</b>
+                    @endif
                 </td>
                 <td>
                     <form action="{{route('updateBill')}}" method="post" class="d-flex align-items-end">

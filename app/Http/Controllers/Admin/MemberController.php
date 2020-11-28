@@ -61,6 +61,13 @@ class MemberController extends Controller
 
     protected function viewMember(User $member) {
         $member = $member->load(['bills.bill', 'bills.product', 'bills.size', 'bills.color', 'bill']);
+        
+        $total = 0;
+        foreach($member->bills as $bill) {
+            $total += $bill->amount;
+        }
+
+        $member->total = $total;
 
         return view('admins.viewMember', compact('member'));
     }

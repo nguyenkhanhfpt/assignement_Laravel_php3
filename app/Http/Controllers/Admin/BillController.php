@@ -48,6 +48,7 @@ class BillController extends Controller
     protected function viewBill($id) {
         $bill = Bill::findOrFail($id)->load([
             'member',
+            'code',
             'detail_bill.product.images',
             'detail_bill.color',
             'detail_bill.size',

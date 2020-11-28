@@ -119,6 +119,7 @@ class BillController extends Controller
     public function checkCode(Request $request)
     {
         $now = Carbon::now('Asia/Ho_Chi_Minh');
+        $member = Auth::user()->load('bill');
 
         $code = Code::where('name', $request->code)
             ->where('start', '<' ,$now)
@@ -126,6 +127,18 @@ class BillController extends Controller
             ->first();
 
         if ($code) {
+            foreach($member->bill as $bill) {
+                if ($code->id == $bill->code_id) {
+                    session(['code' => null]);
+    
+                    return response()->json([
+                        'status' => 400,
+                        'message' => 'Bạn đã sử dụng mã code này, vui lòng nhập mã khác!',
+                        'totalCartSale' => number_format($this->match_total_sale()) . ' đ'
+                    ]);
+                }
+            }
+
             if ($code->price < $this->match_total()) {
                 session(['code' => $code]);
 
