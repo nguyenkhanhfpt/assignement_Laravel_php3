@@ -92,6 +92,7 @@
     <script src="{{ asset('js/sendContact.js') }}"></script>
     <!--Custom JavaScript -->
     <script src="{{ asset('js') }}/home.js"></script>
+    <script src="{{ asset('js') }}/notifications.js"></script>
 
     @yield('script')
 

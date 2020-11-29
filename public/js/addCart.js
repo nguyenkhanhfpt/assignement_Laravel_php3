@@ -50,7 +50,7 @@ $(document).ready(function() {
                             color: color
                         },
                         success: function(result) {
-                            $(".number-cart").html(result.count);
+                            $("#number-cart").html(result.count);
                             $(".cart__amount span").html(result.total.toLocaleString());
 
                             Swal.fire({
@@ -126,7 +126,7 @@ $(document).ready(function() {
                                             id_product: idProduct
                                         },
                                         success: function(result) {
-                                            $(".number-cart").html(result.count);
+                                            $("#number-cart").html(result.count);
                                             $(".cart__amount span").html(result.total.toLocaleString());
                                         }
                                     });

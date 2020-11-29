@@ -108,23 +108,51 @@
                     <i class="far fa-search"></i>
                 </a>
             </div>
-            <div class="nav__cart">
-                <div class="nav__cart-icon">
-                    <i class="fal fa-shopping-bag"></i>
-                    <div class="number-cart">
-                        @if(session('cart'))
-                            {{ count(session('cart')) }}
-                        @else
-                            0
-                        @endif
+            <div class="d-flex justify-content-end justify-content-md-start">
+                <div class="py-2 mr-5">
+                    <div class="nav__cart-icon">
+                        <i class="fal fa-bell mb-2" id="notification" 
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                        <div class="number-cart" id="number-notify">
+                            
+                        </div>
+                        <div class="dropdown-menu dropdown-menu-right notification animated bounceInDown" aria-labelledby="notification">
+                            <ul>
+                                <li>
+                                    <div class="drop-title">
+                                        <span>{{ trans('view.notification.notifications') }}</span>
+                                    </div>
+                                </li>
+                                <li id="notification-content">
+                                </li>
+                                <li>
+                                    <a class="nav-link text-center readed" href="javascript:void(0);"> 
+                                        <strong>{{ trans('view.notification.mark_read') }}</strong> 
+                                        <i class="fal fa-angle-right"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
+                
+                <div class="nav__cart">
+                    <div class="nav__cart-icon">
+                        <i class="fal fa-shopping-bag"></i>
+                        <div class="number-cart" id="number-cart">
+                            @if(session('cart'))
+                                {{ count(session('cart')) }}
+                            @else
+                                0
+                            @endif
+                        </div>
+                    </div>
 
-                <div class="cart__amount">
-                    <span class="pl-2">{{ number_format(\Helper::exec()->mathTotalCart()) }}</span> đ
-                </div>
+                    <div class="cart__amount">
+                        <span class="pl-2">{{ number_format(\Helper::exec()->mathTotalCart()) }}</span> đ
+                    </div>
 
-                <div class="nav__cart-mini">
+                    <div class="nav__cart-mini">
                         <div class="cart__mini-content">
                             <div class="cart__mini-product">
                                 @foreach(session('cart', []) as $key => $cart)
@@ -166,10 +194,14 @@
                             
                         </div>
                     </div>
+                </div>
+                
             </div>
+
             <div class="d-block d-md-none menu-toggle">
                 <i class="fal fa-bars ti-menu right-side-toggle"></i>
-            </div>   
+            </div>
+               
         
         </div>
     </div>

@@ -15,6 +15,12 @@ return [
     'logout' => 'Logout',
     'your_email' => 'Your email',
     'write_review' => 'Write your review',
+    'notification' => [
+        'notifications' => 'Notifications',
+        'nothing_notify' => 'You have not notifications yet',
+        'notify_new_order' => 'Just ordered a new order',
+        'mark_read' => 'Mark all as read',
+    ],
     'send' => 'Send',
     'contact_success' => 'Send review successfully!',
     'add_to_cart' => 'Add to cart',

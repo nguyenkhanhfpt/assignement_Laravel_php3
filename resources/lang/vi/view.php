@@ -15,6 +15,12 @@ return [
     'logout' => 'Đăng xuất',
     'your_email' => 'Email của bạn',
     'write_review' => 'Viết nhận xét của bạn',
+    'notification' => [
+        'notifications' => 'Thông báo',
+        'nothing_notify' => 'Bạn chưa có thông báo nào',
+        'notify_new_order' => 'Vừa đặt một đơn hàng mới',
+        'mark_read' => 'Đánh dấu đã đọc',
+    ],
     'send' => 'Gửi',
     'contact_success' => 'Gửi đánh giá thành công!',
     'add_to_cart' => 'Thêm vào giỏ',

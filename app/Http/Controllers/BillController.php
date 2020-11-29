@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Http\Request;
 use App\Bill;
 use App\Detail_bill;
@@ -15,6 +16,7 @@ use Carbon\Carbon;
 use App\Jobs\SendMailOrder;
 use DB;
 use Exception;
+use App\Notifications\BuyProduct;
 
 class BillController extends Controller
 {
@@ -98,6 +100,9 @@ class BillController extends Controller
 
             // Send mail
             $this->sendMailtoUserBuy();
+
+            // Send notifications to Admin
+            $this->sendNotificationToAdmin();
                     
             session()->forget('cart');
             session()->forget('code');
@@ -180,6 +185,17 @@ class BillController extends Controller
         ];
 
         SendMailOrder::dispatch($datas);
+    }
+
+    public function sendNotificationToAdmin()
+    {
+        $member = User::where('email', config('settings.mail_admin'))->firstOrFail();
+
+        $data = [
+            'member_id' => Auth::id()
+        ];
+
+        Notification::send($member, new BuyProduct($data));
     }
 
     protected function match_total(){

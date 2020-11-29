@@ -69,6 +69,12 @@ Route::post('/wishlist/add', 'WishlistController@addWish');
 // send Mail
 Route::post('/sendMailContact', 'SendMailContact@sendMail')->name('sendMailContact');
 
+Route::get('notifications', 'HomeController@getNotifications');
+
+Route::patch('notifications/{id}', 'HomeController@markReadNotify');
+
+Route::patch('notifications', 'HomeController@markReadAllNotify');
+
 // Login with google 
 Route::get('auth/redirect/{provider}', 'Auth\LoginSocialite@redirect')->name('auth_redirect');
 Route::get('auth/callback/{provider}', 'Auth\LoginSocialite@callback');
