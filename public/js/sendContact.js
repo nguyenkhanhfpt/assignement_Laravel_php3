@@ -191,6 +191,17 @@ $(document).ready(function () {
 
 /***/ }),
 
+/***/ "./resources/sass/notifications.scss":
+/*!*******************************************!*\
+  !*** ./resources/sass/notifications.scss ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ "./resources/sass/productsPage.scss":
 /*!******************************************!*\
   !*** ./resources/sass/productsPage.scss ***!
@@ -203,15 +214,16 @@ $(document).ready(function () {
 /***/ }),
 
 /***/ 0:
-/*!**********************************************************************************************************************************************************************************************************************************!*\
-  !*** multi ./resources/js/sendContact.js ./resources/sass/app.scss ./resources/sass/home.scss ./resources/sass/customCarousel.scss ./resources/sass/productsPage.scss ./resources/sass/account.scss ./resources/sass/admin.scss ***!
-  \**********************************************************************************************************************************************************************************************************************************/
+/*!**********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** multi ./resources/js/sendContact.js ./resources/sass/app.scss ./resources/sass/home.scss ./resources/sass/notifications.scss ./resources/sass/customCarousel.scss ./resources/sass/productsPage.scss ./resources/sass/account.scss ./resources/sass/admin.scss ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! /home/user/Desktop/Dev/assignement_Laravel_php3/resources/js/sendContact.js */"./resources/js/sendContact.js");
 __webpack_require__(/*! /home/user/Desktop/Dev/assignement_Laravel_php3/resources/sass/app.scss */"./resources/sass/app.scss");
 __webpack_require__(/*! /home/user/Desktop/Dev/assignement_Laravel_php3/resources/sass/home.scss */"./resources/sass/home.scss");
+__webpack_require__(/*! /home/user/Desktop/Dev/assignement_Laravel_php3/resources/sass/notifications.scss */"./resources/sass/notifications.scss");
 __webpack_require__(/*! /home/user/Desktop/Dev/assignement_Laravel_php3/resources/sass/customCarousel.scss */"./resources/sass/customCarousel.scss");
 __webpack_require__(/*! /home/user/Desktop/Dev/assignement_Laravel_php3/resources/sass/productsPage.scss */"./resources/sass/productsPage.scss");
 __webpack_require__(/*! /home/user/Desktop/Dev/assignement_Laravel_php3/resources/sass/account.scss */"./resources/sass/account.scss");

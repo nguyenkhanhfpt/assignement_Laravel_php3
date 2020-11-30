@@ -327,3 +327,124 @@ a {
   }
 }
 
+.notification {
+  width: 300px;
+}
+
+.notification ul {
+  padding: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+
+.notification ul .drop-title {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 500;
+  padding: 11px 15px;
+  border-bottom: 1px solid #e9ecef;
+  font-size: 15px;
+}
+
+.notification ul .message-center {
+  max-height: 300px;
+  overflow-y: auto !important;
+  position: relative;
+}
+
+.notification ul .message-center::-webkit-scrollbar {
+  width: 5px;
+}
+
+.notification ul .message-center::-webkit-scrollbar-thumb {
+  background-color: #676767;
+  border-radius: 10px;
+}
+
+.notification ul .message-center a {
+  display: flex !important;
+  align-items: center;
+  border-bottom: 1px solid #e9ecef;
+  text-decoration: none;
+  padding: 9px 13px;
+  font-size: 14px !important;
+}
+
+.notification ul .message-center a.unread h5,
+.notification ul .message-center a.unread .mail-desc {
+  color: #4fb68d !important;
+}
+
+.notification ul .message-center a:hover {
+  color: #000;
+}
+
+.notification ul .message-center a .btn-circle {
+  border-radius: 100%;
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  padding: 0;
+}
+
+.notification ul .message-center a .btn-circle img {
+  width: 100%;
+  height: 100%;
+}
+
+.notification ul .message-center a .mail-content {
+  display: inline-block;
+  width: 82%;
+  padding-left: 10px;
+  vertical-align: middle;
+}
+
+.notification ul .message-center a .mail-content h5 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 5px;
+  overflow: hidden;
+  width: 100%;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.notification ul .message-center a .mail-content .mail-desc {
+  overflow: hidden;
+  width: 100%;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  font-size: 15px !important;
+}
+
+.notification ul .message-center a .mail-content .time {
+  display: block;
+  margin: 1px 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  color: #212529;
+  white-space: nowrap;
+}
+
+.notification ul .readed {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid #e9ecef;
+  padding-top: 10px;
+  padding-bottom: 8px;
+  color: #212529;
+}
+
+.notification ul .readed strong {
+  font-weight: 600;
+  font-size: 14px;
+  margin-right: 5px;
+}
+
+.notification ul .readed i {
+  font-size: 19px;
+}
+

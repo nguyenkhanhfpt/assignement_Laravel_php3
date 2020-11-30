@@ -71,7 +71,7 @@ Route::post('/sendMailContact', 'SendMailContact@sendMail')->name('sendMailConta
 
 Route::get('notifications', 'HomeController@getNotifications');
 
-Route::patch('notifications/{id}', 'HomeController@markReadNotify');
+Route::patch('notification/{id}', 'HomeController@markReadNotify');
 
 Route::patch('notifications', 'HomeController@markReadAllNotify');
 

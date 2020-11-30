@@ -20,19 +20,15 @@ class CategorySeeder extends Seeder
         $data = [
             [
                 'name' => 'Áo',
-                'img_category' => 'categorySofas.png'
             ],
             [
                 'name' => 'Quần',
-                'img_category' => 'categorySofas.png'
             ],
             [
                 'name' => 'Giày',
-                'img_category' => 'categorySofas.png'
             ],
             [
                 'name' => 'Mũ',
-                'img_category' => 'categorySofas.png'
             ],
         ];
 

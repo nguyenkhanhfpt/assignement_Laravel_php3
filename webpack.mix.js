@@ -13,6 +13,7 @@ const mix = require('laravel-mix');
 
 mix.sass('resources/sass/app.scss', 'public/css')
     .sass('resources/sass/home.scss', 'public/css')
+    .sass('resources/sass/notifications.scss', 'public/css')
     .sass('resources/sass/customCarousel.scss', 'public/css')
     .sass('resources/sass/productsPage.scss', 'public/css')
     .sass('resources/sass/account.scss', 'public/css')

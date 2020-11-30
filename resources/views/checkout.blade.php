@@ -146,7 +146,7 @@
                         </div>
 
                         <div class="checkout text-sm-center card-block">
-                            <a href="{{route('checkout')}}" class="btn__buy">{{ trans('view.cart.payment') }}</a>
+                            <a href="{{route('checkout')}}" class="btn__buy" id="btn__buy">{{ trans('view.cart.payment') }}</a>
                         </div>
 
                     </div>

@@ -94,7 +94,7 @@
 /***/ (function(module, exports) {
 
 $(document).ready(function () {
-  $('.btn__buy').on('click', function (event) {
+  $('#btn__buy').on('click', function (event) {
     event.preventDefault();
     var nameMember = $('#name_member').val();
     var phoneNumber = $('#phone_number').val();

@@ -15,7 +15,7 @@ class MemberSeeder extends Seeder
     {
         User::create([
             'name_member' => 'Admin',
-            'email' => 'admin@gmail.com',
+            'email' => config('settings.mail_admin'),
             'password' => Hash::make(12345678),
             'role' => 1
         ]);

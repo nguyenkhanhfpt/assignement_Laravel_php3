@@ -12,6 +12,8 @@
     
     <link rel="icon" type="image/png" sizes="16x16" href="http://eliteadmin.themedesigner.in/demos/bt4/assets/images/favicon.png">
     <title>Elite Admin Template - The Ultimate Multipurpose admin template</title>
+
+    <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
     
     <link href="{{ asset('css') }}/morris.css" rel="stylesheet">
     
@@ -88,41 +90,18 @@
                                     <i class="fal fa-envelope"></i>
                                     <div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
                                 </a>
-                                <div class="dropdown-menu dropdown-menu-right mailbox animated bounceInDown">
+                                <div class="dropdown-menu dropdown-menu-right mailbox animated bounceInDown notification">
                                     <ul>
                                         <li>
-                                            <div class="drop-title">Notifications</div>
+                                            <div class="drop-title">Thông báo</div>
+                                        </li>
+                                        <li id="notification-content">
                                         </li>
                                         <li>
-                                            <div class="message-center">
-                                                <!-- Message -->
-                                                <a href="javascript:void(0)">
-                                                    <div class="btn btn-danger btn-circle"><i class="fa fa-link"></i></div>
-                                                    <div class="mail-contnet">
-                                                        <h5>Luanch Admin</h5> <span class="mail-desc">Just see the my new admin!</span> <span class="time">9:30 AM</span> </div>
-                                                </a>
-                                                <!-- Message -->
-                                                <a href="javascript:void(0)">
-                                                    <div class="btn btn-success btn-circle"><i class="ti-calendar"></i></div>
-                                                    <div class="mail-contnet">
-                                                        <h5>Event today</h5> <span class="mail-desc">Just a reminder that you have event</span> <span class="time">9:10 AM</span> </div>
-                                                </a>
-                                                <!-- Message -->
-                                                <a href="javascript:void(0)">
-                                                    <div class="btn btn-info btn-circle"><i class="ti-settings"></i></div>
-                                                    <div class="mail-contnet">
-                                                        <h5>Settings</h5> <span class="mail-desc">You can customize this template as you want</span> <span class="time">9:08 AM</span> </div>
-                                                </a>
-                                                <!-- Message -->
-                                                <a href="javascript:void(0)">
-                                                    <div class="btn btn-primary btn-circle"><i class="ti-user"></i></div>
-                                                    <div class="mail-contnet">
-                                                        <h5>Pavan kumar</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:02 AM</span> </div>
-                                                </a>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <a class="nav-link text-center link" href="javascript:void(0);"> <strong>Check all notifications</strong> <i class="fa fa-angle-right"></i> </a>
+                                            <a class="nav-link text-center readed" href="javascript:void(0);"> 
+                                                <strong>{{ trans('view.notification.mark_read') }}</strong> 
+                                                <i class="fal fa-angle-right"></i>
+                                            </a>
                                         </li>
                                     </ul>
                                 </div>
@@ -306,5 +285,8 @@
     <!-- Chart JS -->
     <script src="{{ asset('js/admin') }}/dashboard.js"></script>
     <script src="{{ asset('js/admin') }}/jquery.toast.js"></script>
+
+    <script src="{{ asset('js') }}/notifications.js"></script>
+
 </body>
 </html>

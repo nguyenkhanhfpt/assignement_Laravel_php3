@@ -94,6 +94,12 @@
 /***/ (function(module, exports) {
 
 $(document).ready(function () {
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
+
   function getAllNotifications() {
     $.ajax({
       method: 'GET',
@@ -101,9 +107,27 @@ $(document).ready(function () {
       success: function success(res) {
         $('#notification-content').html(res.view);
         $('#number-notify').html(res.numUnRead);
+
+        if (res.numUnRead) {
+          $('.notify').addClass('d-block');
+          $('.notify').removeClass('d-none');
+        } else {
+          $('.notify').removeClass('d-block');
+          $('.notify').addClass('d-none');
+        }
       },
       error: function error(err) {
         console.log(err);
+      }
+    });
+  }
+
+  function getNumBill() {
+    $.ajax({
+      method: 'GET',
+      url: "/admin/update",
+      success: function success(res) {
+        $('#numPeddingBill').text(res.countBill);
       }
     });
   }
@@ -112,20 +136,7 @@ $(document).ready(function () {
     var id = $(this).data('id');
     $.ajax({
       method: 'PATCH',
-      url: "/notifications/".concat(id),
-      success: function success(res) {
-        getAllNotifications();
-      },
-      error: function error(err) {
-        console.log(err);
-      }
-    });
-  });
-  $(document).on('click', '.message-center a', function () {
-    var id = $(this).data('id');
-    $.ajax({
-      method: 'PATCH',
-      url: "/notifications",
+      url: "/notification/".concat(id),
       success: function success(res) {
         getAllNotifications();
       },
@@ -145,6 +156,14 @@ $(document).ready(function () {
         console.log(err);
       }
     });
+  });
+  var pusher = new Pusher('c3352eb7ef48eb784445', {
+    cluster: 'ap1'
+  });
+  var channel = pusher.subscribe('notification-channel');
+  channel.bind('notification-event', function (data) {
+    getAllNotifications();
+    getNumBill();
   });
   getAllNotifications();
 });

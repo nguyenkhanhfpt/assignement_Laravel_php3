@@ -361,3 +361,132 @@ a {
         margin: 4.75rem auto;
     }
 }
+
+
+.notification {
+    width: 300px;
+
+    & ul {
+        padding: 0;
+        margin-bottom: 0;
+        list-style: none;
+
+        .drop-title {
+            display: flex;
+            justify-content: space-between;
+
+            font-weight: 500;
+            padding: 11px 15px;
+            border-bottom: 1px solid #e9ecef;
+            font-size: 15px;
+        }
+
+        .message-center {
+            max-height: 300px;
+            overflow-y: auto !important;
+            position: relative;
+
+            &::-webkit-scrollbar {
+                width: 5px;
+                
+            }
+            
+            &::-webkit-scrollbar-thumb {
+                background-color: #676767;
+                border-radius: 10px;
+            }
+
+            & a {
+                display: flex !important;
+                align-items: center;
+
+                border-bottom: 1px solid #e9ecef;
+                text-decoration: none;
+                padding: 9px 13px;
+                font-size: 14px !important;
+
+                &.unread {
+                    h5, .mail-desc {
+                        color: #4fb68d !important;
+                    }
+                }
+
+                &:hover {
+                    color: #000;
+                }
+
+                .btn-circle {
+                    border-radius: 100%;
+                    width: 40px;
+                    height: 40px;
+                    overflow: hidden;
+                    padding: 0;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+
+                & .mail-content {
+                    display: inline-block;
+                    width: 82%;
+                    padding-left: 10px;
+                    vertical-align: middle;
+
+                    h5 {
+                        font-size: 16px;
+                        font-weight: 600;
+                        margin-bottom: 5px;
+
+                        overflow: hidden;
+                        width: 100%;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 2;
+                        -webkit-box-orient: vertical;
+                    }
+
+                    & .mail-desc {
+                        overflow: hidden;
+                        width: 100%;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 2;
+                        -webkit-box-orient: vertical;
+
+                        font-size: 15px !important;
+                    }
+
+                    & .time {
+                        display: block;
+                        margin: 1px 0;
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                        color: #212529;
+                        white-space: nowrap;
+                    }
+                }
+            }
+        }
+
+        .readed {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            border-top: 1px solid #e9ecef;
+            padding-top: 10px;
+            padding-bottom: 8px;
+            color: #212529;
+
+            strong {
+                font-weight: 600;
+                font-size: 14px;
+                margin-right: 5px;
+            }
+
+            i {
+                font-size: 19px;
+            }
+        }
+    }
+}

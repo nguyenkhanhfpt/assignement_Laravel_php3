@@ -17,6 +17,7 @@ use App\Jobs\SendMailOrder;
 use DB;
 use Exception;
 use App\Notifications\BuyProduct;
+use Pusher\Pusher;
 
 class BillController extends Controller
 {
@@ -103,7 +104,9 @@ class BillController extends Controller
 
             // Send notifications to Admin
             $this->sendNotificationToAdmin();
-                    
+
+            $this->realtimeNotification();    
+            
             session()->forget('cart');
             session()->forget('code');
 
@@ -196,6 +199,23 @@ class BillController extends Controller
         ];
 
         Notification::send($member, new BuyProduct($data));
+    }
+
+    public function realtimeNotification()
+    {
+        $options = array(
+            'cluster' => env('PUSHER_APP_CLUSTER'),
+            'useTLS' => true
+          );
+          $pusher = new Pusher(
+            env('PUSHER_APP_KEY'),
+            env('PUSHER_APP_SECRET'),
+            env('PUSHER_APP_ID'),
+            $options
+          );
+        
+        $data['message'] = 'hello world';
+        $pusher->trigger('notification-channel', 'notification-event', $data);
     }
 
     protected function match_total(){

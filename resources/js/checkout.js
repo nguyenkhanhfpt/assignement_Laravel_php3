@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $('.btn__buy').on('click', function(event) {
+    $('#btn__buy').on('click', function(event) {
         event.preventDefault();
 
         let nameMember = $('#name_member').val();

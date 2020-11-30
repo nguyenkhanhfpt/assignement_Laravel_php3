@@ -37,6 +37,8 @@
     <!-- sweetAlert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
+    <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+
     <!-- Link Jquery Ui -->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
@@ -46,6 +48,7 @@
     <link rel="stylesheet" href="{{asset('css/productsPage.css')}}">
     <link rel="stylesheet" href="{{asset('css/account.css')}}">
     <link rel="stylesheet" href="{{asset('css/customCarousel.css')}}">
+    <link rel="stylesheet" href="{{asset('css/notifications.css')}}">
 </head>
 <body>
     <div id="app">

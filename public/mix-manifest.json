@@ -17,5 +17,6 @@
     "/css/customCarousel.css": "/css/customCarousel.css",
     "/css/productsPage.css": "/css/productsPage.css",
     "/css/account.css": "/css/account.css",
-    "/css/admin.css": "/css/admin.css"
+    "/css/admin.css": "/css/admin.css",
+    "/css/notifications.css": "/css/notifications.css"
 }
