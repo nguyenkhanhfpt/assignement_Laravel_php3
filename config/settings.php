@@ -11,4 +11,5 @@ return [
     'rejected' => 3,
     'mail_admin' => 'admin@gmail.com',
     'buy_product' => 'App\Notifications\BuyProduct',
+    'change_order' => 'App\Notifications\ChangeOrderNotify',
 ];

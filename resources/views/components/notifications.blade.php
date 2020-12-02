@@ -3,7 +3,10 @@
         @if ($notify->type === config('settings.buy_product'))
             <a data-id="{{ $notify->id }}" href="{{ route('adminBill') }}" 
                 class="{{ $notify->read_at ? '' : 'unread' }}">
-        @else 
+        @elseif ($notify->type === config('settings.change_order')) 
+            <a data-id="{{ $notify->id }}" href="javascript:void(0)" 
+                class="{{ $notify->read_at ? '' : 'unread' }}">
+        @else
             <a data-id="{{ $notify->id }}" href="javascript:void(0)" 
                 class="{{ $notify->read_at ? '' : 'unread' }}">
         @endif
@@ -13,7 +16,20 @@
             <div class="mail-content">
                 <h5>{{ $notify->member->name_member }}</h5>
                 <span title="" class="mail-desc">
-                    {{ trans('view.notification.notify_new_order') }}
+                    @if ($notify->type === config('settings.buy_product'))
+                        {{ trans('view.notification.notify_new_order') }}
+                    @elseif ($notify->type === config('settings.change_order'))
+                        @switch($notify->data['type'])
+                            @case(config('settings.accepted'))
+                                {{ trans('view.notification.notify_accepted', ['id' => $notify->data['bill_id']]) }}
+                                @break
+                            @case(config('settings.rejected'))
+                                {{ trans('view.notification.notify_rejected', ['id' => $notify->data['bill_id']]) }}
+                                @break
+                            @default
+                                {{ trans('view.notification.notify_running', ['id' => $notify->data['bill_id']]) }}
+                        @endswitch
+                    @endif
                 </span>
                 <span class="time">{{ $notify->created_at }}</span> 
             </div>

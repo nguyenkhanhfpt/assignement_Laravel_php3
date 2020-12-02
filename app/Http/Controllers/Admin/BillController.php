@@ -7,7 +7,13 @@ use Illuminate\Http\Request;
 use DB;
 use App\Bill;
 use App\Product;
+use App\User;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\ChangeOrderNotify;
+use Pusher\Pusher;
+use Exception;
 
 class BillController extends Controller
 {
@@ -73,12 +79,68 @@ class BillController extends Controller
 
     public function update(Request $request)
     {
-        $bill = Bill::findOrFail($request->id);
+        $bill = Bill::findOrFail($request->id)->load('detail_bill.product');
 
-        $bill->status = $request->status;
+        DB::beginTransaction();
 
-        $bill->save();
+        try {
+            if ($request->status != config('settings.pedding')) {
+                $member = User::findOrFail($bill->member_id);
 
-        return response()->json($bill);
+                $data = [
+                    'member_id' => Auth::id(),
+                    'bill_id' => $bill->id,
+                    'type' => $request->status
+                ];
+        
+                Notification::send($member, new ChangeOrderNotify($data));
+
+                $this->realtimeNotification();
+
+                if ($request->status == config('settings.running')) {
+                    foreach ($bill->detail_bill as $detail) {
+                        if ($detail->product->quantity_product < $detail->quantity_buy) {
+                            abort(500);
+                        }
+                        $detail->product->quantity_product -= $detail->quantity_buy;
+                        $detail->product->save();
+                    }
+                }
+
+                if ($request->status == config('settings.rejected') && $bill->status == config('settings.running')) {
+                    foreach ($bill->detail_bill as $detail) {
+                        $detail->product->quantity_product += $detail->quantity_buy;
+                        $detail->product->save();
+                    }
+                }
+            }
+            $bill->status = $request->status;
+            $bill->save();
+
+            DB::commit();
+
+            return response()->json($bill);
+        } catch (Exception $e) {
+            DB::rollBack();
+
+            abort(500);
+        }
+    }
+
+    public function realtimeNotification()
+    {
+        $options = array(
+            'cluster' => env('PUSHER_APP_CLUSTER'),
+            'useTLS' => true
+          );
+          $pusher = new Pusher(
+            env('PUSHER_APP_KEY'),
+            env('PUSHER_APP_SECRET'),
+            env('PUSHER_APP_ID'),
+            $options
+          );
+        
+        $data['message'] = 'hello world';
+        $pusher->trigger('notification-channel', 'notification-event', $data);
     }
 }
