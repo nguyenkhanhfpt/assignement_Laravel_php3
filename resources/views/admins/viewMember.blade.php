@@ -65,7 +65,6 @@
                     </td>
                 </tr>
             @endforeach
-
             <tr>
                 <td colspan="8" class="font-weight-bold" style="font-size: 16px;">
                     Tổng tiền đơn hàng: <b class="total-amount">{{ number_format($member->total) }} đ</b>

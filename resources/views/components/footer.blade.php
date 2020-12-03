@@ -17,7 +17,7 @@
             </div>
         </div>
         <div class="footer__contact">
-            <h3>Liên hệ</h3>
+            <h3>{{ trans('view.contact') }}</h3>
 
             @if(session('successEmail'))
                 <p class="mt-3" style="font-size: 1.5rem">{{ session('successEmail') }}</p>

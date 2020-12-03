@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\User;
+use App\Bill;
 use DB;
 
 class AccountController extends Controller
@@ -17,8 +18,8 @@ class AccountController extends Controller
 
     protected function index() {
         $user = Auth::user();
-
-        $bills = []; 
+        
+        $bills = $user->load(['bills.bill', 'bills.product', 'bills.size', 'bills.color'])->bills;
 
         return view('account', compact(['bills', 'user']));
     }
@@ -28,7 +29,6 @@ class AccountController extends Controller
             'name_member' => 'required'
         ]);
         
-        //dd(Auth::id());
         $member = User::find(Auth::id());
 
         $member->name_member = $request->name_member;
@@ -44,7 +44,7 @@ class AccountController extends Controller
 
         $member->save();
 
-        return redirect()->back()->with('successUpdate', 'Cập nhật thành công!');
+        return redirect()->back()->with('successUpdate', trans('view.account.success'));
     }
 
     protected function updatePassword(Request $request) {
@@ -54,16 +54,16 @@ class AccountController extends Controller
 
         $oldPass = $request->oldPass;
         $newPass = Hash::make($request->password);
-        $member = Member::find(Auth::user()->id_member);
+        $member = User::find(Auth::id());
 
-        if(Auth::attempt(['id_member' => Auth::user()->id_member, 'password' => $oldPass])) {
+        if(Auth::attempt(['email' => Auth::user()->email, 'password' => $oldPass])) {
             $member->password = $newPass;
             $member->save();
 
-            return redirect()->back()->with('successUpdatePass', 'Cập nhật mật khẩu thành công!');
+            return redirect()->back()->with('successUpdatePass', trans('view.account.success'));
         }
         else {
-            return redirect()->back()->with('errUpdatePass', 'Mật khẩu của bạn không chính xác!');
+            return redirect()->back()->with('errUpdatePass', trans('view.account.pass_failed'));
         }
     }
 }

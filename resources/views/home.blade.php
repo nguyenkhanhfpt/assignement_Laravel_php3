@@ -9,7 +9,7 @@
 
 @section('content')
     <header>
-        <img src="{{asset('images/header.jpg')}}" alt="">
+        <img src="{{asset('images/header.jpeg')}}" alt="">
     </header>
     
     <div class="contai">
@@ -19,29 +19,29 @@
                     <dic class="col-12 col-md-3 mb-4 mb-md-0 feature__item">
                         <i class="fal fa-shipping-fast"></i>
                         <div class="feature__item-content">
-                            <h2>Miễn phí vận chuyển</h2>
-                            <p>Cho tất cả đơn hàng trên 150.000 đ</p>
+                            <h2>@lang('view.banner.free_ship')</h2>
+                            <p>@lang('view.banner.free_ship_desc')</p>
                         </div>
                     </dic>
                     <dic class="col-12 col-md-3 mb-4 mb-md-0 feature__item">
                         <i class="fal fa-exchange-alt"></i>
                         <div class="feature__item-content">
-                            <h2>Hoàn trả miễn phí</h2>
-                            <p>Hoàn trả hàng miễn phí trong 3 ngày</p>
+                            <h2>@lang('view.banner.return')</h2>
+                            <p>@lang('view.banner.return_desc')</p>
                         </div>
                     </dic>
                     <dic class="col-12 col-md-3 mb-4 mb-md-0 feature__item">
                         <i class="fal fa-credit-card"></i>
                         <div class="feature__item-content">
-                            <h2>100% thanh toán an toàn</h2>
-                            <p>Đảm bào ăn toàn cho thanh toán của bạn</p>
+                            <h2>@lang('view.banner.payment')</h2>
+                            <p>@lang('view.banner.payment_desc')</p>
                         </div>
                     </dic>
                     <dic class="col-12 col-md-3 mb-md-0 feature__item">
                         <i class="fad fa-user-headset"></i>
                         <div class="feature__item-content">
-                            <h2>Hổ trợ 24/7</h2>
-                            <p>Liên hệ với chúng tôi 24h trong ngày</p>
+                            <h2>@lang('view.banner.support')</h2>
+                            <p>@lang('view.banner.payment_desc')</p>
                         </div>
                     </dic>
                 </div>
@@ -51,8 +51,8 @@
         <!-- Products -->
         <div class="best_seller">
             <div class="pos_title">
-                <h2>Sản phẩm bán chạy</h2>
-                <p class="decs_title">Tất cả các sản phẩm bán chạy trong tuần</p>
+                <h2>@lang('view.selling_pro')</h2>
+                <p class="decs_title">@lang('view.all_selling_pro')</p>
             </div>
 
             <div id="products" class="owl-carousel">
@@ -121,8 +121,8 @@
         <div class="hot-product">
             <div class="col px-0">
                 <div class="pos_title">
-                    <h2>Hàng giảm giá tốt</h2>
-                    <p class="decs_title">Các sản phẩm đang giảm giá tại cửa hàng</p>
+                    <h2>@lang('view.good_discount')</h2>
+                    <p class="decs_title">@lang('view.sale_store')</p>
                 </div>
 
                 <div id="product-sale" class="owl-carousel">
@@ -189,8 +189,8 @@
 
             <div class="col px-0">
                 <div class="pos_title">
-                    <h2>Sản phẩm mới</h2>
-                    <p class="decs_title">Các sản phẩm đang giảm giá tại cửa hàng</p>
+                    <h2>@lang('view.new_pro')</h2>
+                    <p class="decs_title">@lang('view.all_new_pro')</p>
                 </div>
 
                 <div id="new-product" class="owl-carousel">
@@ -329,8 +329,8 @@
 
         <div class="products__view">
             <div class="pos_title">
-                <h2>Sản phẩm được xem nhiều</h2>
-                <p class="decs_title">Sản phẩm được mọi người quan tâm</p>
+                <h2>@lang('view.pro_viewed')</h2>
+                <p class="decs_title">@lang('view.pro_interested')</p>
             </div>
 
             <div id="products-view" class="owl-carousel">

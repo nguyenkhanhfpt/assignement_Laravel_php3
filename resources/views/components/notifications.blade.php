@@ -4,7 +4,7 @@
             <a data-id="{{ $notify->id }}" href="{{ route('adminBill') }}" 
                 class="{{ $notify->read_at ? '' : 'unread' }}">
         @elseif ($notify->type === config('settings.change_order')) 
-            <a data-id="{{ $notify->id }}" href="javascript:void(0)" 
+            <a data-id="{{ $notify->id }}" href="{{ route('account') }}" 
                 class="{{ $notify->read_at ? '' : 'unread' }}">
         @else
             <a data-id="{{ $notify->id }}" href="javascript:void(0)" 
