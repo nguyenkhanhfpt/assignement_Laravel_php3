@@ -78,6 +78,13 @@
                 </li>
 
                 <li>
+                    <a class="waves-effect waves-dark" href="{{ route('adminComment') }}" aria-expanded="false">
+                        <i class="fal fa-comments-alt"></i>
+                        <span class="hide-menu">Bình luận</span>
+                    </a>
+                </li>
+
+                <li>
                     <a class="waves-effect waves-dark" href="{{ route('adminBill') }}" aria-expanded="false">
                         <i class="fal fa-cart-plus"></i>
                         <span class="hide-menu">Đơn hàng

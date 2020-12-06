@@ -141,8 +141,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
 
     // Admin Comment
     Route::get('/comments', 'CommentController@index')->name('adminComment');
+
+    Route::get('/comments/{product}', 'CommentController@show');
     
-    Route::get('/comments/delete/{id}', 'CommentController@deleteComment');
+    Route::delete('/comments/{id}', 'CommentController@deleteComment');
 
 
     // Code

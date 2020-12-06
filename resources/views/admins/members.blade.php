@@ -29,31 +29,6 @@
         </div>
     </div>
 
-    <div class="modal fade" id="addColors" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Thêm màu</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
-                </div>
-                <div class="modal-body">
-                    <form id="form-colors">
-                        <div class="form-group">
-                            <label for="name">Tên màu</label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Nhập tên màu">
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
-                    <button type="button" class="btn btn-success" id="btn-add-color">Thêm</button>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-
     <div class="modal fade" id="view-member" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">

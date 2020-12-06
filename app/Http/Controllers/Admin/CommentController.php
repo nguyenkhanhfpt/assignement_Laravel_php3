@@ -5,24 +5,47 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use DB;
+use Yajra\DataTables\Facades\DataTables;
+use App\Color;
+use App\Product;
+use App\Comment;
 
 class CommentController extends Controller
 {
-    protected function index(){
-        $comments = DB::table('comments as C')
-            ->join('members as M', 'C.id_member', '=', 'M.id_member')
-            ->join('products as P', 'C.id_product', '=', 'P.id_product')
-            ->select('C.id_comment', 'C.content', 'C.id_member', 'C.date_comment', 'M.name_member', 'M.img_member', 
-            'name_product', 'P.img_product')
-            ->orderBy('C.date_comment', 'DESC')
-            ->get();
+    protected function index(Request $request)
+    {
+        if ($request->ajax()) {
+            $product = Product::withCount(['comments'])
+                ->get()
+                ->where('comments_count', '>', 0);
 
-        return view('admins.comments', compact(['comments']));
+            return DataTables::of($product)->make(true);
+        }
+
+        return view('admins.comments');
     }
 
-    protected function deleteComment($id) {
-        Comment::find($id)->delete();
+    public function show(Product $product)
+    {
+        $commentProduct = $product->load('comments.member')->comments;
+        
+        return view('admins.viewComments', compact('commentProduct'));
+    }
 
-        return redirect()->route('adminComment');
+    protected function deleteComment($id)
+    {
+        $result = Comment::findOrFail($id)->delete();
+
+        if ($result) {
+            return response()->json([
+                'status' => 200,
+                'message' => 'Xóa bình luận thành công!'
+            ]);
+        } else {
+            return response()->json([
+                'status' => 500,
+                'message' => 'Xóa bình luận thất bại!'
+            ]);
+        }
     }
 }

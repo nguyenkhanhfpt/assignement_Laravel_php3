@@ -1,60 +1,54 @@
 @extends('layouts.adminMaster')
 
-@section('menu')
-    @include('components.menuAdmin')
-@endsection
-
 @section('content')
-    <h2 class="text-center admin__title">Danh sách Bình luận</h2>
-
-    <div class="box">
-        <div class="table-responsive">
-            <table class="table table_member">
-                <thead>
-                    <tr>
-                        <th scope="col">Người bình luận</th>
-                        <th scope="col">Sản phẩm</th>
-                        <th scope="col">Nội dung bình luận</th>
-                        <th scope="col">Thời gian bình luận</th>
-                        <th scope="col"></th>
-
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($comments as $comment)
-                        <tr>
-                            <td scope="row">
-                                <img src="{{asset('images')}}/{{$comment->img_member}}" alt="">
-                                {{$comment->name_member}}
-                            </td>
-                            <td>
-                                <img class="img_product" src="{{asset('images')}}/{{$comment->img_product}}" alt="">
-                                {{ $comment->name_product }}
-                            </td>
-                            <td>
-                                {{ $comment->content }}                                                                                                                                                                     
-                            </td>
-                            <td>{{ $comment->date_comment }}</td>
-                            <td>
-                                <a onClick="return confirm('Bạn có muốn xóa bình luận')" 
-                                href="{{route('adminComment')}}/delete/{{$comment->id_comment}}" 
-                                data-toggle="tooltip" data-placement="top" title="Xóa">
-                                    <i class="fal fa-trash-alt"></i>
-                                </a>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
+    <div class="row page-titles">
+        <div class="col-md-5 align-self-center">
+            <h4 class="text-themecolor py-2">Quản lý bình luận</h4>
         </div>
-
     </div>
-    
 
-    <script>
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip()
-        })
-    </script>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Danh sách</h4>
+                    <table id="table-comments" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Sản Phẩm</th>
+                                <th>Số Bình Luận</th>
+                                <th>Hành Động</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="view-comment" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Tất cả bình luận của sản phẩm</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                </div>
+                <div class="modal-body">
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+    @section('script')
+        <script src="{{ asset('js/admin') }}/jquery.dataTables.min.js"></script>
+
+        <script src="{{ asset('js/admin') }}/comments.js"></script>
+    @endsection
 
 @endsection
