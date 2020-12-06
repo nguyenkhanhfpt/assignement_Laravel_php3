@@ -2,6 +2,11 @@
 
 @section('title', env('APP_NAME') .' - '. $product->name_product)
 
+@section('meta')
+    <meta property="og:title" content="{{ env('APP_NAME') .' - '. $product->name_product }}" />
+    <meta itemprop="image" content="{{ Helper::exec()->getFirstImage($product->images) }}"/>
+@endsection
+
 @section('menu')
     @include('components.menu')
 @endsection
@@ -110,6 +115,13 @@
                     @if(session('notEnough'))
                         <p class="mt-4" style="font-size: 1.5rem; color: #f00;">{{session('notEnough')}}</p>
                     @endif
+
+                    <a href="#" class="btn btn-primary mt-4 btn-circle btn-lg facebook_share">
+                        <div class="fb-share-button"
+                            data-href="{{url()->current()}}"
+                            data-layout="button_count">
+                        </div>
+                    </a>
 
                 </div>
             </div>
@@ -241,7 +253,16 @@
 
 
     </div>
- 
+
+    <script>
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
 
     <script>
         $(function() {

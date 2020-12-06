@@ -16,6 +16,9 @@
     <meta itemprop="image" content="{{ asset('images') }}/ecolife-side.jpeg"/>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    @yield('meta')
+
     <title>@yield('title')</title>
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
