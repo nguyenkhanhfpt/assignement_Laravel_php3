@@ -1,7 +1,7 @@
 <template>
     <div class="grid-image" v-if="imagesChoosed.length">
         <div v-for="image in imagesChoosed" :key="image.id" class="image-item">
-            <img loading="lazy" class="image-item-image"
+            <img @click="choosedFistImg(image)" loading="lazy" class="image-item-image"
                 :src="image.image" />
         </div>
     </div>
@@ -16,6 +16,17 @@
             ...mapGetters([
                 'imagesChoosed'
             ])
+        },
+        methods: {
+            choosedFistImg(image) {
+                let index = this.imagesChoosed.indexOf(image);
+                let imagesChoosedAfterSort = [
+                    image,
+                    ...this.imagesChoosed.slice(0, index),
+                    ...this.imagesChoosed.slice(index + 1)
+                ];
+                store.commit('setImagesChoosed', imagesChoosedAfterSort);
+            }
         }
     }
 </script>
