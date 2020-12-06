@@ -52,6 +52,9 @@ class HomeController extends Controller
 
             foreach ($member->notifications as $notify) {
                 $notify->member = User::select(['name_member', 'img_member'])->find($notify->data['member_id']);
+                if ($notify->type === config('settings.comment')) {
+                    $notify->product = Product::select(['name_product', 'slug'])->find($notify->data['product_id']);
+                }
             }
 
             $notifications = $member->notifications;

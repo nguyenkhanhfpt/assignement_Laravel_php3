@@ -6,6 +6,9 @@
         @elseif ($notify->type === config('settings.change_order')) 
             <a data-id="{{ $notify->id }}" href="{{ route('account') }}" 
                 class="{{ $notify->read_at ? '' : 'unread' }}">
+        @elseif ($notify->type === config('settings.comment')) 
+            <a data-id="{{ $notify->id }}" href="{{ route('viewProduct', ['id' => $notify->product->slug]) }}" 
+                class="{{ $notify->read_at ? '' : 'unread' }}">
         @else
             <a data-id="{{ $notify->id }}" href="javascript:void(0)" 
                 class="{{ $notify->read_at ? '' : 'unread' }}">
@@ -18,6 +21,8 @@
                 <span title="" class="mail-desc">
                     @if ($notify->type === config('settings.buy_product'))
                         {{ trans('view.notification.notify_new_order') }}
+                    @elseif ($notify->type === config('settings.comment'))
+                        {{ trans('view.notification.commented', ['name' => $notify->product->name_product]) }}
                     @elseif ($notify->type === config('settings.change_order'))
                         @switch($notify->data['type'])
                             @case(config('settings.accepted'))

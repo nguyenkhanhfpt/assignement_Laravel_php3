@@ -41,6 +41,7 @@ return [
         'notify_running' => 'Đơn hàng #:id đang được giao',
         'notify_accepted' => 'Đơn hàng #:id đã hoàn thành',
         'notify_rejected' => 'Đơn hàng #:id đã bị hủy',
+        'commented' => 'Đã bình luận sản phẩm: :name',
     ],
     'send' => 'Gửi',
     'contact_success' => 'Gửi đánh giá thành công!',
@@ -103,5 +104,12 @@ return [
         'accepted' => 'Đã hoàn thành',
         'rejected' => 'Đã hủy',
         'running' => 'Đang giao',
+    ],
+    'comments' => [
+        'need_login' => 'Bạn cần đăng nhập để bình luận',
+        'comment_success' => 'Thêm bình luận thành công!',
+        'comment_failed' => 'Thêm bình luận thất bại!',
+        'delete_comment_success' => 'Xóa bình luận thành công!',
+        'delete_comment_failed' => 'Xóa bình luận thất bại!',
     ],
 ];

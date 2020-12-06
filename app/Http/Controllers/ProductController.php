@@ -62,7 +62,9 @@ class ProductController extends Controller
 
     protected function viewProduct($slug) {
         $product = Product::where('slug', $slug)
-            ->first()->load(['images', 'category', 'comments', 
+            ->first()->load(['images', 'category', 'comments' => function($query) {
+                $query->orderBy('date_comment', 'desc');
+            }, 
             'comments.member', 'sizes', 'colors']);
 
         $idCate = $product->category->id;

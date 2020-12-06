@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Ecolife - Products')
+@section('title', env('APP_NAME') .' - '. $product->name_product)
 
 @section('menu')
     @include('components.menu')
@@ -10,11 +10,11 @@
     <div class="header__banner">
         <div class="header__banner-content">
             <div class="header__banner-sortlink">
-                <a href={{route('home')}}>Trang chủ</a>
+                <a href={{route('home')}}>@lang('view.home')</a>
                 <span>
                     <i class="fal fa-angle-right"></i>
                 </span>
-                <a href={{route('products')}}>Sản phẩm</a>
+                <a href={{route('products')}}>@lang('view.products')</a>
                 <span>
                     <i class="fal fa-angle-right"></i>
                 </span>
@@ -145,7 +145,7 @@
                     <div class="form-group box-comment">
                         <input type="hidden" name="product_id" value={{ $product->id }}>
                         <textarea class="form-control" name="content" cols="30" rows="1" placeholder="Để lại phản hồi của bạn"></textarea>
-                        <input type="submit" value="Bình luận" class="button-comment">
+                        <input type="submit" id="submit-comment" value="Bình luận" class="button-comment">
                     </div>
                 </form>
 
@@ -159,16 +159,15 @@
                                 </h3>
                                 <p>{{ $comment->content }}</p>
                             </div>
-                            @if(\Helper::exec()->displayDeleteComment($comment->id_member))
-                                <a href="{{ route('comment.destroy', $comment->id) }}" 
-                                    onClick="return confirm('Bạn có muốn xóa bình luận!')" class="remove-comment">
+                            @if(\Helper::exec()->displayDeleteComment($comment->member_id))
+                                <a href="" data-id="{{ $comment->id }}" class="remove-comment remove-comment-{{$comment->id}}">
                                     <i class="fal fa-backspace"></i>
                                 </a>
                             @endif
                         </div>
                     @endforeach
                     @if(count($comments) == 0)
-                        <p class="text-center" style="font-size: 1.4rem">Chưa có bình luận nào cho sản phẩm này</p>
+                        <p class="text-center" id="no-comment" style="font-size: 1.4rem">Chưa có bình luận nào cho sản phẩm này</p>
                     @endif
                     
                 </div>
@@ -250,7 +249,7 @@
         });
     </script>
 
-    <script src="{{asset('js/addWishList.js')}}"></script>
+    <script src={{asset('js/addWishList.js')}}></script>
 
     <script>
         var getImageName = function() {
@@ -267,10 +266,10 @@
         @include('components.footer')
     @endsection
 
-    <script src="{{asset('js/changeQuantityCart.js')}}"></script>
+    <script src={{asset('js/changeQuantityCart.js')}}></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
     <script src={{asset('js/addCart.js')}}></script>
     <script src={{asset('js/setOwlCarousel.js')}}></script>
-
+    <script src={{asset('js/comment.js')}}></script>
 @endsection

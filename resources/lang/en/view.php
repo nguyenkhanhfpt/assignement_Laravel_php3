@@ -41,6 +41,7 @@ return [
         'notify_running' => 'Order #:id is running',
         'notify_accepted' => 'Order #:id is accepted',
         'notify_rejected' => 'Order #:id is reject',
+        'commented' => 'Have commented on the product: :name',
     ],
     'send' => 'Send',
     'contact_success' => 'Send review successfully!',
@@ -103,5 +104,12 @@ return [
         'accepted' => 'Accepted',
         'rejected' => 'Rejected',
         'running' => 'Running',
+    ],
+    'comments' => [
+        'need_login' => 'You need login to comment',
+        'comment_success' => 'Comment successfully!',
+        'comment_failed' => 'Comment failed!',
+        'delete_comment_success' => 'Delete comment successfully!',
+        'delete_comment_failed' => 'Delete comment failed!',
     ],
 ];

@@ -21,7 +21,7 @@ Route::get('/products', 'ProductController@index')->name('products');
 
 Route::get('/products/find', 'ProductController@find')->name('findProducts');
 
-Route::get('/products/{id}', 'ProductController@viewProduct');
+Route::get('/products/{id}', 'ProductController@viewProduct')->name('viewProduct');
 
 // giỏ hàng
 Route::get('/cart', 'CartController@index')->name('cart');
@@ -47,9 +47,9 @@ Route::post('/checkout/checkCode', 'BillController@checkCode');
 
 
 // Comment
-Route::post('/addComment', 'CommentController@addComment')->name('addComment')->middleware('checkLoginComment');
+Route::post('/addComment', 'CommentController@addComment')->name('addComment');
 
-Route::get('/comment/delete/{id}', 'CommentController@deleteComment')->name('comment.destroy')->middleware('auth');
+Route::delete('/comment/{comment}', 'CommentController@deleteComment')->name('comment.destroy')->middleware('auth');
 
 
 // Account
