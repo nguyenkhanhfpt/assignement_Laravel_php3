@@ -95,6 +95,9 @@
                 <li class="nav__item">
                     <a class="nav__link" href={{route('cart')}}>{{ trans('view.carts') }}</a>
                 </li>
+                <li class="nav__item">
+                    <a class="nav__link" href={{route('news')}}>{{ trans('view.news.news') }}</a>
+                </li>
             </ul>
         </div>
         <div class="nav__bottom-item">

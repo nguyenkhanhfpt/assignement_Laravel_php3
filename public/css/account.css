@@ -29,6 +29,13 @@ img {
   padding: 0 1.5rem;
 }
 
+.contain-news {
+  max-width: 120rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 1.5rem;
+}
+
 .wrapper {
   width: 100%;
   margin-left: auto;

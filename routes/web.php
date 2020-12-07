@@ -66,6 +66,9 @@ Route::get('/wishlist/delete/{wishlist}', 'WishlistController@deleteWish');
 
 Route::post('/wishlist/add', 'WishlistController@addWish');
 
+// news 
+Route::get('/news', 'NewsController@index')->name('news');
+
 // send Mail
 Route::post('/sendMailContact', 'SendMailContact@sendMail')->name('sendMailContact');
 

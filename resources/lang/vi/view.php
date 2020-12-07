@@ -15,6 +15,11 @@ return [
     'logout' => 'Đăng xuất',
     'your_email' => 'Email của bạn',
     'write_review' => 'Viết nhận xét của bạn',
+    'news' => [
+        'news' => 'Tin tức',
+        'blog_fashion' => 'Blog Thời Trang',
+        'newest' => 'Mới nhất',
+    ],
     'banner' => [
         'free_ship' => 'Miễn phí vận chuyển',
         'free_ship_desc' => 'Cho tất cả đơn hàng mua tại shop',

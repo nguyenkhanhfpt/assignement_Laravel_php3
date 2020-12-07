@@ -15,6 +15,11 @@ return [
     'logout' => 'Logout',
     'your_email' => 'Your email',
     'write_review' => 'Write your review',
+    'news' => [
+        'news' => 'News',
+        'blog_fashion' => 'Blog Fashion',
+        'newest' => 'Newest',
+    ],
     'banner' => [
         'free_ship' => 'Free ship',
         'free_ship_desc' => 'For all orders purchased at the shop',
