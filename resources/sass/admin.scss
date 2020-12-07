@@ -490,3 +490,41 @@ a {
         }
     }
 }
+
+.news {
+    &-image {
+        width: 250px;
+        height: 180px;
+        object-fit: cover;
+    }
+}
+
+.img-news {
+    width: 100%;
+    & img {
+        width: 100%;
+        max-height: 400px;
+        object-fit: cover;
+    }
+}
+
+.content-news {
+    max-width: 95%;
+    margin: 20px auto 10px;
+    width: 100%;
+    text-align: justify;
+    font-size: 15.6px;
+
+    img {
+        width: 100% !important;
+        height: auto !important;
+    }
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+#cke_1_contents {
+    height: 400px !important;
+}

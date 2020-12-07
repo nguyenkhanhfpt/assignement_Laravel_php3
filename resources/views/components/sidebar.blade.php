@@ -85,7 +85,7 @@
                 </li>
 
                 <li>
-                    <a class="waves-effect waves-dark" href="{{ route('adminComment') }}" aria-expanded="false">
+                    <a class="waves-effect waves-dark" href="{{ route('news.index') }}" aria-expanded="false">
                         <i class="fal fa-newspaper"></i>
                         <span class="hide-menu">Bài viết</span>
                     </a>

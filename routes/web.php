@@ -158,15 +158,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
     Route::get('/bills/delete/{id}', 'BillController@deleteBill');
 
     Route::patch('/bills/update', 'BillController@update')->name('updateBill');
+
+    // news
+    Route::resource('/news', 'NewsController');
 });
-
-// RestAPI
-Route::get('/api/products', 'RestAPIController@selectAllProduct');
-
-Route::post('/api/product', 'RestAPIController@selectOneProduct');
-
-Route::delete('api/product/{id}', 'RestAPIController@deleteProduct');
-
-
-
-

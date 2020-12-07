@@ -11,9 +11,11 @@
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     
     <link rel="icon" type="image/png" sizes="16x16" href="http://eliteadmin.themedesigner.in/demos/bt4/assets/images/favicon.png">
-    <title>Elite Admin Template - The Ultimate Multipurpose admin template</title>
+    <title>{{ env('APP_NAME') }} - Admin</title>
 
     <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+
+    <script src="https://cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script>
     
     <link href="{{ asset('css') }}/morris.css" rel="stylesheet">
     
