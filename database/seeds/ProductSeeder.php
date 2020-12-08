@@ -10,7 +10,7 @@ class ProductSeeder extends Seeder
         factory(Product::class, 20)->create()->each(function ($product) {
             for($i = 0; $i < 3; $i++) {
                 $product->images()->create([
-                    'image' => config('settings.default_product')
+                    'image' => config('settings.default_img')
                 ]);
             }
         });

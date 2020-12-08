@@ -398,7 +398,7 @@ header {
 
     &-img {
         width: 300px !important;
-        max-height: 200px;
+        height: 200px;
 
         & img {
             object-fit: cover;
@@ -478,11 +478,9 @@ header {
             }
         }
     }
+
+    .pagination {
+        justify-content: center;
+        margin-top: 15px;
+    }
 }
-
-
-
-
-
-
-

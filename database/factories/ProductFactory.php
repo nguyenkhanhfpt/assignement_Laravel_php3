@@ -17,7 +17,7 @@ $factory->define(Product::class, function (Faker $faker) {
         'quantity_product' => 20,
         'decscription' => $faker->name,
         'view' => 0,
-        'nomination' => 0,
+        'nomination' => rand(0, 1),
         'date' => Carbon::now()
     ];
 });

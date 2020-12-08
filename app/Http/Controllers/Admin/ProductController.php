@@ -121,7 +121,10 @@ class ProductController extends Controller
                     break;
                 }
                 $library = Library::where('image', $item->image)->first();
-                array_push($libraries, $library);
+                
+                if($library) {
+                    array_push($libraries, $library);
+                }
             }
 
             $product->libraries = $libraries;
