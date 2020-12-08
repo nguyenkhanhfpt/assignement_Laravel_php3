@@ -27,7 +27,7 @@
 
         <div class="news">
             @foreach($news as $new)
-                <a href="{{ $new->slug }}" class="news-contain">
+                <a href="{{ route('news-show', $new->slug) }}" class="news-contain">
                     <div class="news-img">
                         <img src="{{ asset('images') }}/{{ $new->image }}" alt="">
                     </div>

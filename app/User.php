@@ -54,4 +54,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Bill::class, 'member_id');
     }
+
+    public function scopeAdmin($query)
+    {
+        return $query->where('email', config('settings.mail_admin'));
+    }
 }

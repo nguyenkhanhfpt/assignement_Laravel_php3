@@ -19,6 +19,7 @@ return [
         'news' => 'News',
         'blog_fashion' => 'Blog Fashion',
         'newest' => 'Newest',
+        'news_else' => 'Related News'
     ],
     'banner' => [
         'free_ship' => 'Free ship',

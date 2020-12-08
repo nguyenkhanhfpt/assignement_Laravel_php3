@@ -19,6 +19,7 @@ return [
         'news' => 'Tin tức',
         'blog_fashion' => 'Blog Thời Trang',
         'newest' => 'Mới nhất',
+        'news_else' => 'Tin liên quan',
     ],
     'banner' => [
         'free_ship' => 'Miễn phí vận chuyển',

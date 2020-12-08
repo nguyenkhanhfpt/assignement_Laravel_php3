@@ -68,6 +68,7 @@ Route::post('/wishlist/add', 'WishlistController@addWish');
 
 // news 
 Route::get('/news', 'NewsController@index')->name('news');
+Route::get('/news/{slug}', 'NewsController@show')->name('news-show');
 
 // send Mail
 Route::post('/sendMailContact', 'SendMailContact@sendMail')->name('sendMailContact');

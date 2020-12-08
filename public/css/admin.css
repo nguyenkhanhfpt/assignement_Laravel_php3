@@ -484,6 +484,6 @@ a {
 }
 
 #cke_1_contents {
-  height: 400px !important;
+  min-height: 400px !important;
 }
 
