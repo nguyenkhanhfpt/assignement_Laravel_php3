@@ -132,6 +132,12 @@ $(document).ready(function () {
       scrollTop: $(".footer__contact").offset().top
     }, 1800);
   });
+  $('#link_contact-mobile').on('click', function (event) {
+    event.preventDefault();
+    $([document.documentElement, document.body]).animate({
+      scrollTop: $(".footer__contact").offset().top
+    }, 1800);
+  });
 });
 
 /***/ }),

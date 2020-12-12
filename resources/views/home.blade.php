@@ -322,7 +322,7 @@
 
         <div class="banner">
             <div class="banner__box">
-                <img src="{{asset('images/banner.jpg')}}" alt="">
+                <img src="{{asset('images/home_banner.jpeg')}}" alt="">
             </div>
         </div>
 

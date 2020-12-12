@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Ecolife - Products')
+@section('title', env('APP_NAME') .' - '. trans('view.products'))
 
 @section('menu')
     @include('components.menu')
@@ -9,13 +9,13 @@
 @section('content')
     <div class="header__banner">
         <div class="header__banner-content">
-            <h2>Sản phẩm</h2>
+            <h2>@lang('view.products')</h2>
             <div class="header__banner-sortlink">
-                <a href={{route('home')}}>Trang chủ</a>
+                <a href={{route('home')}}>@lang('view.home')</a>
                 <span>
                     <i class="fal fa-angle-right"></i>
                 </span>
-                <a href={{route('products')}}>Sản phẩm</a>
+                <a href={{route('products')}}>@lang('view.products')</a>
             </div>
         </div>
     </div>

@@ -79,10 +79,13 @@
         <div class="d-none d-md-block nav__list">
             <ul>
                 <li class="nav__item">
-                    <a class="nav__link" href={{route('home')}}>{{ trans('view.home') }}</a>
+                    <a class="nav__link {{ Request::route()->getName() == 'home' ? 'active' : '' }}" href={{route('home')}}>
+                        {{ trans('view.home') }}
+                    </a>
                 </li>
                 <li class="nav__item">
-                    <a class="nav__link" href={{route('products')}}>{{ trans('view.products') }}
+                    <a class="nav__link {{ Request::route()->getName() == 'products' ? 'active' : '' }}" href={{route('products')}}>
+                        {{ trans('view.products') }}
                     <i class="fal fa-angle-down"></i>
                     </a>
                 </li>
@@ -90,13 +93,19 @@
                     <a class="nav__link" href="">{{ trans('view.introduce') }}</a>
                 </li>
                 <li class="nav__item">
-                    <a class="nav__link" id="link_contact" href="">{{ trans('view.contact') }}</a>
+                    <a class="nav__link" id="link_contact" href="">
+                        {{ trans('view.contact') }}
+                    </a>
                 </li>
                 <li class="nav__item">
-                    <a class="nav__link" href={{route('cart')}}>{{ trans('view.carts') }}</a>
+                    <a class="nav__link {{ Request::route()->getName() == 'cart' ? 'active' : '' }}" href={{route('cart')}}>
+                        {{ trans('view.carts') }}
+                    </a>
                 </li>
                 <li class="nav__item">
-                    <a class="nav__link" href={{route('news')}}>{{ trans('view.news.news') }}</a>
+                    <a class="nav__link {{ Request::route()->getName() == 'news' ? 'active' : '' }}" href={{route('news')}}>
+                        {{ trans('view.news.news') }}
+                    </a>
                 </li>
             </ul>
         </div>

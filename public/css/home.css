@@ -405,13 +405,14 @@ a {
   position: relative;
   width: 100%;
   height: 20rem;
-  margin-bottom: 5rem;
+  margin-bottom: 4rem;
   overflow: hidden;
 }
 
 .banner img {
   width: 100%;
   transition: linear 0.3s;
+  height: 100%;
 }
 
 .banner:hover img {
@@ -891,7 +892,7 @@ footer .footer__box .footer__contact-submit {
   color: #fff;
   text-transform: uppercase;
   font-size: 15px;
-  background: #fb9678;
+  background: #4fb68d;
 }
 
 .right-sidebar .rpanel-title span {
@@ -906,6 +907,29 @@ footer .footer__box .footer__contact-submit {
 
 .right-sidebar .r-panel-body {
   padding: 20px;
+}
+
+.right-sidebar .r-panel-body ul {
+  padding: 0;
+  width: 100%;
+}
+
+.right-sidebar .r-panel-body ul .nav__item {
+  padding: 8px 0;
+}
+
+.right-sidebar .r-panel-body ul .nav__item .nav__link {
+  font-size: 1.5rem;
+  transition: linear 0.3s;
+  font-weight: 700;
+}
+
+.right-sidebar .r-panel-body ul .nav__item .nav__link.active {
+  color: #4fb68d;
+}
+
+.right-sidebar .r-panel-body ul .nav__item .nav__link:hover {
+  color: #4fb68d !important;
 }
 
 .right-sidebar .r-panel-body ul {

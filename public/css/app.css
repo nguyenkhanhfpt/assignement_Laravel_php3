@@ -131,6 +131,10 @@ a {
   font-weight: 700;
 }
 
+.nav__bottom .nav__item .nav__link.active {
+  color: #4fb68d;
+}
+
 .nav__bottom-item {
   display: grid;
   grid-template-columns: 2fr 2fr;

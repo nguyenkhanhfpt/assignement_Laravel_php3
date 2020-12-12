@@ -89,7 +89,36 @@
                     </span> 
                 </div>
                 <div class="r-panel-body">
-                    
+                    <ul>
+                        <li class="nav__item">
+                            <a class="nav__link {{ Request::route()->getName() == 'home' ? 'active' : '' }}" href={{route('home')}}>
+                                {{ trans('view.home') }}
+                            </a>
+                        </li>
+                        <li class="nav__item">
+                            <a class="nav__link {{ Request::route()->getName() == 'products' ? 'active' : '' }}" href={{route('products')}}>
+                                {{ trans('view.products') }}
+                            </a>
+                        </li>
+                        <li class="nav__item">
+                            <a class="nav__link" href="">{{ trans('view.introduce') }}</a>
+                        </li>
+                        <li class="nav__item">
+                            <a class="nav__link" id="link_contact-mobile" href="">
+                                {{ trans('view.contact') }}
+                            </a>
+                        </li>
+                        <li class="nav__item">
+                            <a class="nav__link {{ Request::route()->getName() == 'cart' ? 'active' : '' }}" href={{route('cart')}}>
+                                {{ trans('view.carts') }}
+                            </a>
+                        </li>
+                        <li class="nav__item">
+                            <a class="nav__link {{ Request::route()->getName() == 'news' ? 'active' : '' }}" href={{route('news')}}>
+                                {{ trans('view.news.news') }}
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
