@@ -86,7 +86,6 @@
                 <li class="nav__item">
                     <a class="nav__link {{ Request::route()->getName() == 'products' ? 'active' : '' }}" href={{route('products')}}>
                         {{ trans('view.products') }}
-                    <i class="fal fa-angle-down"></i>
                     </a>
                 </li>
                 <li class="nav__item">
@@ -112,9 +111,13 @@
         <div class="nav__bottom-item">
             <div class=" nav__search">
                 <div class="nav__box-search">
-                    <form action="{{route('findProducts')}}" method="GET">
-                        <input type="text" name="q">
+                    <form action="{{route('findProducts')}}" method="GET" autocomplete="off">
+                        <input type="text" name="q" id="input_search">
                     </form>
+                    <div class="nav__box-search__product">
+                        <div id="box_search_product">
+                        </div>
+                    </div>
                 </div>
                 <a href="javascript:void(0)">
                     <i class="far fa-search"></i>

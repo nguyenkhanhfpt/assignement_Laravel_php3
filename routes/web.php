@@ -21,6 +21,8 @@ Route::get('/products', 'ProductController@index')->name('products');
 
 Route::get('/products/find', 'ProductController@find')->name('findProducts');
 
+Route::post('/products/search', 'ProductController@search');
+
 Route::get('/products/{id}', 'ProductController@viewProduct')->name('viewProduct');
 
 // giỏ hàng
@@ -83,7 +85,6 @@ Route::patch('notifications', 'HomeController@markReadAllNotify');
 Route::get('auth/redirect/{provider}', 'Auth\LoginSocialite@redirect')->name('auth_redirect');
 Route::get('auth/callback/{provider}', 'Auth\LoginSocialite@callback');
 
-
 Auth::routes();
 
 Route::get('/language/{locale}', 'LanguageController@changeLanguage')->name('languale');
@@ -93,7 +94,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
     Route::get('/', 'HomeController@index')->name('admin');
 
     Route::get('/update', 'HomeController@updateDom');
-
 
     // Admin category 
     Route::get('/category', 'CategoryController@index')->name('adminCategory');

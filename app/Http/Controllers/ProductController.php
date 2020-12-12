@@ -33,31 +33,29 @@ class ProductController extends Controller
     }
 
     protected function find(Request $request) {
-        if($request->has('q')) {
-            $products = DB::table('products')
-            ->join('categories', 'categories.id_category', '=', 'products.id_category')
-            ->where('products.name_product', 'LIKE', '%'. $request->q .'%')
-            ->paginate(12);
-        }
-        else {
-            $products = DB::table('products')
-                ->join('categories', 'categories.id_category', '=', 'products.id_category')
-                ->paginate(12);
-        }
+        $products = Product::allProduct()
+            ->where('name_product', 'LIKE', '%'. $request->q .'%')
+            ->paginate(config('settings.limit_products'));
 
-        // Sắp xếp theo view
-        $productView = DB::table('products')
-            ->join('categories', 'categories.id_category', '=', 'products.id_category')
-            ->orderByRaw('view DESC')->limit(5)->get();
-
-         // Select danh mục sản phẩm
-         $categories = DB::table('products as pr')
-            ->select('ca.id_category', 'ca.name', DB::raw('COUNT(pr.id_category) as total'))
-            ->rightJoin('categories as ca', 'ca.id_category', '=', 'pr.id_category')
-            ->groupBy('ca.id_category')
+         // Sắp xếp theo view
+         $productView = Product::allProduct()
+            ->orderBy('view', 'desc')
+            ->take(config('settings.limit_view'))
             ->get();
 
+        // Select danh mục sản phẩm
+        $categories = Category::with('products')->get();
+
         return view('products.products', compact(['products', 'productView', 'categories']));
+    }
+
+    public function search(Request $request)
+    {
+        $products = Product::allProduct()
+            ->where('name_product', 'LIKE', '%'. $request->q .'%')
+            ->paginate(config('settings.limit_products'));
+
+        return view('components.productSearch', compact('products'));
     }
 
     protected function viewProduct($slug) {

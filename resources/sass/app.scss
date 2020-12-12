@@ -114,10 +114,46 @@
             align-items: center;
 
             .nav__box-search {
+                position: relative;
                 padding: 0 1rem;
 
                 & form {
                     display: none;
+                }
+
+                &__product {
+                    position: absolute;
+                    top: 110%;
+                    left: 1rem;
+                    box-shadow: 5px 5px 15px #c3c3c379;
+                    border-radius: 3px;
+                    width: 285px;
+                    padding: 10px;
+                    background-color: #fff;
+                    opacity: 0;
+
+                    .product-list-img {
+                        width: 8.5rem;
+                        height: 10rem;
+
+                        img {
+                            width: 100% !important
+                        }
+                    }
+
+                    .product-list .product__decs {
+                        width: 65%;
+                        padding: 0.8rem 0 0 1rem;
+                    }
+
+                    #box_search_product {
+                        max-height: 500px;
+                        overflow-y: auto;
+                    }
+
+                    &.active {
+                        opacity: 1;
+                    }
                 }
             }
 

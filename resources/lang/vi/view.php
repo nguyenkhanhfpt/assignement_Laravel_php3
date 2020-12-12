@@ -15,6 +15,7 @@ return [
     'logout' => 'Đăng xuất',
     'your_email' => 'Email của bạn',
     'write_review' => 'Viết nhận xét của bạn',
+    'nothing_pro_search' => 'Không tìm được sản phẩm nào',
     'news' => [
         'news' => 'Tin tức',
         'blog_fashion' => 'Blog Thời Trang',

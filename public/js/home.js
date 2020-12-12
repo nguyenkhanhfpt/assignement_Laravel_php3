@@ -98,6 +98,25 @@ $(document).ready(function () {
     $(".right-sidebar").slideDown(50);
     $(".right-sidebar").toggleClass("shw-rside");
   });
+  $(document).on('keyup', '#input_search', function (event) {
+    $('.nav__box-search__product').addClass('active');
+    var textSearch = $(this).val();
+
+    if (textSearch.length > 0) {
+      $.ajax({
+        url: '/products/search',
+        method: 'POST',
+        data: {
+          q: textSearch
+        },
+        success: function success(res) {
+          $('#box_search_product').html(res);
+        }
+      });
+    } else {
+      $('.nav__box-search__product').removeClass('active');
+    }
+  });
 });
 
 /***/ }),

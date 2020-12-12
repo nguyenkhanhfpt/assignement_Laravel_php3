@@ -15,6 +15,7 @@ return [
     'logout' => 'Logout',
     'your_email' => 'Your email',
     'write_review' => 'Write your review',
+    'nothing_pro_search' => "Can't find any products",
     'news' => [
         'news' => 'News',
         'blog_fashion' => 'Blog Fashion',
