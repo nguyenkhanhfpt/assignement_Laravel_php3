@@ -10,9 +10,8 @@
 @section('content')
     <header class="slider" id="header">
         <img src="{{asset('images/about.jpg')}}" alt="">
-        <img src="{{asset('images/header.jpeg')}}" alt="">
-        
         <img src="{{asset('images/header2.jpeg')}}" alt="">
+        <img src="{{asset('images/header.jpeg')}}" alt="">
     </header>
     
     <div class="contai">
