@@ -21,7 +21,6 @@ class HomeController extends Controller
         // Select sản phẩm được đề xuất
         $nominationPro = Product::allProduct()
             ->where('nomination', 1)
-            ->take(config('settings.limit'))
             ->get();
         
         // Sắp xếp theo ngày nhập

@@ -16,7 +16,7 @@
 
 
 .feature {
-    padding: 5rem 0;
+    padding: 4rem 0;
 
     &__box {
         border: 1px solid $border-color;
@@ -75,10 +75,6 @@
     }
 }
 
-#products {
-    //margin-bottom: 4rem;
-}
-
 .product {
     position: relative;
 
@@ -128,6 +124,7 @@
     &__decs {
         position: relative;
         padding: 2rem 1.5rem 2.5rem;
+        background-color: #fff;
     }
 
     .manufacturer a {
@@ -743,7 +740,7 @@
 
     & h2 {
         font-weight: 600;
-        font-size: 3.3rem;
+        font-size: 2.8rem;
         margin-bottom: .9rem;
     } 
 
@@ -762,11 +759,40 @@
         color: $primary-color;
         transition: linear .4s;
         font-weight: 600;
-        
+
         &:hover {
             background-color: $primary-color;
             color: #fff;
         }
+    }
+}
+
+.map {
+    height: 600px;
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+@media screen and (max-width: 865px) {
+    .about-content {
+        padding-right: 0;
+
+        & h2 {
+            font-size: 2.1rem !important;
+            text-align: center;
+        }
+
+        & p {
+            text-align: justify;
+        }
+
+        & .btn-viewProduct {
+            margin: 0 auto 1.5rem;
+        }
+    }
+
+    .map {
+        height: 300px;
     }
 }
 

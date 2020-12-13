@@ -286,6 +286,10 @@ a {
   line-height: 1.6;
 }
 
+#view-product .modal-content {
+  border: none;
+}
+
 #view-product .viewProduct img {
   height: 30rem;
   width: 100%;
@@ -303,6 +307,11 @@ a {
   color: #888;
   line-height: 2;
   text-align: justify;
+}
+
+#view-product .close {
+  font-size: 3rem;
+  color: #ababab;
 }
 
 #view-product .modal-lg {

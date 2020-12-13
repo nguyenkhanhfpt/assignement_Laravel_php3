@@ -17,7 +17,7 @@ use App\Helper\Helper;
 class ProductController extends Controller
 {
     protected function index(Request $request) {
-        $products = Product::all()->load('images');
+        $products = Product::orderBy('date', 'desc')->get()->load('images');
 
         return view('admins.products', [
             'products' => $products

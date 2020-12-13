@@ -10,7 +10,7 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     
-    <link rel="icon" type="image/png" sizes="16x16" href="http://eliteadmin.themedesigner.in/demos/bt4/assets/images/favicon.png">
+    <link rel="icon" href="{{ asset('images') }}/logo.png" />
     <title>{{ env('APP_NAME') }} - Admin</title>
 
     <script src="https://js.pusher.com/7.0/pusher.min.js"></script>

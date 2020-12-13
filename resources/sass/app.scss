@@ -340,9 +340,34 @@
 
 /* Header */
 header {
-    height: 80vh;
+    height: 800px;
+    width: 100%;
+    overflow: hidden;
+    cursor: pointer;
+
+    .slick-track {
+        height: 800px !important;
+
+        &:focus {
+            border: none;
+            outline: none;
+        }
+    }
+
     img {
         width: 100%;
+        height: 100% !important;
+        object-fit: fill !important;
+    }
+
+    @media screen and (max-width: 876px) {
+        & {
+            height: 320px;
+
+            .slick-track {
+                height: 320px !important;
+            }
+        }
     }
 }
 

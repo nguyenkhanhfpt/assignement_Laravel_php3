@@ -54,7 +54,7 @@ a {
 }
 
 .feature {
-  padding: 5rem 0;
+  padding: 4rem 0;
 }
 
 .feature__box {
@@ -172,6 +172,7 @@ a {
 .product__decs {
   position: relative;
   padding: 2rem 1.5rem 2.5rem;
+  background-color: #fff;
 }
 
 .product .manufacturer a {
@@ -767,7 +768,7 @@ a {
 
 .about-content h2 {
   font-weight: 600;
-  font-size: 3.3rem;
+  font-size: 2.8rem;
   margin-bottom: 0.9rem;
 }
 
@@ -791,6 +792,35 @@ a {
 .about-content .btn-viewProduct:hover {
   background-color: #253237;
   color: #fff;
+}
+
+.map {
+  height: 600px;
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+@media screen and (max-width: 865px) {
+  .about-content {
+    padding-right: 0;
+  }
+
+  .about-content h2 {
+    font-size: 2.1rem !important;
+    text-align: center;
+  }
+
+  .about-content p {
+    text-align: justify;
+  }
+
+  .about-content .btn-viewProduct {
+    margin: 0 auto 1.5rem;
+  }
+
+  .map {
+    height: 300px;
+  }
 }
 
 footer {

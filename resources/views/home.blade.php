@@ -8,8 +8,11 @@
 
 
 @section('content')
-    <header>
+    <header class="slider" id="header">
+        <img src="{{asset('images/about.jpg')}}" alt="">
         <img src="{{asset('images/header.jpeg')}}" alt="">
+        
+        <img src="{{asset('images/header2.jpeg')}}" alt="">
     </header>
     
     <div class="contai">
@@ -404,5 +407,15 @@
     <script src={{asset('js/addWishList.js')}}></script>
     <script src={{asset('js/addCart.js')}}></script>
     <script src={{asset('js/setOwlCarousel.js')}}></script>
+
+    <script>
+        $('#header').slick({
+            dots: false,
+            autoplay: true,
+            autoplaySpeed: 5000,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+        });
+    </script>
 
 @endsection

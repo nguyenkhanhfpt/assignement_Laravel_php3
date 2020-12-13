@@ -132,7 +132,7 @@
                     <h5 class="card-title">Một số bình luận</h5>
                     <h6 class="card-subtitle">5 bình luận mới nhất</h6>
                 </div>
-                <div class="comment-widgets" id="comment" style="max-height: 534px;position: relative;">
+                <div class="comment-widgets" id="comment" style="max-height: 600px;position: relative;">
                     @foreach($comments as $comment)
                     <div class="d-flex no-block comment-row">
                         <div class="p-2">
@@ -159,7 +159,7 @@
                     <div class="d-flex">
                         <div>
                             <h5 class="card-title">Một số đơn hàng mới</h5>
-                            <h6 class="card-subtitle">10 đơn hàng mới nhất</h6>
+                            <h6 class="card-subtitle">10 đơn hàng gần đây nhất</h6>
                         </div>
                     </div>
                 </div>

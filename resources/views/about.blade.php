@@ -42,7 +42,7 @@
         </div>
 
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3833.794995625447!2d108.16716595095397!3d16.07612454346745!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x314218e6e265461f%3A0x2e7fc947cd7946b5!2zMTQ3IE5ndXnhu4VuIFRo4buLIFRo4bqtcCwgVGhhbmggS2jDqiBUw6J5LCBMacOqbiBDaGnhu4N1LCDEkMOgIE7hurVuZywgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1607865468410!5m2!1svi!2s" 
-            width="600" height="600" class="w-100 mb-4" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0">
+            class="map" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0">
         </iframe>
     </div>  
 

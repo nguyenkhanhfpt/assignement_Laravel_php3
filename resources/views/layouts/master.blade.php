@@ -21,6 +21,8 @@
 
     <title>@yield('title')</title>
 
+    <link rel="icon" href="{{ asset('images') }}/logo.png" />
+
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
@@ -50,6 +52,11 @@
     <link rel="stylesheet" href="{{asset('css/account.css')}}">
     <link rel="stylesheet" href="{{asset('css/customCarousel.css')}}">
     <link rel="stylesheet" href="{{asset('css/notifications.css')}}">
+
+    <!-- link slick -->
+    <link rel="stylesheet" href="{{ asset('css') }}/stick.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.0/slick/slick-theme.css">
+    <script type="text/javascript" src="{{ asset('js') }}/slick.min.js"></script>
 </head>
 <body>
     <div id="app">

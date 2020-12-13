@@ -255,6 +255,10 @@
 }
 
 #view-product {
+    .modal-content {
+        border: none;
+    }
+
     .viewProduct {
         img {
             height: 30rem;
@@ -275,6 +279,11 @@
             line-height: 2;
             text-align: justify;
         }
+    }
+
+    & .close {
+        font-size: 3rem;
+        color: #ababab;
     }
 
     & .modal-lg {

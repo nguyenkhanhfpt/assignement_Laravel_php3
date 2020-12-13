@@ -11,7 +11,7 @@
         <div class="login">
             <div class="login__contain">
                 <div class="login__img">
-                    <img src="{{asset('images/login_img.jpg')}}" />
+                    <img src="{{asset('images/header2.jpeg')}}" />
                 </div>
                 <div class="login__form">
                     <h3 class="login__title">Đăng nhập</h3>
