@@ -13,7 +13,7 @@
     <meta property="og:url" content="{{ url('') }}"/>
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="vi_VN" />
-    <meta itemprop="image" content="{{ asset('images') }}/ecolife-side.jpeg"/>
+    <meta itemprop="image" content="{{ asset('images') }}/about.jpg"/>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 
@@ -22,8 +22,6 @@
     <title>@yield('title')</title>
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" crossorigin="anonymous">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 
@@ -101,7 +99,9 @@
                             </a>
                         </li>
                         <li class="nav__item">
-                            <a class="nav__link" href="">{{ trans('view.introduce') }}</a>
+                            <a class="nav__link {{ Request::route()->getName() == 'about' ? 'active' : '' }}" href="{{ route('about') }}">
+                                {{ trans('view.introduce') }}
+                            </a>
                         </li>
                         <li class="nav__item">
                             <a class="nav__link" id="link_contact-mobile" href="">
@@ -130,30 +130,5 @@
     <script src="{{ asset('js') }}/notifications.js"></script>
 
     @yield('script')
-
-    <!-- Load Facebook SDK for JavaScript -->
-    <div id="fb-root"></div>
-      <script>
-        window.fbAsyncInit = function() {
-          FB.init({
-            xfbml            : true,
-            version          : 'v9.0'
-          });
-        };
-
-        (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
-        fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));</script>
-
-      <!-- Your Chat Plugin code -->
-      <div class="fb-customerchat"
-        attribution=setup_tool
-        page_id="101828574736063"
-        theme_color="#4fb68d">
-      </div>
 </body>
 </html>

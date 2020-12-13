@@ -40,6 +40,10 @@ Route::patch('/cart/update/{idCart}/{idProduct}', 'CartController@undateCart');
 
 Route::get('/cart/delete/{id}', 'CartController@deleteCart');
 
+// introlduce
+Route::get('/about-us', 'AboutController')->name('about');
+
+
 // thanh toán
 Route::get('/checkout', 'BillController@index')->name('checkout');
 

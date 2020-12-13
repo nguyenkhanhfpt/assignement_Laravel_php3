@@ -757,6 +757,42 @@ a {
   }
 }
 
+.about-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  padding-right: 10rem;
+}
+
+.about-content h2 {
+  font-weight: 600;
+  font-size: 3.3rem;
+  margin-bottom: 0.9rem;
+}
+
+.about-content p {
+  font-size: 1.5rem;
+  color: #838383;
+  margin-bottom: 1.4rem;
+}
+
+.about-content .btn-viewProduct {
+  border: 1px solid #253237;
+  font-size: 1.5rem;
+  padding: 1rem;
+  max-width: 180px;
+  text-align: center;
+  color: #253237;
+  transition: linear 0.4s;
+  font-weight: 600;
+}
+
+.about-content .btn-viewProduct:hover {
+  background-color: #253237;
+  color: #fff;
+}
+
 footer {
   padding: 4rem;
   background-color: #f6f6f6;
