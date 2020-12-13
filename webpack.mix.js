@@ -33,4 +33,5 @@ mix.sass('resources/sass/app.scss', 'public/css')
     .js('resources/js/admin/members.js', 'public/js/admin')
     .js('resources/js/admin/code.js', 'public/js/admin')
     .js('resources/js/admin/comments.js', 'public/js/admin')
-    .js('resources/js/admin/news.js', 'public/js/admin');
+    .js('resources/js/admin/news.js', 'public/js/admin')
+    .js('resources/js/admin/chart.js', 'public/js/admin');

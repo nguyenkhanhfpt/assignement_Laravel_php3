@@ -170,6 +170,7 @@ a {
   padding: 10px;
   background-color: #fff;
   opacity: 0;
+  z-index: 100;
 }
 
 .nav__bottom-item .nav__search .nav__box-search__product .product-list-img {

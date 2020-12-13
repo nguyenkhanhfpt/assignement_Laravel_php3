@@ -93,6 +93,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
     // Admin
     Route::get('/', 'HomeController@index')->name('admin');
 
+    Route::get('/statistical', 'HomeController@statistical');
+
     Route::get('/update', 'HomeController@updateDom');
 
     // Admin category 

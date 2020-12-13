@@ -519,6 +519,14 @@ a {
         width: 100% !important;
         height: auto !important;
     }
+
+    & .marker {
+        background-color: rgb(248, 248, 26);
+    }
+
+    & h2 {
+        font-size: 18.5px;
+    }
 }
 
 .form-group {

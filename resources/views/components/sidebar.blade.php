@@ -12,17 +12,20 @@
                         <span class="caret"></span>
                     </a>
                     <div class="dropdown-menu animated flipInY">
-                        <a href="javascript:void(0)" class="dropdown-item">
-                            <i class="ti-user"></i> My Profile
+                        <a href="{{ route('account') }}" class="dropdown-item">
+                            <i class="ti-user"></i> Tài khoản của tôi
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a href="javascript:void(0)" class="dropdown-item">
-                            <i class="ti-settings"></i> Account Setting
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="pages-login.html" class="dropdown-item">
+                        <a href="{{ route('logout') }}" 
+                            onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();" 
+                            class="dropdown-item">
                             <i class="fa fa-power-off"></i> Logout
                         </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
                     </div>
                 </div>
             </div>

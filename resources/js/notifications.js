@@ -66,7 +66,7 @@ $(document).ready(function() {
 
     let pusher = new Pusher('c3352eb7ef48eb784445', {
         cluster: 'ap1'
-      });
+    });
   
     let channel = pusher.subscribe('notification-channel');
 

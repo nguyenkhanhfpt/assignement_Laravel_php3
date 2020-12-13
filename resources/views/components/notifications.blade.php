@@ -18,25 +18,35 @@
             </div>
             <div class="mail-content">
                 <h5>{{ $notify->member->name_member }}</h5>
-                <span title="" class="mail-desc">
+                <span class="mail-desc">
                     @if ($notify->type === config('settings.buy_product'))
-                        {{ trans('view.notification.notify_new_order') }}
+                        <span title="{{ trans('view.notification.notify_new_order') }}" class="mail-desc">
+                            {{ trans('view.notification.notify_new_order') }}
+                        </span> 
                     @elseif ($notify->type === config('settings.comment'))
-                        {{ trans('view.notification.commented', ['name' => $notify->product->name_product]) }}
+                        <span title="{{ trans('view.notification.commented', ['name' => $notify->product->name_product]) }}" class="mail-desc">
+                            {{ trans('view.notification.commented', ['name' => $notify->product->name_product]) }}
+                        </span>
                     @elseif ($notify->type === config('settings.change_order'))
                         @switch($notify->data['type'])
                             @case(config('settings.accepted'))
-                                {{ trans('view.notification.notify_accepted', ['id' => $notify->data['bill_id']]) }}
+                                <span title="{{ trans('view.notification.notify_accepted', ['id' => $notify->data['bill_id']]) }}" class="mail-desc">
+                                    {{ trans('view.notification.notify_accepted', ['id' => $notify->data['bill_id']]) }}
+                                </span>
                                 @break
                             @case(config('settings.rejected'))
-                                {{ trans('view.notification.notify_rejected', ['id' => $notify->data['bill_id']]) }}
+                                <span title="{{ trans('view.notification.notify_rejected', ['id' => $notify->data['bill_id']]) }}" class="mail-desc">
+                                    {{ trans('view.notification.notify_rejected', ['id' => $notify->data['bill_id']]) }}
+                                </span>
                                 @break
                             @default
-                                {{ trans('view.notification.notify_running', ['id' => $notify->data['bill_id']]) }}
+                                <span title="{{ trans('view.notification.notify_running', ['id' => $notify->data['bill_id']]) }}" class="mail-desc">
+                                    {{ trans('view.notification.notify_running', ['id' => $notify->data['bill_id']]) }}
+                                </span>
                         @endswitch
                     @endif
                 </span>
-                <span class="time">{{ $notify->created_at }}</span> 
+                <span class="time" title="{{ $notify->created_at }}">{{ Carbon\Carbon::parse($notify->created_at)->diffForHumans() }}</span> 
             </div>
         </a>
     @endforeach

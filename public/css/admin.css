@@ -479,6 +479,14 @@ a {
   height: auto !important;
 }
 
+.content-news .marker {
+  background-color: #f8f81a;
+}
+
+.content-news h2 {
+  font-size: 18.5px;
+}
+
 .form-group {
   margin-bottom: 15px;
 }

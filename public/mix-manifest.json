@@ -1,6 +1,7 @@
 {
     "/js/admin/bills.js": "/js/admin/bills.js",
     "/js/admin/categories.js": "/js/admin/categories.js",
+    "/js/admin/chart.js": "/js/admin/chart.js",
     "/js/admin/code.js": "/js/admin/code.js",
     "/js/admin/colors.js": "/js/admin/colors.js",
     "/js/admin/comments.js": "/js/admin/comments.js",
