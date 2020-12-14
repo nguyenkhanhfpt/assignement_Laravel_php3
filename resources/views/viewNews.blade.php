@@ -1,5 +1,12 @@
 @extends('layouts.master')
 
+@section('meta')
+<meta name="description" content="{{ $news->description }}" />
+<meta property="og:title" content="{{ env('APP_NAME') .' - '. $news->title}}" />
+<meta property="og:description" content="{{ $news->description }}" />
+<meta itemprop="image" content="{{ asset('images') }}/{{ $news->image }}"/>
+@endsection
+
 @section('title', env('APP_NAME') .' - '. $news->title)
 
 @section('menu')

@@ -26,7 +26,7 @@
                             <label for="name_member" class="col-form-label">Tên người dùng</label>
                             <div class="w-100">
                                 <input id="name_member" type="text" class="form-control @error('name_member') is-invalid @enderror" 
-                                name="name_member" value="{{ old('name_member') }}">
+                                name="name_member" value="{{ old('name_member')}} " autofocus>
 
                                 @error('name_member')
                                     <span class="invalid-feedback" role="alert">
@@ -55,7 +55,7 @@
                             <label for="address" class="col-form-label">Địa chỉ</label>
                             <div class="w-100">
                                 <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" 
-                                name="address" value="{{ old('address') }}" autofocus>
+                                name="address" value="{{ old('address') }}" >
 
                                 @error('address')
                                     <span class="invalid-feedback" role="alert">

@@ -21,12 +21,12 @@
 
                 <table class="table table__product">
                     <tr>
-                        <th>Tên sản phẩm</th>
-                        <th>Ảnh sản phẩm</th>
-                        <th>Giá sản phẩm</th>
-                        <th>Số lượng</th>
-                        <th>Giảm giá</th>
-                        <th>Đề xuất</th>
+                        <th class="font-weight-bold">Tên sản phẩm</th>
+                        <th class="font-weight-bold">Ảnh sản phẩm</th>
+                        <th class="font-weight-bold">Giá sản phẩm</th>
+                        <th class="font-weight-bold">Số lượng</th>
+                        <th class="font-weight-bold">Giảm giá</th>
+                        <th class="font-weight-bold">Đề xuất</th>
                         <th></th>
                     </tr>
                     @foreach($products as $product)
@@ -37,7 +37,9 @@
                                     <img src="{{asset('images/products')}}/{{ $product->images[0]->image }}" alt="">
                                 @endif
                             </td>
-                            <td>{{ number_format($product->price_product) }} đ</td>
+                            <td>
+                                {{number_format($product->price_product - ($product->price_product / 100 * $product->sale))}} đ
+                            </td>
                             <td>{{ $product->quantity_product }}</td>
                             <td>{{ $product->sale }} %</td>
                             <td>

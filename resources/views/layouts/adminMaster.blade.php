@@ -13,9 +13,9 @@
     <link rel="icon" href="{{ asset('images') }}/logo.png" />
     <title>{{ env('APP_NAME') }} - Admin</title>
 
-    <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+    <script src="{{ asset('js') }}/pusher.min.js"></script>
 
-    <script src="https://cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script>
+    <script src="{{ asset('js/admin') }}/ckeditor.js"></script>
     
     <link href="{{ asset('css') }}/morris.css" rel="stylesheet">
     

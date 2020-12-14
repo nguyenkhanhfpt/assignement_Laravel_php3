@@ -110,6 +110,12 @@ a {
   z-index: 10;
 }
 
+@media screen and (max-width: 1390px) {
+  .nav__bottom {
+    grid-template-columns: 180px 2fr 1fr;
+  }
+}
+
 .nav__bottom .nav__list ul {
   display: flex;
   justify-content: center;

@@ -1,11 +1,13 @@
 @extends('layouts.master')
 
-@section('title', env('APP_NAME') .' - '. $product->name_product)
-
 @section('meta')
-    <meta property="og:title" content="{{ env('APP_NAME') .' - '. $product->name_product }}" />
-    <meta itemprop="image" content="{{ Helper::exec()->getFirstImage($product->images) }}"/>
+<meta name="description" content="{{ $product->decscription }}" />
+<meta property="og:description" content="{{ $product->decscription }}" />
+<meta property="og:title" content="{{ env('APP_NAME') .' - '. $product->name_product }}" />
+<meta itemprop="image" content="{{ Helper::exec()->getFirstImage($product->images) }}"/>
 @endsection
+
+@section('title', env('APP_NAME') .' - '. $product->name_product)
 
 @section('menu')
     @include('components.menu')

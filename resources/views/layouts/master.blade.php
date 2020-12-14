@@ -40,7 +40,7 @@
     <!-- sweetAlert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
-    <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+    <script src="{{ asset('js') }}/pusher.min.js"></script>
 
     <!-- Link Jquery Ui -->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
